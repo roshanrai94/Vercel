@@ -1,10 +1,8 @@
 import React from 'react';
-import { Mail, MapPin, Sparkles, FolderOpen, HeartHandshake, Facebook, Instagram, Youtube, ExternalLink, Navigation } from 'lucide-react';
-import { usePhotos } from '../context/PhotoContext';
+import { Mail, MapPin, Sparkles, HeartHandshake, Facebook, Instagram, Youtube, ExternalLink, Navigation } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
 export const Contact: React.FC = () => {
-  const { openManager } = usePhotos();
 
   const socialLinks = [
     {
@@ -166,20 +164,6 @@ export const Contact: React.FC = () => {
                   );
                 })}
               </div>
-            </div>
-
-            {/* Photo Space Manager Shortcut */}
-            <div className="p-3.5 rounded-2xl bg-amber-950/30 border border-amber-800/40 text-center space-y-1.5 mt-2">
-              <p className="text-xs sm:text-sm text-amber-200/90 font-medium">
-                Want to manage portfolio photos or videos?
-              </p>
-              <button
-                onClick={openManager}
-                className="w-full py-2.5 px-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2"
-              >
-                <FolderOpen className="w-4 h-4" />
-                <span>Open Photo Space Manager</span>
-              </button>
             </div>
 
           </div>

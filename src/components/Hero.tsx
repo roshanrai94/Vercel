@@ -1,11 +1,9 @@
 import React from 'react';
-import { ArrowDown, FolderOpen, Award, Compass, Sparkles } from 'lucide-react';
+import { ArrowDown, Award, Compass, Sparkles } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
-import { usePhotos } from '../context/PhotoContext';
 import { personalData, statsData } from '../data/portfolioData';
 
 export const Hero: React.FC = () => {
-  const { openManager } = usePhotos();
 
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
@@ -74,14 +72,6 @@ export const Hero: React.FC = () => {
               <Award className="w-5 h-5 text-amber-400" />
               <span>COMMUNITY IMPACT</span>
             </a>
-
-            <button
-              onClick={openManager}
-              className="px-5 py-3.5 rounded-xl bg-amber-950/60 hover:bg-amber-900/80 text-amber-300 border border-amber-700/50 text-base font-medium transition-all flex items-center gap-2"
-            >
-              <FolderOpen className="w-5 h-5 text-amber-400" />
-              <span>Manage Photo Space</span>
-            </button>
           </div>
         </div>
 
@@ -114,7 +104,7 @@ export const Hero: React.FC = () => {
             </blockquote>
 
             <p className="text-base sm:text-lg text-amber-100/90 leading-relaxed font-light text-justify">
-              Mrs. Shova Rai is a self-made, second-generation entrepreneur from Gangtok, Sikkim, with over two decades of experience across beauty, fashion, food entrepreneurship, arts, and community empowerment. Through resilience, determination, and continuous learning, she has successfully built multiple enterprises while uplifting local communities, self-help groups (SHGs), and youth across Sikkim.
+              Mrs. Shova Rai is a self-made entrepreneur from Gangtok, Sikkim, with over two decades of experience across beauty, fashion, food entrepreneurship, arts, and community empowerment. Through sheer resilience, determination, and continuous learning, she has successfully built multiple enterprises entirely on her own while uplifting local communities, self-help groups (SHGs), and youth across Sikkim.
             </p>
 
             {/* Quick Stats Grid */}

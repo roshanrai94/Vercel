@@ -1,11 +1,9 @@
 import React from 'react';
-import { Sparkles, Check, Scissors, ShoppingBag, Utensils, Palette, ExternalLink, FolderOpen } from 'lucide-react';
+import { Sparkles, Check, Scissors, ShoppingBag, Utensils, Palette } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
-import { usePhotos } from '../context/PhotoContext';
 import { venturesData } from '../data/portfolioData';
 
 export const Ventures: React.FC = () => {
-  const { openManager } = usePhotos();
 
   const getVentureIcon = (id: string) => {
     switch (id) {
@@ -63,16 +61,6 @@ export const Ventures: React.FC = () => {
                       {venture.tagline}
                     </p>
                   </div>
-                </div>
-
-                <div className="shrink-0 flex items-center gap-3">
-                  <button
-                    onClick={openManager}
-                    className="px-4 py-2.5 text-xs sm:text-sm font-semibold bg-amber-900/40 hover:bg-amber-900/80 text-amber-300 border border-amber-700/50 rounded-xl transition-all flex items-center gap-2"
-                  >
-                    <FolderOpen className="w-4 h-4 text-amber-400" />
-                    <span>Upload Venture Photos</span>
-                  </button>
                 </div>
 
               </div>

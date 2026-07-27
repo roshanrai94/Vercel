@@ -1,10 +1,8 @@
 import React from 'react';
-import { Sparkles, FolderOpen, Heart, ArrowUp } from 'lucide-react';
-import { usePhotos } from '../context/PhotoContext';
+import { Sparkles, Heart, ArrowUp } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 
 export const Footer: React.FC = () => {
-  const { openManager } = usePhotos();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -30,16 +28,6 @@ export const Footer: React.FC = () => {
             <p className="text-sm text-stone-300 leading-relaxed max-w-sm">
               Sikkim's Visionary Leader & Mentor — Empowering Communities Through Entrepreneurship, Beauty, Artisanal Food & Cultural Craft.
             </p>
-
-            <div className="pt-2">
-              <button
-                onClick={openManager}
-                className="px-3.5 py-1.5 text-xs sm:text-sm font-semibold bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 rounded-lg transition-all flex items-center gap-1.5"
-              >
-                <FolderOpen className="w-4 h-4 text-amber-400" />
-                <span>Configure Photo Spaces</span>
-              </button>
-            </div>
           </div>
 
           {/* Quick Links */}

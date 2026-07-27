@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Award, Sparkles, FolderOpen, Mic, FileCheck2, Maximize2, X } from 'lucide-react';
+import { Award, Sparkles, Mic, FileCheck2, Maximize2, X } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { usePhotos } from '../context/PhotoContext';
 import { accoladesData, publicSpeakingData, photoAwardSlots, endorsementsData } from '../data/portfolioData';
 
 export const Recognition: React.FC = () => {
-  const { openManager, photoMapping } = usePhotos();
+  const { photoMapping } = usePhotos();
   const [activeLightbox, setActiveLightbox] = useState<{ key: string; title: string; category?: string } | null>(null);
 
   const lightboxData = activeLightbox ? photoMapping[activeLightbox.key] : null;
@@ -89,14 +89,6 @@ export const Recognition: React.FC = () => {
                 National and State award ceremonies, felicitation plaques, and ministerial honors.
               </p>
             </div>
-
-            <button
-              onClick={openManager}
-              className="px-4 py-2.5 text-xs sm:text-sm font-semibold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl transition-all flex items-center gap-2 self-start sm:self-auto"
-            >
-              <FolderOpen className="w-4 h-4 text-amber-400" />
-              <span>Upload Award Photos</span>
-            </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

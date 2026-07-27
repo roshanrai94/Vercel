@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Sparkles, FolderOpen, Filter, Maximize2, X } from 'lucide-react';
+import { Sparkles, Filter, Maximize2, X } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { usePhotos } from '../context/PhotoContext';
 import { editorialGalleryData } from '../data/portfolioData';
 
 export const Gallery: React.FC = () => {
-  const { openManager, photoMapping } = usePhotos();
+  const { photoMapping } = usePhotos();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [activeLightbox, setActiveLightbox] = useState<{ key: string; title: string; category: string } | null>(null);
 
@@ -48,10 +48,10 @@ export const Gallery: React.FC = () => {
           </p>
         </div>
 
-        {/* Category Filter & Photo Manager Action */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 pb-6 border-b border-stone-800">
+        {/* Category Filter */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-10 pb-6 border-b border-stone-800">
           
-          <div className="flex flex-wrap items-center gap-2.5 justify-center md:justify-start">
+          <div className="flex flex-wrap items-center gap-2.5 justify-center">
             <span className="text-xs sm:text-sm font-bold text-amber-400 uppercase tracking-wider mr-2 flex items-center gap-1">
               <Filter className="w-4 h-4" />
               <span>Category:</span>
@@ -70,14 +70,6 @@ export const Gallery: React.FC = () => {
               </button>
             ))}
           </div>
-
-          <button
-            onClick={openManager}
-            className="px-4 py-2 text-xs sm:text-sm font-semibold bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-xl transition-all flex items-center gap-2 shrink-0"
-          >
-            <FolderOpen className="w-4 h-4 text-amber-400" />
-            <span>Manage Gallery Photo Spaces</span>
-          </button>
 
         </div>
 

@@ -13,9 +13,9 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Shova.jpg",
     recommendedSize: "800x1000px (Portrait)"
   },
-  mother_portrait: {
-    alt: "Late Mrs. Bishnu Maya Rai",
-    label: "Mother & Mentor Tribute Photo",
+  inspiration_roots: {
+    alt: "Mrs. Shova Rai - Early Artisanal Creations & Roots",
+    label: "Inspiration & Roots Photo Space",
     recommendedSize: "600x600px (Square)"
   },
   cutting_edge_1: {
@@ -284,13 +284,13 @@ export const personalData = {
       handle: "@shovarai963"
     }
   },
-  quote: "Welcome! I am Shova Rai—an entrepreneur, master artisan, hairstylist, baker, mentor, and community builder dedicated to bringing beauty, authentic Himalayan flavours, creativity, and sustainable livelihood opportunities to Gangtok and beyond.",
+  quote: "Welcome! I am Shova Rai—An entrepreneur, master artisan, hairstylist, baker, mentor, and community builder dedicated to bringing beauty, authentic Himalayan flavours, creativity, and sustainable livelihood opportunities to Gangtok and beyond.",
   bioParagraphs: [
-    "Mrs. Shova Rai is a self-made, second-generation entrepreneur from Gangtok, Sikkim, with over two decades of experience across beauty, fashion, food entrepreneurship, arts, and community empowerment. Through resilience, determination, and continuous learning, she has successfully built multiple enterprises while uplifting local communities, self-help groups (SHGs), and youth across Sikkim.",
-    "Rooted in Himalayan heritage and inspired by her late mother, Mrs. Bishnu Maya Rai—a pioneer in baking, embroidery, and culinary arts—Shova Rai seamlessly blends traditional craftsmanship with modern business practices.",
+    "Mrs. Shova Rai is a self-made entrepreneur from Gangtok, Sikkim, with over two decades of experience across beauty, fashion, food entrepreneurship, arts, and community empowerment. Through sheer resilience, determination, and continuous self-driven learning, she has built multiple successful enterprises completely on her own while uplifting local communities, self-help groups (SHGs), and youth across Sikkim.",
+    "Rooted in Himalayan heritage and driven by an innate passion for artistic craftsmanship, Shova Rai seamlessly blends traditional craftsmanship with modern business practices.",
     "Today, her work stands at the intersection of economic independence for women, heritage preservation, sustainable organic living, and creative skill development."
   ],
-  motherTribute: "Inspired by her late mother, Mrs. Bishnu Maya Rai—a pioneer in baking, embroidery, and culinary arts in Gangtok—who instilled in her the core values of hard work, continuous learning, and community uplifting."
+  personalPhilosophy: "Built on self-reliance, dedication, and passion—crafting a legacy of creative entrepreneurship and community empowerment through independent perseverance."
 };
 
 export const statsData = [
@@ -327,10 +327,10 @@ export const qualificationsData = [
 export const chroniclesData: ChronicleItem[] = [
   {
     id: "c1",
-    period: "Early Years",
+    period: "Early Beginnings",
     title: "Inspiration & Roots",
-    subtitle: "Learning from a Pioneer Mother",
-    description: "Grew up observing her mother, Mrs. Bishnu Maya Rai, a pioneer in baking, embroidery, and culinary arts in Gangtok. Imbibed a passion for creativity, self-reliance, and perfection."
+    subtitle: "Self-Taught Vision & Independent Passion",
+    description: "Built her creative and artistic foundation entirely through her own initiative, innate curiosity, and self-taught dedication to baking, embroidery, beauty styling, and traditional Himalayan crafts in Gangtok."
   },
   {
     id: "c2",
