@@ -1,0 +1,559 @@
+import { PhotoMapping, Venture, Accolade, PublicSpeaking, ChronicleItem, EditorialItem, Endorsement } from '../types';
+
+export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
+  hero_portrait: {
+    alt: "Mrs. Shova Rai Portrait",
+    label: "Hero Portrait",
+    path: "/Hero.jpg",
+    recommendedSize: "800x1000px (Portrait)"
+  },
+  about_portrait: {
+    alt: "Mrs. Shova Rai - Entrepreneur & Visionary",
+    label: "About Section Portrait",
+    path: "/Shova.jpg",
+    recommendedSize: "800x1000px (Portrait)"
+  },
+  mother_portrait: {
+    alt: "Late Mrs. Bishnu Maya Rai",
+    label: "Mother & Mentor Tribute Photo",
+    recommendedSize: "600x600px (Square)"
+  },
+  cutting_edge_1: {
+    alt: "Cutting Edge Hair & Beauty Display 1",
+    label: "Cutting Edge Display 1",
+    path: "/cut1.jpg",
+    recommendedSize: "800x600px"
+  },
+  cutting_edge_2: {
+    alt: "Cutting Edge Hair & Beauty Display 2",
+    label: "Cutting Edge Display 2",
+    path: "/cut2.jpg",
+    recommendedSize: "800x600px"
+  },
+  cutting_edge_3: {
+    alt: "Cutting Edge Hair & Beauty Display 3",
+    label: "Cutting Edge Display 3",
+    path: "/Cut3.jpg",
+    recommendedSize: "800x600px"
+  },
+  cutting_edge_4: {
+    alt: "Cutting Edge Hair & Beauty Video Demonstration",
+    label: "Cutting Edge Video Demonstration",
+    path: "/Cut4.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  blush_1: {
+    alt: "Blush Fashion Store Interior Display",
+    label: "Blush Store Display",
+    path: "/Blush.jpeg",
+    recommendedSize: "800x600px"
+  },
+  blush_2: {
+    alt: "Blush Fashion Showcase & Collection",
+    label: "Blush Fashion Showcase",
+    path: "/Blush1.jpg",
+    recommendedSize: "800x600px"
+  },
+  blush_3: {
+    alt: "Blush Fashion Boutique Video Walkthrough",
+    label: "Blush Store Video Walkthrough",
+    path: "/Blush2.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  zayel_1: {
+    alt: "A Taste of Sikkim - Zayel's Pickle Display 1",
+    label: "Zayel's Pickle Display 1",
+    path: "/Pickle1.PNG",
+    recommendedSize: "800x600px"
+  },
+  zayel_2: {
+    alt: "A Taste of Sikkim - Zayel's Pickle Display 2",
+    label: "Zayel's Pickle Display 2",
+    path: "/Pickle2.PNG",
+    recommendedSize: "800x600px"
+  },
+  block_print_1: {
+    alt: "Block Printing & Traditional Artistry Display 1",
+    label: "Block Printing Display 1",
+    path: "/Block1.jpeg",
+    recommendedSize: "800x600px"
+  },
+  block_print_2: {
+    alt: "Block Printing & Traditional Artistry Display 2",
+    label: "Block Printing Display 2",
+    path: "/Block2.jpeg",
+    recommendedSize: "800x600px"
+  },
+  block_print_3: {
+    alt: "Block Printing & Traditional Artistry Video Demo",
+    label: "Block Printing Video Demonstration",
+    path: "/Block3.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  award_1: {
+    alt: "Felicitation Display 1",
+    label: "Felicitation Display 1",
+    path: "/Award1.jpeg",
+    recommendedSize: "800x600px"
+  },
+  award_2: {
+    alt: "Felicitation Display 2",
+    label: "Felicitation Display 2",
+    path: "/Award2.jpeg",
+    recommendedSize: "800x600px"
+  },
+  award_3: {
+    alt: "Felicitation Display 3",
+    label: "Felicitation Display 3",
+    path: "/Award3.jpeg",
+    recommendedSize: "800x600px"
+  },
+  award_4: {
+    alt: "Felicitation Display 4",
+    label: "Felicitation Display 4",
+    path: "/Award4.jpg",
+    recommendedSize: "800x600px"
+  },
+  award_5: {
+    alt: "Felicitation Display 5",
+    label: "Felicitation Display 5",
+    path: "/Award5.jpeg",
+    recommendedSize: "800x600px"
+  },
+  award_6: {
+    alt: "Felicitation Display 6",
+    label: "Felicitation Display 6",
+    path: "/Award6.jpg",
+    recommendedSize: "800x600px"
+  },
+  award_7: {
+    alt: "Felicitation Display 7",
+    label: "Felicitation Display 7",
+    path: "/Award7.jpg",
+    recommendedSize: "800x600px"
+  },
+  gallery_1: {
+    alt: "Master Hair Styling Showcase",
+    label: "Gallery Display 1",
+    path: "/Gallery1.png",
+    recommendedSize: "800x600px"
+  },
+  gallery_2: {
+    alt: "Artisanal Baking & Confectionery",
+    label: "Gallery Display 2",
+    path: "/Gallery2.jpg",
+    recommendedSize: "800x600px"
+  },
+  gallery_3: {
+    alt: "Dalle Khorsani Organic Pickle Crafting",
+    label: "Gallery Display 3",
+    path: "/Gallery3.png",
+    recommendedSize: "800x600px"
+  },
+  gallery_4: {
+    alt: "Hand Block Printing Textile Creation",
+    label: "Gallery Display 4",
+    path: "/Gallery4.jpeg",
+    recommendedSize: "800x600px"
+  },
+  gallery_5: {
+    alt: "Women Livelihood Skill Workshop Video",
+    label: "Gallery Video Display 5",
+    path: "/Gallery5.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_6: {
+    alt: "Blush Fashion Boutique Display",
+    label: "Gallery Display 6",
+    path: "/Gallery6.PNG",
+    recommendedSize: "800x600px"
+  },
+  gallery_7: {
+    alt: "Traditional Himalayan Craft & Enterprise",
+    label: "Gallery Display 7",
+    path: "/Gallery7.PNG",
+    recommendedSize: "800x600px"
+  },
+  gallery_8: {
+    alt: "Grassroots Empowerment Showcase",
+    label: "Gallery Display 8",
+    path: "/Gallery8.jpeg",
+    recommendedSize: "800x600px"
+  },
+  review_1: {
+    alt: "Client Review & Feedback Display 1",
+    label: "Review Display 1",
+    path: "/Review1.jpg",
+    recommendedSize: "800x600px"
+  },
+  review_2: {
+    alt: "Client Review & Feedback Display 2",
+    label: "Review Display 2",
+    path: "/Review2.jpg",
+    recommendedSize: "800x600px"
+  },
+  review_3: {
+    alt: "Client Review & Feedback Display 3",
+    label: "Review Display 3",
+    path: "/Review3.jpg",
+    recommendedSize: "800x600px"
+  },
+  review_4: {
+    alt: "Client Review & Feedback Display 4",
+    label: "Review Display 4",
+    path: "/Review4.jpg",
+    recommendedSize: "800x600px"
+  },
+  review_5: {
+    alt: "Client Review & Feedback Display 5",
+    label: "Review Display 5",
+    path: "/Review5.jpg",
+    recommendedSize: "800x600px"
+  },
+  review_6: {
+    alt: "Client Review & Feedback Display 6",
+    label: "Review Display 6",
+    path: "/Review6.jpg",
+    recommendedSize: "800x600px"
+  },
+  endorsement_1: {
+    alt: "Handwritten Review & Endorsement 1",
+    label: "Review & Testimony 1",
+    path: "/Review1.jpg",
+    recommendedSize: "800x1000px"
+  },
+  endorsement_2: {
+    alt: "Handwritten Review & Endorsement 2",
+    label: "Review & Testimony 2",
+    path: "/Review2.jpg",
+    recommendedSize: "800x1000px"
+  },
+  endorsement_3: {
+    alt: "Handwritten Review & Endorsement 3",
+    label: "Review & Testimony 3",
+    path: "/Review3.jpg",
+    recommendedSize: "800x1000px"
+  },
+  endorsement_4: {
+    alt: "Handwritten Review & Endorsement 4",
+    label: "Review & Testimony 4",
+    path: "/Review4.jpg",
+    recommendedSize: "800x1000px"
+  },
+  endorsement_5: {
+    alt: "Handwritten Review & Endorsement 5",
+    label: "Review & Testimony 5",
+    path: "/Review5.jpg",
+    recommendedSize: "800x1000px"
+  },
+  endorsement_6: {
+    alt: "Handwritten Review & Endorsement 6",
+    label: "Review & Testimony 6",
+    path: "/Review6.jpg",
+    recommendedSize: "800x1000px"
+  }
+};
+
+
+export const personalData = {
+  name: "Mrs. Shova Rai",
+  title: "Entrepreneur & Visionary",
+  subtitle: "Sikkim's Visionary Leader & Mentor",
+  roles: ["Entrepreneur", "Artist", "Mentor", "Baker", "Hairstylist", "Community Builder"],
+  location: "Namnang, Gangtok, Sikkim, India",
+  email: "cuttingedge723@gmail.com",
+  socialLinks: {
+    facebook: {
+      name: "Shova Rai Facebook Page",
+      url: "https://www.facebook.com/share/1FGMEjv4Qr/",
+      handle: "Shova Rai Official"
+    },
+    cuttingEdgeInstagram: {
+      name: "Cutting Edge Instagram",
+      url: "https://www.instagram.com/cuttingedge_hair_salon_gtk__?igsh=aG8xamhqcHlvMmpx",
+      handle: "@cuttingedge_hair_salon_gtk__"
+    },
+    blushInstagram: {
+      name: "Blush Instagram Page",
+      url: "https://www.instagram.com/blush.clothingstore?igsh=MWtpeGFvMm84eDJ2ag==",
+      handle: "@blush.clothingstore"
+    },
+    youtube: {
+      name: "Shova Rai YouTube Channel",
+      url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
+      handle: "@shovarai963"
+    }
+  },
+  quote: "Welcome! I am Shova Rai—an entrepreneur, master artisan, hairstylist, baker, mentor, and community builder dedicated to bringing beauty, authentic Himalayan flavours, creativity, and sustainable livelihood opportunities to Gangtok and beyond.",
+  bioParagraphs: [
+    "Mrs. Shova Rai is a self-made, second-generation entrepreneur from Gangtok, Sikkim, with over two decades of experience across beauty, fashion, food entrepreneurship, arts, and community empowerment. Through resilience, determination, and continuous learning, she has successfully built multiple enterprises while uplifting local communities, self-help groups (SHGs), and youth across Sikkim.",
+    "Rooted in Himalayan heritage and inspired by her late mother, Mrs. Bishnu Maya Rai—a pioneer in baking, embroidery, and culinary arts—Shova Rai seamlessly blends traditional craftsmanship with modern business practices.",
+    "Today, her work stands at the intersection of economic independence for women, heritage preservation, sustainable organic living, and creative skill development."
+  ],
+  motherTribute: "Inspired by her late mother, Mrs. Bishnu Maya Rai—a pioneer in baking, embroidery, and culinary arts in Gangtok—who instilled in her the core values of hard work, continuous learning, and community uplifting."
+};
+
+export const statsData = [
+  { label: "Years of Excellence", value: "20+", description: "In Beauty, Fashion, Food & Craft" },
+  { label: "Business Ventures", value: "4+", description: "Built & Scaled in Gangtok" },
+  { label: "National & State Honors", value: "10+", description: "Recognized by NCW & Ministers" },
+  { label: "Skill Workshops", value: "50+", description: "Empowering Women & SHGs" },
+  { label: "Creative Projects", value: "100+", description: "Traditional & Modern Artistry" }
+];
+
+export const qualificationsData = [
+  {
+    institution: "Nalini & Yasmin Hair Academy (Mumbai)",
+    qualification: "Advanced Hair Styling, Cutting, Perms, Chemical Services & Academy Operations",
+    badge: "Master Stylist"
+  },
+  {
+    institution: "Truffle Nation Baking School",
+    qualification: "Baking & Bakery Management",
+    badge: "Certified Baker"
+  },
+  {
+    institution: "FSSAI & UDYAM Registered",
+    qualification: "Certified Organic & Artisanal Food Entrepreneur",
+    badge: "Food Licensee"
+  },
+  {
+    institution: "Handicrafts & Block Printing Guilds",
+    qualification: "Professional Block Printing & Traditional Himalayan Handicrafts Training",
+    badge: "Master Artisan"
+  }
+];
+
+export const chroniclesData: ChronicleItem[] = [
+  {
+    id: "c1",
+    period: "Early Years",
+    title: "Inspiration & Roots",
+    subtitle: "Learning from a Pioneer Mother",
+    description: "Grew up observing her mother, Mrs. Bishnu Maya Rai, a pioneer in baking, embroidery, and culinary arts in Gangtok. Imbibed a passion for creativity, self-reliance, and perfection."
+  },
+  {
+    id: "c2",
+    period: "Foundation Phase",
+    title: "Mastering Professional Skills",
+    subtitle: "Trainings in Mumbai & Delhi",
+    description: "Traveled to premier institutions including Nalini & Yasmin Hair Academy in Mumbai and Truffle Nation in Delhi to gain master-level technical expertise in hair styling and commercial baking."
+  },
+  {
+    id: "c3",
+    period: "2007",
+    title: "Cutting Edge Hair & Beauty",
+    subtitle: "Establishing a Landmark Salon in Gangtok",
+    description: "Established Cutting Edge Hair & Beauty Salon at Namnang, Gangtok. Provided top-tier grooming, bridal styling, and hair transformations using international standards."
+  },
+  {
+    id: "c4",
+    period: "2010 - 2020",
+    title: "Multi-Sector Expansion",
+    subtitle: "Fashion, Organic Food & Craft Arts",
+    description: "Launched Blush Fashion Store catering to contemporary and Sikkimese ethnic wear. Founded Zayel's Pickle producing authentic Dalle Khorsani and Himalayan organic preserves. Developed Block Printing art workshops."
+  },
+  {
+    id: "c5",
+    period: "Ongoing",
+    title: "Community Livelihood & Mentorship",
+    subtitle: "Uplifting Women, Youth & SHGs",
+    description: "Active mentorship across Sikkim: guiding Self-Help Groups (SHGs), conducting skill workshops at Sikkim University, and facilitating livelihood training for differently-abled individuals."
+  },
+  {
+    id: "c6",
+    period: "2026 & Beyond",
+    title: "Digital Legacy & Regional Scaling",
+    subtitle: "Promoting Sikkim's Entrepreneurial Spirit Globally",
+    description: "Creating a digital showcase of Sikkim's entrepreneurial capability, fostering regional partnerships, and expanding artisanal products to nationwide markets."
+  }
+];
+
+export const venturesData: Venture[] = [
+  {
+    id: "v1",
+    name: "Cutting Edge Hair & Beauty",
+    tagline: "Premier Hair Styling, Bridal Care & Salon Mentorship in Gangtok",
+    est: "Est. 2007 • Namnang, Gangtok",
+    description: "Cutting Edge Hair & Beauty is a trusted destination for modern hair transformations, organic skin care, intricate bridal styling, and hair academy mentorship. Established with international quality standards to bring advanced beauty solutions to Sikkim.",
+    highlights: [
+      "Advanced hair cuts, coloring, perms & rebonding treatments",
+      "Customized Sikkimese & contemporary bridal makeover packages",
+      "Certified hygiene, premium products & personalized consultations",
+      "Skill training & internship ground for aspiring hairstylists"
+    ],
+    visuals: [
+      { slotKey: "cutting_edge_1", title: "Cutting Edge Display 1", caption: "Premier salon interior & styling station" },
+      { slotKey: "cutting_edge_2", title: "Cutting Edge Display 2", caption: "Bridal makeover & hair transformation session" },
+      { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
+      { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" }
+    ]
+  },
+  {
+    id: "v2",
+    name: "Blush Fashion Store",
+    tagline: "Curated Contemporary Apparel & Traditional Sikkimese Elegance",
+    est: "Namnang, Gangtok",
+    description: "Blush Fashion Store offers handpicked contemporary attire, ethnic Himalayan garments, and custom-styled fashion accessories designed to elevate style for all occasions.",
+    highlights: [
+      "Curated collection of modern dresses, outerwear & traditional attire",
+      "Sourced with a focus on fabric quality, comfort, and timeless elegance",
+      "Personalized styling assistance for clients and special events",
+      "Located in the prime Namnang hub of Gangtok"
+    ],
+    visuals: [
+      { slotKey: "blush_1", title: "Blush Store Display", caption: "Boutique interior & product display" },
+      { slotKey: "blush_2", title: "Fashion Showcase", caption: "Contemporary & ethnic fashion collection" },
+      { slotKey: "blush_3", title: "Blush Video Walkthrough", caption: "Live video tour of Blush Fashion Store" }
+    ]
+  },
+  {
+    id: "v3",
+    name: "A Taste of Sikkim – Zayel's Pickle",
+    tagline: "Authentic, Home-Crafted Organic Himalayan Pickles & Preserves",
+    est: "FSSAI Registered • UDYAM Certified",
+    description: "Zayel's Pickle brings the authentic, fiery, and soulful flavors of Sikkim to every table. Prepared in small batches using organic local ingredients like Dalle Khorsani (cherry pepper), bamboo shoots, Gundruk, and local spices without synthetic chemical preservatives.",
+    highlights: [
+      "Signature Organic Dalle Khorsani (Whole & Paste)",
+      "Traditional Bamboo Shoot, Gundruk & Mixed Veg Pickles",
+      "FSSAI Food Safety Certified & UDYAM Registered micro-enterprise",
+      "Supports local Sikkimese organic farmers through direct procurement"
+    ],
+    visuals: [
+      { slotKey: "zayel_1", title: "Zayel's Pickle Display 1", caption: "A Taste of Sikkim - Artisanal Organic Pickle" },
+      { slotKey: "zayel_2", title: "Zayel's Pickle Display 2", caption: "Authentic Dalle Khorsani & Sikkimese Preserves" }
+    ]
+  },
+  {
+    id: "v4",
+    name: "Block Printing & Traditional Artistry",
+    tagline: "Eco-Friendly Textile Crafts, Hand-Carved Prints & Workshops",
+    est: "Gangtok, Sikkim",
+    description: "Celebrating traditional block printing and Himalayan motif art. Shova Rai crafts hand-printed fabrics, tote bags, scarves, and home decor items while hosting hands-on workshops to keep folk art traditions alive.",
+    highlights: [
+      "Hand-carved wooden block printing on natural fabrics",
+      "Inspired by traditional Himalayan flora, fauna & cultural motifs",
+      "Eco-conscious natural dyes and sustainable textile choices",
+      "Community skill workshops for youth, artisans & hobbyists"
+    ],
+    visuals: [
+      { slotKey: "block_print_1", title: "Block Photo Display 1", caption: "Hand-carved wooden block printing & textile art" },
+      { slotKey: "block_print_2", title: "Block Photo Display 2", caption: "Traditional Himalayan artisan patterns & crafting" },
+      { slotKey: "block_print_3", title: "Block Video Demo", caption: "Video walkthrough of traditional block printing process" }
+    ]
+  }
+];
+
+export const impactDomains = [
+  {
+    title: "Women Empowerment & Livelihoods",
+    description: "Providing vocational training in beauty services, baking, and handicrafts to enable financial independence for women across rural and urban Sikkim."
+  },
+  {
+    title: "Self-Help Group (SHG) Support",
+    description: "Collaborating with local SHGs to standardize food processing, packaging, and marketing for organic pickles and handicrafts."
+  },
+  {
+    title: "Mentorship for Differently-Abled Youth",
+    description: "Conducting inclusive skill programs in partnership with welfare organizations to empower differently-abled individuals with sustainable vocational trades."
+  },
+  {
+    title: "Himalayan Culture & Organic Living",
+    description: "Promoting organic Sikkimese produce (Dalle, Bamboo, Gundruk) and eco-friendly traditional block printing to preserve local heritage."
+  }
+];
+
+export const accoladesData: Accolade[] = [
+  {
+    id: "a1",
+    title: "National Commission for Women (NCW) Felicitation",
+    location: "New Delhi",
+    date: "National Recognition"
+  },
+  {
+    id: "a2",
+    title: "Felicitation by Union Minister Smt. Shobha Karandlaje",
+    location: "Gangtok, Sikkim",
+    date: "Ministerial Honor"
+  },
+  {
+    id: "a3",
+    title: "Sikkim Gyan Manch Appreciation Award",
+    location: "Gangtok, Sikkim",
+    date: "Community Honor"
+  },
+  {
+    id: "a4",
+    title: "Resource Person & Guest Speaker at Sikkim University",
+    location: "Sikkim University, Gangtok",
+    date: "Academic Mentorship"
+  },
+  {
+    id: "a5",
+    title: "Commendation for Divyangjan Welfare & Inclusive Training",
+    location: "Gangtok, Sikkim",
+    date: "Social Impact Honor"
+  }
+];
+
+export const publicSpeakingData: PublicSpeaking[] = [
+  {
+    role: "RESOURCE PERSON",
+    event: "Entrepreneurship & Livelihood Skill Workshop for Youth",
+    location: "Sikkim University, Gangtok"
+  },
+  {
+    role: "GUEST SPEAKER",
+    event: "Women's Economic Empowerment Summit & SHG Convention",
+    location: "Gangtok, Sikkim"
+  },
+  {
+    role: "MOTIVATIONAL SPEAKER",
+    event: "Vocational Livelihoods for Differently-Abled Youth",
+    location: "Divyangjan Welfare Assembly, Sikkim"
+  },
+  {
+    role: "MASTER INSTRUCTOR",
+    event: "Artisanal Food Processing & Hygiene Standards (FSSAI Aligned)",
+    location: "Community Livelihood Center, Gangtok"
+  }
+];
+
+export const photoAwardSlots = [
+  { key: "award_1", label: "Award Display 1", sub: "National Commission for Women (NCW) Honor" },
+  { key: "award_2", label: "Award Display 2", sub: "Felicitation by Union Minister Smt. Shobha Karandlaje" },
+  { key: "award_3", label: "Award Display 3", sub: "Sikkim Gyan Manch Recognition" },
+  { key: "award_4", label: "Award Display 4", sub: "Sikkim University Resource Person Session" },
+  { key: "award_5", label: "Award Display 5", sub: "Divyangjan Welfare Social Impact Honor" },
+  { key: "award_6", label: "Award Display 6", sub: "State & Community Leadership Honor" },
+  { key: "award_7", label: "Award Display 7", sub: "National Livelihood & Women Empowerment Honor" }
+];
+
+export const editorialGalleryData: EditorialItem[] = [
+  { id: "g1", title: "Master Hair Styling Showcase", category: "Beauty & Salon", photoKey: "gallery_1" },
+  { id: "g2", title: "Artisanal Baking & Truffle Creations", category: "Culinary Arts", photoKey: "gallery_2" },
+  { id: "g3", title: "Dalle Khorsani Organic Processing", category: "Zayel's Pickle", photoKey: "gallery_3" },
+  { id: "g4", title: "Hand Block Printing on Textiles", category: "Traditional Craft", photoKey: "gallery_4" },
+  { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
+  { id: "g6", title: "Blush Fashion Store Collection", category: "Fashion & Style", photoKey: "gallery_6" },
+  { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
+  { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" }
+];
+
+export const nationalAlignments = [
+  { title: "MSME Registered", desc: "Recognized micro-enterprise fostering local economic growth." },
+  { title: "Startup India & Skill India", desc: "Aligned with national skill development and entrepreneurship goals." },
+  { title: "Vocal for Local", desc: "Sourcing 100% organic local Sikkimese produce and materials." },
+  { title: "Women Entrepreneurship (WEP)", desc: "Empowering female-led micro-enterprises across Eastern Himalayas." },
+  { title: "FSSAI Food Safety Certified", desc: "Highest hygiene and safety standards for artisanal preserves." },
+  { title: "Self-Help Group Networks", desc: "Direct training and market linkage for grassroots SHG women." }
+];
+
+export const endorsementsData: Endorsement[] = [
+  { id: "e1", title: "Handwritten Testimony & Review 1", photoKey: "endorsement_1" },
+  { id: "e2", title: "Handwritten Testimony & Review 2", photoKey: "endorsement_2" },
+  { id: "e3", title: "Handwritten Testimony & Review 3", photoKey: "endorsement_3" },
+  { id: "e4", title: "Handwritten Testimony & Review 4", photoKey: "endorsement_4" },
+  { id: "e5", title: "Handwritten Testimony & Review 5", photoKey: "endorsement_5" },
+  { id: "e6", title: "Handwritten Testimony & Review 6", photoKey: "endorsement_6" }
+];

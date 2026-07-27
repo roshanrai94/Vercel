@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer base {
+  *, ::before, ::after {
+    font-family: 'Times New Roman', Times, serif !important;
+  }
+  
+  html, body {
+    font-family: 'Times New Roman', Times, serif !important;
+  }
+
+  p {
+    text-align: justify;
+  }
+}
+
+.text-justify {
+  text-align: justify !important;
+}

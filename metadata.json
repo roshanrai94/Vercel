@@ -1,0 +1,6 @@
+{
+  "name": "Rai Shova Portfolio",
+  "description": "Personal website and portfolio for Rai Shova featuring customizable photo spaces, biography, projects, skills, and contact form.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
