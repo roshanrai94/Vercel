@@ -80,8 +80,8 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
     return (
       <>
         <div
-          className={`relative group overflow-hidden transition-all duration-300 ${roundedClassName} ${
-            isExpandedArea ? 'w-full min-h-[420px] max-h-[700px]' : className
+          className={`relative group overflow-hidden transition-all duration-300 ${roundedClassName} ${className} ${
+            isExpandedArea ? '!aspect-auto !h-auto w-full min-h-[300px] max-h-[700px]' : ''
           }`}
         >
           {isVideo ? (

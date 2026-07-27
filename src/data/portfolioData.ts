@@ -527,13 +527,13 @@ export const publicSpeakingData: PublicSpeaking[] = [
 ];
 
 export const photoAwardSlots = [
-  { key: "award_1", label: "Award Display 1", sub: "National Commission for Women (NCW) Honor" },
-  { key: "award_2", label: "Award Display 2", sub: "Felicitation by Union Minister Smt. Shobha Karandlaje" },
-  { key: "award_3", label: "Award Display 3", sub: "Sikkim Gyan Manch Recognition" },
-  { key: "award_4", label: "Award Display 4", sub: "Sikkim University Resource Person Session" },
-  { key: "award_5", label: "Award Display 5", sub: "Divyangjan Welfare Social Impact Honor" },
-  { key: "award_6", label: "Award Display 6", sub: "State & Community Leadership Honor" },
-  { key: "award_7", label: "Award Display 7", sub: "National Livelihood & Women Empowerment Honor" }
+  { key: "award_1", label: "National Commission for Women (NCW)", sub: "Honored in New Delhi for empowering women entrepreneurs" },
+  { key: "award_2", label: "Union Minister Felicitation", sub: "Honored by Smt. Shobha Karandlaje for grassroots impact" },
+  { key: "award_3", label: "Sikkim Gyan Manch Award", sub: "Recognition for outstanding community leadership" },
+  { key: "award_4", label: "Sikkim University Honor", sub: "Felicitation for conducting livelihood skill workshops" },
+  { key: "award_5", label: "Divyangjan Welfare Recognition", sub: "Commendation for inclusive vocational training initiatives" },
+  { key: "award_6", label: "State Leadership Commendation", sub: "Award for continuous dedication to state's development" },
+  { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" }
 ];
 
 export const editorialGalleryData: EditorialItem[] = [
@@ -557,10 +557,10 @@ export const nationalAlignments = [
 ];
 
 export const endorsementsData: Endorsement[] = [
-  { id: "e1", title: "Handwritten Testimony & Review 1", photoKey: "endorsement_1" },
-  { id: "e2", title: "Handwritten Testimony & Review 2", photoKey: "endorsement_2" },
-  { id: "e3", title: "Handwritten Testimony & Review 3", photoKey: "endorsement_3" },
-  { id: "e4", title: "Handwritten Testimony & Review 4", photoKey: "endorsement_4" },
-  { id: "e5", title: "Handwritten Testimony & Review 5", photoKey: "endorsement_5" },
-  { id: "e6", title: "Handwritten Testimony & Review 6", photoKey: "endorsement_6" }
+  { id: "e1", title: "Outstanding Leadership & Vision Review", photoKey: "endorsement_1" },
+  { id: "e2", title: "Community Impact & Dedication Testimony", photoKey: "endorsement_2" },
+  { id: "e3", title: "Professional Skill Training Endorsement", photoKey: "endorsement_3" },
+  { id: "e4", title: "Artisanal Craftsmanship Recognition", photoKey: "endorsement_4" },
+  { id: "e5", title: "Client Satisfaction & Success Review", photoKey: "endorsement_5" },
+  { id: "e6", title: "Empowerment & Mentorship Testimony", photoKey: "endorsement_6" }
 ];

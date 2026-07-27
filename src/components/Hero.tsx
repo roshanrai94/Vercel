@@ -80,11 +80,11 @@ export const Hero: React.FC = () => {
           
           {/* Photo Slot */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="w-full max-w-md aspect-[4/5]">
+            <div className="w-full max-w-md">
               <PhotoPlaceholder
                 slotKey="hero_portrait"
                 aspectRatio="portrait"
-                className="shadow-2xl rounded-2xl border-2 border-amber-500/30 overflow-hidden"
+                className="w-full aspect-[4/5] shadow-2xl rounded-2xl border-2 border-amber-500/30 overflow-hidden"
               />
             </div>
           </div>

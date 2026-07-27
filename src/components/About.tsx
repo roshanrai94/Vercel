@@ -29,10 +29,11 @@ export const About: React.FC = () => {
           {/* Left Column: Portrait Photo Space */}
           <div className="lg:col-span-5 flex flex-col items-center">
             <div className="relative group w-full max-w-md p-1.5 sm:p-2 rounded-[2.25rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-900/90 shadow-[0_10px_35px_rgba(217,119,6,0.25)] hover:shadow-[0_15px_45px_rgba(245,158,11,0.35)] transition-all duration-500">
-              <div className="w-full aspect-[4/5] rounded-[1.75rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30">
+              <div className="w-full rounded-[1.75rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30">
                 <PhotoPlaceholder
                   slotKey="about_portrait"
                   aspectRatio="portrait"
+                  className="w-full aspect-[4/5]"
                   label="Mrs. Shova Rai Portrait"
                   imageClassName="w-full h-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.02]"
                 />

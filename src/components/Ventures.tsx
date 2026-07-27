@@ -94,10 +94,11 @@ export const Ventures: React.FC = () => {
                     {venture.visuals.map((vis, visIdx) => (
                       <div key={visIdx} className={`${venture.visuals.length === 3 && visIdx === 2 ? 'sm:col-span-2' : ''}`}>
                         <div className="relative group p-1.5 sm:p-2 rounded-[1.75rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-950/90 shadow-[0_8px_30px_rgba(217,119,6,0.2)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.3)] transition-all duration-300">
-                          <div className="w-full aspect-[4/3] rounded-[1.25rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30">
+                          <div className="w-full rounded-[1.25rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30">
                             <PhotoPlaceholder
                               slotKey={vis.slotKey}
                               aspectRatio="landscape"
+                              className="w-full aspect-[4/3]"
                               label={vis.title}
                               imageClassName="w-full h-full object-contain p-1 transition-transform duration-500 group-hover:scale-[1.02]"
                             />
