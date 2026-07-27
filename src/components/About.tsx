@@ -113,7 +113,7 @@ export const About: React.FC = () => {
         </div>
 
         {/* Stats Counter Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 bg-stone-950 p-6 sm:p-8 rounded-2xl border border-stone-800">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-stone-950 p-6 sm:p-8 rounded-2xl border border-stone-800">
           {statsData.map((stat, idx) => (
             <div key={idx} className="text-center p-3">
               <div className="text-3xl sm:text-4xl font-serif font-bold text-amber-400 mb-1">

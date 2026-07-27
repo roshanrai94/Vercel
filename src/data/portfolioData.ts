@@ -305,8 +305,7 @@ export const statsData = [
   { label: "Years of Excellence", value: "20+", description: "In Beauty, Fashion, Food & Craft" },
   { label: "Business Ventures", value: "4+", description: "Built & Scaled in Gangtok" },
   { label: "National & State Honors", value: "10+", description: "Recognized by NCW & Ministers" },
-  { label: "Skill Workshops", value: "50+", description: "Empowering Women & SHGs" },
-  { label: "Creative Projects", value: "100+", description: "Traditional & Modern Artistry" }
+  { label: "Skill Workshops", value: "50+", description: "Empowering Women & SHGs" }
 ];
 
 export const qualificationsData = [

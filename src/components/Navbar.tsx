@@ -25,7 +25,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, setDarkMode }) => {
   };
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 py-3 bg-stone-950/90 border-b border-amber-800/40 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 py-3 bg-stone-950/90 border-b border-amber-800/40 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-nowrap items-center justify-start md:justify-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none py-1">
           {navLinks.map((link) => (
