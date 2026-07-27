@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Camera, ImagePlus, Upload, Settings2, Image as ImageIcon } from 'lucide-react';
+import React, { useState, useRef } from 'react';
+import { Camera, ImagePlus, Upload, Image as ImageIcon, Volume2, VolumeX, Maximize2, Minimize2, X, Play, Sparkles } from 'lucide-react';
 import { usePhotos } from '../context/PhotoContext';
 
 interface PhotoPlaceholderProps {
@@ -20,8 +20,13 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   showQuickUpload = true,
   imageClassName = 'w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105',
 }) => {
-  const { photoMapping, openManager, setActiveSlotToEdit, setPhotoDataUrl } = usePhotos();
+  const { photoMapping, setPhotoDataUrl } = usePhotos();
   const [imageError, setImageError] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const [isExpandedArea, setIsExpandedArea] = useState(false);
+  const [isTheaterOpen, setIsTheaterOpen] = useState(false);
+
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const slotData = photoMapping[slotKey];
   const imgSrc = slotData?.dataUrl || slotData?.path;
@@ -42,10 +47,27 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
     }
   };
 
-  const handleOpenManager = (e: React.MouseEvent) => {
+  const toggleSound = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setActiveSlotToEdit(slotKey);
-    openManager();
+    const newMuted = !isMuted;
+    setIsMuted(newMuted);
+    if (videoRef.current) {
+      videoRef.current.muted = newMuted;
+      if (!newMuted) {
+        videoRef.current.volume = 1.0;
+        videoRef.current.play().catch(() => {});
+      }
+    }
+  };
+
+  const toggleExpandArea = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpandedArea((prev) => !prev);
+  };
+
+  const openTheaterView = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsTheaterOpen(true);
   };
 
   const isVideo = Boolean(
@@ -56,102 +78,195 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
 
   if (hasValidImage && imgSrc) {
     return (
-      <div className={`relative group overflow-hidden ${roundedClassName} ${className}`}>
-        {isVideo ? (
-          <video
-            src={imgSrc}
-            controls
-            autoPlay
-            muted
-            loop
-            playsInline
-            onError={() => setImageError(true)}
-            className={imageClassName}
-          />
-        ) : (
-          <img
-            src={imgSrc}
-            alt={slotData?.alt || label}
-            onError={() => setImageError(true)}
-            className={imageClassName}
-          />
-        )}
-        {/* Hover overlay with edit options */}
-        <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 p-4 text-white text-center pointer-events-none group-hover:pointer-events-auto">
-          <p className="text-xs font-semibold uppercase tracking-wider text-teal-300">
-            {label}
-          </p>
-          <div className="flex items-center gap-2 mt-1">
-            <label className="cursor-pointer px-3 py-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-md text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 border border-white/20">
-              <Upload className="w-3.5 h-3.5" />
-              <span>Change</span>
-              <input
-                type="file"
-                accept="image/*,video/*"
-                onChange={handleFileChange}
-                className="hidden"
+      <>
+        <div
+          className={`relative group overflow-hidden transition-all duration-300 ${roundedClassName} ${
+            isExpandedArea ? 'w-full min-h-[420px] max-h-[700px]' : className
+          }`}
+        >
+          {isVideo ? (
+            <div className="relative w-full h-full flex flex-col justify-center bg-stone-950">
+              <video
+                ref={videoRef}
+                src={imgSrc}
+                controls
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                onError={() => setImageError(true)}
+                className={
+                  isExpandedArea
+                    ? 'w-full h-auto max-h-[650px] object-contain rounded-xl'
+                    : imageClassName
+                }
               />
-            </label>
-            <button
-              onClick={handleOpenManager}
-              className="px-3 py-1.5 bg-teal-500/80 hover:bg-teal-500 text-white text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5 shadow-sm"
-              title="Configure Image Path"
-            >
-              <Settings2 className="w-3.5 h-3.5" />
-              <span>Config Path</span>
-            </button>
+
+              {/* Video Quick Action Buttons (Sound & Extend Video Area) */}
+              <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2 z-20 pointer-events-auto">
+                <button
+                  type="button"
+                  onClick={toggleSound}
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-950/80 hover:bg-amber-950/90 text-amber-200 border border-amber-500/40 rounded-full text-xs font-bold transition-all shadow-lg backdrop-blur-md"
+                  title={isMuted ? 'Click to enable video sound' : 'Sound is ON'}
+                >
+                  {isMuted ? (
+                    <>
+                      <VolumeX className="w-4 h-4 text-amber-400 animate-pulse" />
+                      <span>Unmute Sound</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-4 h-4 text-emerald-400" />
+                      <span className="text-emerald-300">Sound ON</span>
+                    </>
+                  )}
+                </button>
+
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={toggleExpandArea}
+                    className="flex items-center gap-1.5 px-3 py-1.5 bg-stone-950/80 hover:bg-stone-900 text-amber-300 border border-amber-500/40 rounded-full text-xs font-bold transition-all shadow-lg backdrop-blur-md"
+                    title="Toggle extended video container size"
+                  >
+                    {isExpandedArea ? (
+                      <>
+                        <Minimize2 className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Compact Area</span>
+                      </>
+                    ) : (
+                      <>
+                        <Maximize2 className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Extend Video Area</span>
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={openTheaterView}
+                    className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 font-extrabold rounded-full text-xs transition-all shadow-lg"
+                    title="Open full video theater with full sound"
+                  >
+                    <Maximize2 className="w-3.5 h-3.5" />
+                    <span>Fullscreen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <img
+              src={imgSrc}
+              alt={slotData?.alt || label}
+              onError={() => setImageError(true)}
+              className={imageClassName}
+            />
+          )}
+
+          {/* Hover overlay with edit options */}
+          <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 p-4 text-white text-center pointer-events-none group-hover:pointer-events-auto z-10">
+            <p className="text-xs font-bold uppercase tracking-wider text-amber-300">
+              {label}
+            </p>
+            <div className="flex items-center gap-2 mt-1">
+              <label className="cursor-pointer px-3 py-1.5 bg-stone-900/90 hover:bg-amber-950 text-amber-200 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5 border border-amber-500/40">
+                <Upload className="w-3.5 h-3.5" />
+                <span>Replace File</span>
+                <input
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={handleFileChange}
+                  className="hidden"
+                />
+              </label>
+            </div>
           </div>
         </div>
-      </div>
+
+        {/* Extended Theater Modal View */}
+        {isTheaterOpen && isVideo && (
+          <div
+            className="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+            onClick={() => setIsTheaterOpen(false)}
+          >
+            <div
+              className="relative max-w-6xl w-full bg-stone-900 border border-amber-500/50 rounded-[2rem] p-4 sm:p-6 shadow-2xl flex flex-col items-center gap-4 overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsTheaterOpen(false)}
+                className="absolute top-4 right-4 p-2 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-800 transition-colors z-20"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-10">
+                <span className="text-[10px] uppercase font-bold text-amber-400 tracking-widest px-2.5 py-0.5 rounded-md bg-amber-500/20 border border-amber-500/30">
+                  Extended Video View with Sound
+                </span>
+                <h3 className="text-lg sm:text-2xl font-serif font-bold text-amber-100">
+                  {label}
+                </h3>
+              </div>
+
+              <div className="w-full max-h-[80vh] flex items-center justify-center bg-black rounded-2xl border border-stone-800 p-2 overflow-hidden">
+                <video
+                  src={imgSrc}
+                  controls
+                  autoPlay
+                  className="max-h-[75vh] w-full rounded-xl object-contain"
+                />
+              </div>
+
+              <p className="text-xs text-stone-400 text-center">
+                🔊 Adjust volume or toggle full screen directly using the video controls.
+              </p>
+            </div>
+          </div>
+        )}
+      </>
     );
   }
 
-  // Blank Photo Space Placeholder (Clean, professional, intentional)
+  // Blank Photo Space Placeholder
   return (
     <div
-      className={`relative group border-2 border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/80 dark:bg-slate-800/50 hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center ${roundedClassName} ${className}`}
+      className={`relative group border-2 border-dashed border-amber-900/40 bg-stone-900/40 hover:bg-stone-900/70 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center ${roundedClassName} ${className}`}
     >
-      <div className="w-12 h-12 rounded-2xl bg-teal-50 dark:bg-teal-950/50 border border-teal-200/60 dark:border-teal-800/50 flex items-center justify-center text-teal-600 dark:text-teal-400 mb-3 shadow-sm group-hover:scale-110 transition-transform">
+      <div className="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-3 shadow-sm group-hover:scale-110 transition-transform">
         <ImageIcon className="w-6 h-6" />
       </div>
 
-      <h4 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">
+      <h4 className="text-sm font-semibold text-amber-100 mb-1">
         {customOverlayText || label}
       </h4>
 
-      <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 max-w-[240px]">
-        Blank Photo Space ({recommendedSize})
+      <p className="text-xs text-amber-200/60 mb-3 max-w-[240px]">
+        Blank Photo or Video Space ({recommendedSize})
       </p>
 
       {showQuickUpload && (
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <label className="cursor-pointer px-3 py-1.5 bg-teal-600 hover:bg-teal-700 text-white text-xs font-medium rounded-lg shadow-sm transition-all flex items-center gap-1.5">
+          <label className="cursor-pointer px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-bold rounded-xl shadow-sm transition-all flex items-center gap-1.5">
             <ImagePlus className="w-3.5 h-3.5" />
-            <span>Upload Photo</span>
+            <span>Upload Photo/Video</span>
             <input
               type="file"
-              accept="image/*"
+              accept="image/*,video/*"
               onChange={handleFileChange}
               className="hidden"
             />
           </label>
-
-          <button
-            onClick={handleOpenManager}
-            className="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 text-xs font-medium rounded-lg transition-colors flex items-center gap-1.5"
-            title="Set relative file path from /public directory"
-          >
-            <Settings2 className="w-3.5 h-3.5" />
-            <span>Set File Path</span>
-          </button>
         </div>
       )}
 
       {imageError && (
-        <p className="text-[11px] text-amber-600 dark:text-amber-400 mt-2 font-medium">
-          ⚠️ Image path not found. Please upload file or check path.
+        <p className="text-[11px] text-amber-400 mt-2 font-medium">
+          ⚠️ Path not found. Please upload a photo or video file.
         </p>
       )}
     </div>
   );
 };
+

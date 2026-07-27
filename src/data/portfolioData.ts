@@ -262,7 +262,15 @@ export const personalData = {
   roles: ["Entrepreneur", "Artist", "Mentor", "Baker", "Hairstylist", "Community Builder"],
   location: "Namnang, Gangtok, Sikkim, India",
   email: "cuttingedge723@gmail.com",
+  phone: "+91 7431833009",
+  whatsapp: "+91 7431833009",
+  whatsappUrl: "https://wa.me/917431833009",
   socialLinks: {
+    whatsapp: {
+      name: "WhatsApp Direct Message",
+      url: "https://wa.me/917431833009",
+      handle: "+91 7431833009"
+    },
     facebook: {
       name: "Shova Rai Facebook Page",
       url: "https://www.facebook.com/share/1FGMEjv4Qr/",

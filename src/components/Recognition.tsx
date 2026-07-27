@@ -11,6 +11,10 @@ export const Recognition: React.FC = () => {
   const lightboxData = activeLightbox ? photoMapping[activeLightbox.key] : null;
   const lightboxSrc = lightboxData?.dataUrl || lightboxData?.path;
 
+  const isLightboxVideo = Boolean(
+    lightboxSrc && (lightboxSrc.match(/\.(mp4|webm|mov|ogg)(\?.*)?$/i) || lightboxSrc.startsWith('data:video/'))
+  );
+
   return (
     <section id="recognition" className="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -193,9 +197,13 @@ export const Recognition: React.FC = () => {
 
             <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.25rem] border border-stone-800 p-2 overflow-hidden">
               {lightboxSrc ? (
-                <img src={lightboxSrc} alt={activeLightbox.title} className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
+                isLightboxVideo ? (
+                  <video src={lightboxSrc} controls autoPlay className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
+                ) : (
+                  <img src={lightboxSrc} alt={activeLightbox.title} className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
+                )
               ) : (
-                <div className="p-8 text-center text-stone-400 text-sm">No image uploaded for this slot yet</div>
+                <div className="p-8 text-center text-stone-400 text-sm">No photo or video uploaded for this slot yet</div>
               )}
             </div>
           </div>
