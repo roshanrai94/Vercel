@@ -18,7 +18,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   roundedClassName = 'rounded-2xl',
   customOverlayText,
   showQuickUpload = true,
-  imageClassName = 'w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105',
+  imageClassName = 'w-full h-full object-contain p-1 transition-transform duration-500 group-hover:scale-105',
 }) => {
   const { photoMapping } = usePhotos();
   const [imageError, setImageError] = useState(false);

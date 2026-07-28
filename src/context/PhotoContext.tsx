@@ -9,10 +9,13 @@ interface PhotoContextType {
 const PhotoContext = createContext<PhotoContextType | undefined>(undefined);
 
 export const PhotoProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [photoMapping] = useState<PhotoMapping>(DEFAULT_PHOTO_MAPPING);
+  // Clear any old stored data
+  React.useEffect(() => {
+    localStorage.removeItem('raishova_photo_config');
+  }, []);
 
   return (
-    <PhotoContext.Provider value={{ photoMapping }}>
+    <PhotoContext.Provider value={{ photoMapping: DEFAULT_PHOTO_MAPPING }}>
       {children}
     </PhotoContext.Provider>
   );
