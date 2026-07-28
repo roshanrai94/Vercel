@@ -215,7 +215,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
 
       {imageError && (
         <p className="text-[11px] text-amber-400 mt-2 font-medium">
-          ⚠️ Path not found. Please upload a photo or video file.
+          ⚠️ Media failed to load. The file might be corrupted or unsupported.
         </p>
       )}
     </div>

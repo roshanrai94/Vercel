@@ -156,12 +156,6 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Gallery1.png",
     recommendedSize: "800x600px"
   },
-  gallery_2: {
-    alt: "Artisanal Baking & Confectionery",
-    label: "Gallery Display 2",
-    path: "/Gallery2.jpg",
-    recommendedSize: "800x600px"
-  },
   gallery_3: {
     alt: "Dalle Khorsani Organic Pickle Crafting",
     label: "Gallery Display 3",
