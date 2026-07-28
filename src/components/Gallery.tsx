@@ -12,11 +12,11 @@ export const Gallery: React.FC = () => {
   const categories = [
     'ALL',
     'Beauty & Salon',
-    'Culinary Arts',
     'Zayel\'s Pickle',
     'Traditional Craft',
     'Community Impact',
-    'Fashion & Style'
+    'Fashion & Style',
+    'Block Photo Space'
   ];
 
   const filteredItems = selectedCategory === 'ALL'

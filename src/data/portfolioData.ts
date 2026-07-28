@@ -42,6 +42,18 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Cut4.mp4",
     recommendedSize: "HD Video MP4"
   },
+  cutting_edge_5: {
+    alt: "Cutting Edge Hair & Beauty Video 1",
+    label: "Cutting Edge Video 1",
+    path: "/Cuti1.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  cutting_edge_6: {
+    alt: "Cutting Edge Hair & Beauty Video 2",
+    label: "Cutting Edge Video 2",
+    path: "/Cuti2.mp4",
+    recommendedSize: "HD Video MP4"
+  },
   blush_1: {
     alt: "Blush Fashion Store Interior Display",
     label: "Blush Store Display",
@@ -132,6 +144,12 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Award7.jpg",
     recommendedSize: "800x600px"
   },
+  award_8: {
+    alt: "Divyangjan Welfare Felicitation",
+    label: "Divyangjan Welfare Felicitation",
+    path: "/Divya1.mp4",
+    recommendedSize: "HD Video MP4"
+  },
   gallery_1: {
     alt: "Master Hair Styling Showcase",
     label: "Gallery Display 1",
@@ -178,6 +196,30 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     alt: "Grassroots Empowerment Showcase",
     label: "Gallery Display 8",
     path: "/Gallery8.jpeg",
+    recommendedSize: "800x600px"
+  },
+  gallery_9: {
+    alt: "Paint Video 1",
+    label: "Paint Video 1",
+    path: "/Paint1.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_10: {
+    alt: "Paint Video 2",
+    label: "Paint Video 2",
+    path: "/Paint2.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_11: {
+    alt: "Paint Video 3",
+    label: "Paint Video 3",
+    path: "/Paint3.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_12: {
+    alt: "Certificate",
+    label: "Certificate Display",
+    path: "/Certi.jpg",
     recommendedSize: "800x600px"
   },
   review_1: {
@@ -393,7 +435,9 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_1", title: "Cutting Edge Display 1", caption: "Premier salon interior & styling station" },
       { slotKey: "cutting_edge_2", title: "Cutting Edge Display 2", caption: "Bridal makeover & hair transformation session" },
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
-      { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" }
+      { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
+      { slotKey: "cutting_edge_5", title: "Cutting Edge Cuti1", caption: "Video walkthrough of Cutting Edge Hair & Beauty 1" },
+      { slotKey: "cutting_edge_6", title: "Cutting Edge Cuti2", caption: "Video walkthrough of Cutting Edge Hair & Beauty 2" }
     ]
   },
   {
@@ -533,18 +577,22 @@ export const photoAwardSlots = [
   { key: "award_4", label: "Sikkim University Honor", sub: "Felicitation for conducting livelihood skill workshops" },
   { key: "award_5", label: "Divyangjan Welfare Recognition", sub: "Commendation for inclusive vocational training initiatives" },
   { key: "award_6", label: "State Leadership Commendation", sub: "Award for continuous dedication to state's development" },
-  { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" }
+  { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" },
+  { key: "award_8", label: "Divyangjan Welfare Felicitation", sub: "Commendation for inclusive vocational training initiatives" }
 ];
 
 export const editorialGalleryData: EditorialItem[] = [
   { id: "g1", title: "Master Hair Styling Showcase", category: "Beauty & Salon", photoKey: "gallery_1" },
-  { id: "g2", title: "Artisanal Baking & Truffle Creations", category: "Culinary Arts", photoKey: "gallery_2" },
   { id: "g3", title: "Dalle Khorsani Organic Processing", category: "Zayel's Pickle", photoKey: "gallery_3" },
   { id: "g4", title: "Hand Block Printing on Textiles", category: "Traditional Craft", photoKey: "gallery_4" },
   { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
   { id: "g6", title: "Blush Fashion Store Collection", category: "Fashion & Style", photoKey: "gallery_6" },
   { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
-  { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" }
+  { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
+  { id: "g9", title: "Paint Artwork Demo 1", category: "Block Photo Space", photoKey: "gallery_9" },
+  { id: "g10", title: "Paint Artwork Demo 2", category: "Block Photo Space", photoKey: "gallery_10" },
+  { id: "g11", title: "Paint Artwork Demo 3", category: "Block Photo Space", photoKey: "gallery_11" },
+  { id: "g12", title: "Certification & Recognition", category: "Block Photo Space", photoKey: "gallery_12" }
 ];
 
 export const nationalAlignments = [

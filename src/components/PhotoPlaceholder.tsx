@@ -163,25 +163,6 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
               className={imageClassName}
             />
           )}
-
-          {/* Hover overlay with edit options */}
-          <div className="absolute inset-0 bg-stone-950/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-2 p-4 text-white text-center pointer-events-none group-hover:pointer-events-auto z-10">
-            <p className="text-xs font-bold uppercase tracking-wider text-amber-300">
-              {label}
-            </p>
-            <div className="flex items-center gap-2 mt-1">
-              <label className="cursor-pointer px-3 py-1.5 bg-stone-900/90 hover:bg-amber-950 text-amber-200 text-xs font-bold rounded-xl transition-colors flex items-center gap-1.5 border border-amber-500/40">
-                <Upload className="w-3.5 h-3.5" />
-                <span>Replace File</span>
-                <input
-                  type="file"
-                  accept="image/*,video/*"
-                  onChange={handleFileChange}
-                  className="hidden"
-                />
-              </label>
-            </div>
-          </div>
         </div>
 
         {/* Extended Theater Modal View */}
@@ -245,21 +226,6 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
       <p className="text-xs text-amber-200/60 mb-3 max-w-[240px]">
         Blank Photo or Video Space ({recommendedSize})
       </p>
-
-      {showQuickUpload && (
-        <div className="flex items-center justify-center gap-2 flex-wrap">
-          <label className="cursor-pointer px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-bold rounded-xl shadow-sm transition-all flex items-center gap-1.5">
-            <ImagePlus className="w-3.5 h-3.5" />
-            <span>Upload Photo/Video</span>
-            <input
-              type="file"
-              accept="image/*,video/*"
-              onChange={handleFileChange}
-              className="hidden"
-            />
-          </label>
-        </div>
-      )}
 
       {imageError && (
         <p className="text-[11px] text-amber-400 mt-2 font-medium">

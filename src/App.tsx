@@ -10,7 +10,6 @@ import { Recognition } from './components/Recognition';
 import { Gallery } from './components/Gallery';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { PhotoManagerModal } from './components/PhotoManagerModal';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState<boolean>(true);
@@ -46,7 +45,6 @@ export default function App() {
         <Footer />
 
         {/* Photo Manager Modal for configuring/uploading photos */}
-        <PhotoManagerModal />
 
       </div>
     </PhotoProvider>
