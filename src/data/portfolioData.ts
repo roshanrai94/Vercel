@@ -466,8 +466,6 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_2", title: "Cutting Edge Display 2", caption: "Bridal makeover & hair transformation session" },
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
       { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
-      { slotKey: "cutting_edge_5", title: "Cutting Edge Cuti1", caption: "Video walkthrough of Cutting Edge Hair & Beauty 1" },
-      { slotKey: "cutting_edge_6", title: "Cutting Edge Cuti2", caption: "Video walkthrough of Cutting Edge Hair & Beauty 2" },
       { slotKey: "cutting_edge_7", title: "Cutting Edge Cut5", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
       { slotKey: "cutting_edge_8", title: "Cutting Edge Cut6", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
     ]
@@ -621,10 +619,6 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g6", title: "Blush Fashion Store Collection", category: "Fashion & Style", photoKey: "gallery_6" },
   { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
   { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
-  { id: "g9", title: "Paint Artwork Demo 1", category: "Block Photo Space", photoKey: "gallery_9" },
-  { id: "g10", title: "Paint Artwork Demo 2", category: "Block Photo Space", photoKey: "gallery_10" },
-  { id: "g11", title: "Paint Artwork Demo 3", category: "Block Photo Space", photoKey: "gallery_11" },
-  { id: "g12", title: "Certification & Recognition", category: "Block Photo Space", photoKey: "gallery_12" },
   { id: "g13", title: "Visual Gallery Showcase Video 9", category: "Block Photo Space", photoKey: "gallery_13" },
   { id: "g14", title: "Visual Gallery Showcase Video 10", category: "Block Photo Space", photoKey: "gallery_14" },
   { id: "g15", title: "Visual Gallery Showcase Video 11", category: "Block Photo Space", photoKey: "gallery_15" },
