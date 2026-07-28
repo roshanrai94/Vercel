@@ -20,7 +20,7 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   showQuickUpload = true,
   imageClassName = 'w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105',
 }) => {
-  const { photoMapping, setPhotoDataUrl } = usePhotos();
+  const { photoMapping } = usePhotos();
   const [imageError, setImageError] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const [isExpandedArea, setIsExpandedArea] = useState(false);
@@ -32,20 +32,6 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   const imgSrc = slotData?.dataUrl || slotData?.path;
   const label = slotData?.label || slotKey;
   const recommendedSize = slotData?.recommendedSize || 'Any image format';
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setPhotoDataUrl(slotKey, event.target.result as string);
-          setImageError(false);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const toggleSound = (e: React.MouseEvent) => {
     e.stopPropagation();
