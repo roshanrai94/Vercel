@@ -54,6 +54,18 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Cuti2.mp4",
     recommendedSize: "HD Video MP4"
   },
+  cutting_edge_7: {
+    alt: "Cutting Edge Hair & Beauty Video 3",
+    label: "Cutting Edge Video 3",
+    path: "/Cut5.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  cutting_edge_8: {
+    alt: "Cutting Edge Hair & Beauty Video 4",
+    label: "Cutting Edge Video 4",
+    path: "/Cut6.mp4",
+    recommendedSize: "HD Video MP4"
+  },
   blush_1: {
     alt: "Blush Fashion Store Interior Display",
     label: "Blush Store Display",
@@ -215,6 +227,30 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     label: "Certificate Display",
     path: "/Certi.jpg",
     recommendedSize: "800x600px"
+  },
+  gallery_13: {
+    alt: "Gallery Video Showcase 9",
+    label: "Gallery Video 9",
+    path: "/Gallery9.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_14: {
+    alt: "Gallery Video Showcase 10",
+    label: "Gallery Video 10",
+    path: "/Gallery10.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_15: {
+    alt: "Gallery Video Showcase 11",
+    label: "Gallery Video 11",
+    path: "/Gallery11.mp4",
+    recommendedSize: "HD Video MP4"
+  },
+  gallery_16: {
+    alt: "Gallery Video Showcase 12",
+    label: "Gallery Video 12",
+    path: "/Gallery12.mp4",
+    recommendedSize: "HD Video MP4"
   },
   review_1: {
     alt: "Client Review & Feedback Display 1",
@@ -431,7 +467,9 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
       { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
       { slotKey: "cutting_edge_5", title: "Cutting Edge Cuti1", caption: "Video walkthrough of Cutting Edge Hair & Beauty 1" },
-      { slotKey: "cutting_edge_6", title: "Cutting Edge Cuti2", caption: "Video walkthrough of Cutting Edge Hair & Beauty 2" }
+      { slotKey: "cutting_edge_6", title: "Cutting Edge Cuti2", caption: "Video walkthrough of Cutting Edge Hair & Beauty 2" },
+      { slotKey: "cutting_edge_7", title: "Cutting Edge Cut5", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
+      { slotKey: "cutting_edge_8", title: "Cutting Edge Cut6", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
     ]
   },
   {
@@ -586,7 +624,11 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g9", title: "Paint Artwork Demo 1", category: "Block Photo Space", photoKey: "gallery_9" },
   { id: "g10", title: "Paint Artwork Demo 2", category: "Block Photo Space", photoKey: "gallery_10" },
   { id: "g11", title: "Paint Artwork Demo 3", category: "Block Photo Space", photoKey: "gallery_11" },
-  { id: "g12", title: "Certification & Recognition", category: "Block Photo Space", photoKey: "gallery_12" }
+  { id: "g12", title: "Certification & Recognition", category: "Block Photo Space", photoKey: "gallery_12" },
+  { id: "g13", title: "Visual Gallery Showcase Video 9", category: "Block Photo Space", photoKey: "gallery_13" },
+  { id: "g14", title: "Visual Gallery Showcase Video 10", category: "Block Photo Space", photoKey: "gallery_14" },
+  { id: "g15", title: "Visual Gallery Showcase Video 11", category: "Block Photo Space", photoKey: "gallery_15" },
+  { id: "g16", title: "Visual Gallery Showcase Video 12", category: "Block Photo Space", photoKey: "gallery_16" }
 ];
 
 export const nationalAlignments = [
