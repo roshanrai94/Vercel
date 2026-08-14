@@ -216,7 +216,20 @@ export const Recognition: React.FC = () => {
             <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.5rem] border border-stone-800 p-2 overflow-hidden shadow-inner">
               {lightboxSrc ? (
                 isLightboxVideo ? (
-                  <video src={lightboxSrc} controls autoPlay className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
+                  <video 
+                    src={lightboxSrc} 
+                    controls 
+                    autoPlay 
+                    onPlay={(e) => {
+                      const allVideos = document.querySelectorAll('video');
+                      allVideos.forEach((vid) => {
+                        if (vid !== e.currentTarget && !vid.paused) {
+                          vid.pause();
+                        }
+                      });
+                    }}
+                    className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" 
+                  />
                 ) : (
                   <img src={lightboxSrc} alt={activeLightbox.title} className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
                 )

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Camera, ImagePlus, Upload, Image as ImageIcon, Volume2, VolumeX, Maximize2, Minimize2, X, Play, Sparkles } from 'lucide-react';
 import { usePhotos } from '../context/PhotoContext';
 
@@ -61,6 +61,42 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
   );
 
   const hasValidImage = Boolean(imgSrc && !imageError);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement || !isVideo) return;
+
+    // Handle pausing when scrolling out of view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting && !videoElement.paused) {
+            videoElement.pause();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(videoElement);
+
+    // Handle mutual exclusivity (only one video plays at a time)
+    const handlePlay = () => {
+      const allVideos = document.querySelectorAll('video');
+      allVideos.forEach((vid) => {
+        if (vid !== videoElement && !vid.paused) {
+          vid.pause();
+        }
+      });
+    };
+
+    videoElement.addEventListener('play', handlePlay);
+
+    return () => {
+      observer.disconnect();
+      videoElement.removeEventListener('play', handlePlay);
+    };
+  }, [isVideo, imgSrc]);
 
   if (hasValidImage && imgSrc) {
     return (
@@ -182,6 +218,14 @@ export const PhotoPlaceholder: React.FC<PhotoPlaceholderProps> = ({
                   src={imgSrc}
                   controls
                   autoPlay
+                  onPlay={(e) => {
+                    const allVideos = document.querySelectorAll('video');
+                    allVideos.forEach((vid) => {
+                      if (vid !== e.currentTarget && !vid.paused) {
+                        vid.pause();
+                      }
+                    });
+                  }}
                   className="max-h-[75vh] w-full rounded-xl object-contain"
                 />
               </div>
