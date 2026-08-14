@@ -234,12 +234,6 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Gallery11-1.mp4",
     recommendedSize: "HD Video MP4"
   },
-  gallery_16: {
-    alt: "Baking Class & Culinary Workshop",
-    label: "Gallery Video 12",
-    path: "/Gallery5-1.mp4?v=2",
-    recommendedSize: "HD Video MP4"
-  },
   review_1: {
     alt: "Client Review & Feedback Display 1",
     label: "Review Display 1",
@@ -607,8 +601,7 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
   { id: "g13", title: "Creative Enterprise Video Showcase", category: "Creative Visual Showcase", photoKey: "gallery_13" },
   { id: "g14", title: "Felicitation at Sikkim Premier League", category: "Awards & Recognition", photoKey: "gallery_14" },
-  { id: "g15", title: "The Passion for Paintings", category: "Traditional Craft", photoKey: "gallery_15" },
-  { id: "g16", title: "Hands-On Baking Class & Workshop", category: "Baking Class", photoKey: "gallery_16" }
+  { id: "g15", title: "The Passion for Paintings", category: "Traditional Craft", photoKey: "gallery_15" }
 ];
 
 export const nationalAlignments = [
