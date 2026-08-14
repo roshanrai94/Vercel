@@ -601,8 +601,8 @@ export const publicSpeakingData: PublicSpeaking[] = [
 ];
 
 export const photoAwardSlots = [
-  { key: "award_1", label: "National Commission for Women (NCW)", sub: "Honored in New Delhi for empowering women entrepreneurs" },
-  { key: "award_2", label: "Union Minister Felicitation", sub: "Honored by Smt. Shobha Karandlaje for grassroots impact" },
+  { key: "award_1", label: "Union Minister Felicitation", sub: "Honored by Smt. Shobha Karandlaje for grassroots impact" },
+  { key: "award_2", label: "National Commission for Women (NCW)", sub: "Honored in New Delhi for empowering women entrepreneurs" },
   { key: "award_3", label: "Sikkim Gyan Manch Award", sub: "Recognition for outstanding community leadership" },
   { key: "award_4", label: "Sikkim University Honor", sub: "Felicitation for conducting livelihood skill workshops" },
   { key: "award_5", label: "Divyangjan Welfare Recognition", sub: "Commendation for inclusive vocational training initiatives" },
