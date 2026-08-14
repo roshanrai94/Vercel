@@ -57,7 +57,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   cutting_edge_7: {
     alt: "Cutting Edge Hair & Beauty Video 3",
     label: "Cutting Edge Video 3",
-    path: "/Cut5.mp4",
+    path: "/Hair1.mp4",
     recommendedSize: "HD Video MP4"
   },
   cutting_edge_8: {
@@ -183,14 +183,14 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   gallery_5: {
     alt: "Women Livelihood Skill Workshop Video",
     label: "Gallery Video Display 5",
-    path: "/Gallery5.mp4",
+    path: "/Gal1.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_6: {
-    alt: "Blush Fashion Boutique Display",
-    label: "Gallery Display 6",
-    path: "/Gallery6.PNG",
-    recommendedSize: "800x600px"
+    alt: "Customizing Fashion at Blush Fashion Store",
+    label: "Gallery Video Display 6",
+    path: "/Gal2.mp4",
+    recommendedSize: "HD Video MP4"
   },
   gallery_7: {
     alt: "Traditional Himalayan Craft & Enterprise",
@@ -231,13 +231,13 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   gallery_13: {
     alt: "Gallery Video Showcase 9",
     label: "Gallery Video 9",
-    path: "/Gallery9.mp4",
+    path: "/Gal3.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_14: {
-    alt: "Gallery Video Showcase 10",
-    label: "Gallery Video 10",
-    path: "/Gallery10.mp4",
+    alt: "Felicitation at Sikkim Premier League",
+    label: "Gallery Video Display 10",
+    path: "/SPL1.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_15: {
@@ -466,7 +466,7 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_2", title: "Cutting Edge Display 2", caption: "Bridal makeover & hair transformation session" },
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
       { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
-      { slotKey: "cutting_edge_7", title: "Cutting Edge Cut5", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
+      { slotKey: "cutting_edge_7", title: "Cutting Edge Video 3", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
       { slotKey: "cutting_edge_8", title: "Cutting Edge Cut6", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
     ]
   },
@@ -616,11 +616,11 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g3", title: "Dalle Khorsani Organic Processing", category: "Zayel's Pickle", photoKey: "gallery_3" },
   { id: "g4", title: "Hand Block Printing on Textiles", category: "Traditional Craft", photoKey: "gallery_4" },
   { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
-  { id: "g6", title: "Blush Fashion Store Collection", category: "Fashion & Style", photoKey: "gallery_6" },
+  { id: "g6", title: "Customizing Fashion at Blush Fashion Store", category: "Fashion & Style", photoKey: "gallery_6" },
   { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
   { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
-  { id: "g13", title: "Visual Gallery Showcase Video 9", category: "Block Photo Space", photoKey: "gallery_13" },
-  { id: "g14", title: "Visual Gallery Showcase Video 10", category: "Block Photo Space", photoKey: "gallery_14" },
+  { id: "g13", title: "Creative Enterprise Video Showcase", category: "Creative Visual Showcase", photoKey: "gallery_13" },
+  { id: "g14", title: "Felicitation at Sikkim Premier League", category: "Awards & Recognition", photoKey: "gallery_14" },
   { id: "g15", title: "Visual Gallery Showcase Video 11", category: "Block Photo Space", photoKey: "gallery_15" },
   { id: "g16", title: "Visual Gallery Showcase Video 12", category: "Block Photo Space", photoKey: "gallery_16" }
 ];
