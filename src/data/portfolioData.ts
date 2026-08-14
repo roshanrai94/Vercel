@@ -60,12 +60,6 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Hair1.mp4",
     recommendedSize: "HD Video MP4"
   },
-  cutting_edge_8: {
-    alt: "Cutting Edge Hair & Beauty Video 4",
-    label: "Cutting Edge Video 4",
-    path: "/Cut5-1.mp4",
-    recommendedSize: "HD Video MP4"
-  },
   blush_1: {
     alt: "Blush Fashion Store Interior Display",
     label: "Blush Store Display",
@@ -156,12 +150,6 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     path: "/Award7.jpg",
     recommendedSize: "800x600px"
   },
-  award_8: {
-    alt: "Divyangjan Welfare Felicitation",
-    label: "Divyangjan Welfare Felicitation",
-    path: "/Award8.mp4",
-    recommendedSize: "HD Video MP4"
-  },
   gallery_1: {
     alt: "Master Hair Styling Showcase",
     label: "Gallery Display 1",
@@ -193,7 +181,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     recommendedSize: "HD Video MP4"
   },
   gallery_7: {
-    alt: "Traditional Himalayan Craft & Enterprise",
+    alt: "Baking Class Display",
     label: "Gallery Display 7",
     path: "/Gallery7.PNG",
     recommendedSize: "800x600px"
@@ -466,8 +454,7 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_2", title: "Cutting Edge Display 2", caption: "Bridal makeover & hair transformation session" },
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
       { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
-      { slotKey: "cutting_edge_7", title: "Cutting Edge Video 3", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
-      { slotKey: "cutting_edge_8", title: "Cutting Edge Video 4", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
+      { slotKey: "cutting_edge_7", title: "Cutting Edge Video 3", caption: "Video showcase of Cutting Edge Hair & Beauty 3" }
     ]
   },
   {
@@ -607,8 +594,7 @@ export const photoAwardSlots = [
   { key: "award_4", label: "Continuous Training and Learning", sub: "Engaging in ongoing skill development and educational workshops" },
   { key: "award_5", label: "Talk at District Administration Center, Gangtok", sub: "Speaking on community empowerment and livelihood initiatives" },
   { key: "award_6", label: "Interview at DD Gangtok", sub: "Sharing insights on women's entrepreneurship and social impact" },
-  { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" },
-  { key: "award_8", label: "Divyangjan Welfare Felicitation", sub: "Commendation for inclusive vocational training initiatives" }
+  { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" }
 ];
 
 export const editorialGalleryData: EditorialItem[] = [
@@ -617,7 +603,7 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g4", title: "Painting, a Passion for Art", category: "Art & Painting", photoKey: "gallery_4" },
   { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
   { id: "g6", title: "Customizing Fashion at Blush Fashion Store", category: "Fashion & Style", photoKey: "gallery_6" },
-  { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
+  { id: "g7", title: "Baking Class", category: "Culinary Arts & Baking", photoKey: "gallery_7" },
   { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
   { id: "g13", title: "Creative Enterprise Video Showcase", category: "Creative Visual Showcase", photoKey: "gallery_13" },
   { id: "g14", title: "Felicitation at Sikkim Premier League", category: "Awards & Recognition", photoKey: "gallery_14" },
