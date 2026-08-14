@@ -175,10 +175,10 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     recommendedSize: "800x600px"
   },
   gallery_4: {
-    alt: "Hand Block Printing Textile Creation",
+    alt: "Painting, a Passion for Art",
     label: "Gallery Display 4",
-    path: "/Gallery4.jpeg",
-    recommendedSize: "800x600px"
+    path: "/Gallery9-1.mp4",
+    recommendedSize: "HD Video MP4"
   },
   gallery_5: {
     alt: "Women Livelihood Skill Workshop Video",
@@ -247,9 +247,9 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     recommendedSize: "HD Video MP4"
   },
   gallery_16: {
-    alt: "Gallery Video Showcase 12",
+    alt: "Baking Class & Culinary Workshop",
     label: "Gallery Video 12",
-    path: "/Gallery12.mp4",
+    path: "/Gallery5-1.mp4",
     recommendedSize: "HD Video MP4"
   },
   review_1: {
@@ -614,7 +614,7 @@ export const photoAwardSlots = [
 export const editorialGalleryData: EditorialItem[] = [
   { id: "g1", title: "Master Hair Styling Showcase", category: "Beauty & Salon", photoKey: "gallery_1" },
   { id: "g3", title: "Baking with Love", category: "Baking with Love", photoKey: "gallery_3" },
-  { id: "g4", title: "Hand Block Printing on Textiles", category: "Traditional Craft", photoKey: "gallery_4" },
+  { id: "g4", title: "Painting, a Passion for Art", category: "Art & Painting", photoKey: "gallery_4" },
   { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
   { id: "g6", title: "Customizing Fashion at Blush Fashion Store", category: "Fashion & Style", photoKey: "gallery_6" },
   { id: "g7", title: "Sikkimese Craft & Enterprise Display", category: "Traditional Craft", photoKey: "gallery_7" },
@@ -622,7 +622,7 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g13", title: "Creative Enterprise Video Showcase", category: "Creative Visual Showcase", photoKey: "gallery_13" },
   { id: "g14", title: "Felicitation at Sikkim Premier League", category: "Awards & Recognition", photoKey: "gallery_14" },
   { id: "g15", title: "The Passion for Paintings", category: "Traditional Craft", photoKey: "gallery_15" },
-  { id: "g16", title: "Visual Gallery Showcase Video 12", category: "Block Photo Space", photoKey: "gallery_16" }
+  { id: "g16", title: "Hands-On Baking Class & Workshop", category: "Baking Class", photoKey: "gallery_16" }
 ];
 
 export const nationalAlignments = [
