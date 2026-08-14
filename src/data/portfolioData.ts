@@ -169,9 +169,9 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     recommendedSize: "800x600px"
   },
   gallery_3: {
-    alt: "Dalle Khorsani Organic Pickle Crafting",
+    alt: "Baking with Love",
     label: "Gallery Display 3",
-    path: "/Gallery3.png",
+    path: "/Gallery4-1.jpeg",
     recommendedSize: "800x600px"
   },
   gallery_4: {
@@ -241,9 +241,9 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
     recommendedSize: "HD Video MP4"
   },
   gallery_15: {
-    alt: "Gallery Video Showcase 11",
-    label: "Gallery Video 11",
-    path: "/Gallery11.mp4",
+    alt: "The Passion for Paintings",
+    label: "Gallery Video Display 11",
+    path: "/Gallery11-1.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_16: {
@@ -613,7 +613,7 @@ export const photoAwardSlots = [
 
 export const editorialGalleryData: EditorialItem[] = [
   { id: "g1", title: "Master Hair Styling Showcase", category: "Beauty & Salon", photoKey: "gallery_1" },
-  { id: "g3", title: "Dalle Khorsani Organic Processing", category: "Zayel's Pickle", photoKey: "gallery_3" },
+  { id: "g3", title: "Baking with Love", category: "Baking with Love", photoKey: "gallery_3" },
   { id: "g4", title: "Hand Block Printing on Textiles", category: "Traditional Craft", photoKey: "gallery_4" },
   { id: "g5", title: "Women Livelihood Skill Workshop Video", category: "Community Impact", photoKey: "gallery_5" },
   { id: "g6", title: "Customizing Fashion at Blush Fashion Store", category: "Fashion & Style", photoKey: "gallery_6" },
@@ -621,7 +621,7 @@ export const editorialGalleryData: EditorialItem[] = [
   { id: "g8", title: "Empowerment & Livelihood Showcase", category: "Community Impact", photoKey: "gallery_8" },
   { id: "g13", title: "Creative Enterprise Video Showcase", category: "Creative Visual Showcase", photoKey: "gallery_13" },
   { id: "g14", title: "Felicitation at Sikkim Premier League", category: "Awards & Recognition", photoKey: "gallery_14" },
-  { id: "g15", title: "Visual Gallery Showcase Video 11", category: "Block Photo Space", photoKey: "gallery_15" },
+  { id: "g15", title: "The Passion for Paintings", category: "Traditional Craft", photoKey: "gallery_15" },
   { id: "g16", title: "Visual Gallery Showcase Video 12", category: "Block Photo Space", photoKey: "gallery_16" }
 ];
 

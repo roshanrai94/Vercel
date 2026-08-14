@@ -11,12 +11,7 @@ export const Gallery: React.FC = () => {
 
   const categories = [
     'ALL',
-    'Beauty & Salon',
-    'Zayel\'s Pickle',
-    'Traditional Craft',
-    'Community Impact',
-    'Fashion & Style',
-    'Block Photo Space'
+    ...Array.from(new Set(editorialGalleryData.map((item) => item.category)))
   ];
 
   const filteredItems = selectedCategory === 'ALL'
