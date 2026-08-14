@@ -603,10 +603,10 @@ export const publicSpeakingData: PublicSpeaking[] = [
 export const photoAwardSlots = [
   { key: "award_1", label: "Union Minister Felicitation", sub: "Honored by Smt. Shobha Karandlaje for grassroots impact" },
   { key: "award_2", label: "National Commission for Women (NCW)", sub: "Honored in New Delhi for empowering women entrepreneurs" },
-  { key: "award_3", label: "Sikkim Gyan Manch Award", sub: "Recognition for outstanding community leadership" },
-  { key: "award_4", label: "Sikkim University Honor", sub: "Felicitation for conducting livelihood skill workshops" },
-  { key: "award_5", label: "Divyangjan Welfare Recognition", sub: "Commendation for inclusive vocational training initiatives" },
-  { key: "award_6", label: "State Leadership Commendation", sub: "Award for continuous dedication to state's development" },
+  { key: "award_3", label: "National Commission of Women, New Delhi", sub: "In the office of Chairperson, National Commission of Women, Delhi" },
+  { key: "award_4", label: "Continuous Training and Learning", sub: "Engaging in ongoing skill development and educational workshops" },
+  { key: "award_5", label: "Talk at District Administration Center, Gangtok", sub: "Speaking on community empowerment and livelihood initiatives" },
+  { key: "award_6", label: "Interview at DD Gangtok", sub: "Sharing insights on women's entrepreneurship and social impact" },
   { key: "award_7", label: "Empowerment Excellence", sub: "National recognition for advancing women's livelihoods" },
   { key: "award_8", label: "Divyangjan Welfare Felicitation", sub: "Commendation for inclusive vocational training initiatives" }
 ];

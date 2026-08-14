@@ -291,9 +291,10 @@ export const Contact: React.FC = () => {
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Namnang Road, Gangtok, East Sikkim - 737101</span>
               </div>
-              <span className="text-amber-300 font-semibold text-xs bg-amber-500/10 px-3 py-1 rounded-lg border border-amber-500/20">
-                Open: Monday–Sunday | Closed: Tuesday
-              </span>
+              <div className="flex flex-col items-center sm:items-end gap-0.5 text-amber-300 font-semibold text-xs bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">
+                <span>Open: Monday–Sunday | Closed: Tuesday</span>
+                <span className="text-amber-400/80">9:00 AM - 7:00 PM</span>
+              </div>
             </div>
 
           </div>
