@@ -292,7 +292,7 @@ export const Contact: React.FC = () => {
                 <span>Namnang Road, Gangtok, East Sikkim - 737101</span>
               </div>
               <span className="text-amber-300 font-semibold text-xs bg-amber-500/10 px-3 py-1 rounded-lg border border-amber-500/20">
-                Mon - Sat: 9:00 AM - 7:00 PM
+                Open: Monday–Sunday | Closed: Tuesday
               </span>
             </div>
 
