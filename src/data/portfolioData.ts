@@ -63,7 +63,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   cutting_edge_8: {
     alt: "Cutting Edge Hair & Beauty Video 4",
     label: "Cutting Edge Video 4",
-    path: "/Cut5-1.mp4?v=2",
+    path: "/Cut5-1.mp4",
     recommendedSize: "HD Video MP4"
   },
   blush_1: {
@@ -159,7 +159,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   award_8: {
     alt: "Divyangjan Welfare Felicitation",
     label: "Divyangjan Welfare Felicitation",
-    path: "/Award8.mp4?v=2",
+    path: "/Award8.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_1: {
