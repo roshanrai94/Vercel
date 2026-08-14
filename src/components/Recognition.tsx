@@ -141,10 +141,10 @@ export const Recognition: React.FC = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {endorsementsData.map((item) => (
-              <div key={item.id} className="bg-stone-950/80 p-4 sm:p-5 rounded-[2rem] border border-stone-800 hover:border-amber-500/40 transition-all shadow-xl group flex flex-col justify-between">
+              <div key={item.id} className="bg-stone-950/80 p-3 sm:p-4 rounded-[2rem] border border-stone-800 hover:border-amber-500/40 transition-all shadow-xl group">
                 <div
                   onClick={() => setActiveLightbox({ key: item.photoKey, title: item.title, category: 'Handwritten Testimony & Review' })}
-                  className="relative group/frame cursor-pointer p-1.5 sm:p-2 rounded-[1.75rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-950/90 shadow-[0_8px_30px_rgba(217,119,6,0.2)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.35)] transition-all duration-300 mb-3"
+                  className="relative group/frame cursor-pointer p-1.5 sm:p-2 rounded-[1.75rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-950/90 shadow-[0_8px_30px_rgba(217,119,6,0.2)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.35)] transition-all duration-300"
                 >
                   <div className="w-full rounded-[1.25rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30 relative">
                     <PhotoPlaceholder
@@ -158,9 +158,6 @@ export const Recognition: React.FC = () => {
                       <Maximize2 className="w-3.5 h-3.5" />
                     </div>
                   </div>
-                </div>
-                <div className="text-center px-1 pb-1">
-                  <h4 className="text-sm font-bold text-amber-200 leading-snug group-hover:text-amber-300 transition-colors">{item.title}</h4>
                 </div>
               </div>
             ))}

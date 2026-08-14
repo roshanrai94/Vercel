@@ -63,7 +63,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   cutting_edge_8: {
     alt: "Cutting Edge Hair & Beauty Video 4",
     label: "Cutting Edge Video 4",
-    path: "/Cut6.mp4",
+    path: "/Cut5-1.mp4",
     recommendedSize: "HD Video MP4"
   },
   blush_1: {
@@ -159,7 +159,7 @@ export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   award_8: {
     alt: "Divyangjan Welfare Felicitation",
     label: "Divyangjan Welfare Felicitation",
-    path: "/Divya1.mp4",
+    path: "/Award8.mp4",
     recommendedSize: "HD Video MP4"
   },
   gallery_1: {
@@ -467,7 +467,7 @@ export const venturesData: Venture[] = [
       { slotKey: "cutting_edge_3", title: "Cutting Edge Display 3", caption: "Precision hair cutting and styling showcase" },
       { slotKey: "cutting_edge_4", title: "Cutting Edge Video Walkthrough", caption: "Video walkthrough of Cutting Edge Hair & Beauty" },
       { slotKey: "cutting_edge_7", title: "Cutting Edge Video 3", caption: "Video showcase of Cutting Edge Hair & Beauty 3" },
-      { slotKey: "cutting_edge_8", title: "Cutting Edge Cut6", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
+      { slotKey: "cutting_edge_8", title: "Cutting Edge Video 4", caption: "Video showcase of Cutting Edge Hair & Beauty 4" }
     ]
   },
   {
