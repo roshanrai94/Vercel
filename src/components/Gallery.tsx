@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles, Filter, Maximize2, X } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { usePhotos } from '../context/PhotoContext';
@@ -8,6 +8,24 @@ export const Gallery: React.FC = () => {
   const { photoMapping } = usePhotos();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [activeLightbox, setActiveLightbox] = useState<{ key: string; title: string; category: string } | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveLightbox(null);
+      }
+    };
+    if (activeLightbox) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [activeLightbox]);
 
   const categories = [
     'ALL',
@@ -38,34 +56,32 @@ export const Gallery: React.FC = () => {
             Visual Gallery
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-stone-300 text-base sm:text-lg leading-relaxed text-center">
             A visual showcase of Mrs. Shova Rai's creative craftsmanship, client reviews, community engagements, and enterprises.
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-10 pb-6 border-b border-stone-800">
-          
-          <div className="flex flex-wrap items-center gap-2.5 justify-center">
-            <span className="text-xs sm:text-sm font-bold text-amber-400 uppercase tracking-wider mr-2 flex items-center gap-1">
-              <Filter className="w-4 h-4" />
-              <span>Category:</span>
+        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12 pb-6 border-b border-stone-800/80">
+          <div className="flex flex-wrap items-center gap-2 justify-center">
+            <span className="text-xs font-bold text-amber-400 uppercase tracking-widest mr-2 flex items-center gap-1 font-display">
+              <Filter className="w-3.5 h-3.5" />
+              <span>FILTER:</span>
             </span>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 tracking-wider ${
                   selectedCategory === cat
-                    ? 'bg-amber-500 text-stone-950 shadow-md'
-                    : 'bg-stone-900 text-stone-300 hover:bg-stone-800 border border-stone-800'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-[0_4px_15px_rgba(245,158,11,0.35)] scale-105'
+                    : 'bg-stone-900/90 text-stone-300 hover:bg-stone-800 border border-stone-800 hover:text-amber-200'
                 }`}
               >
                 {cat}
               </button>
             ))}
           </div>
-
         </div>
 
         {/* Gallery Grid */}
@@ -95,7 +111,7 @@ export const Gallery: React.FC = () => {
               </div>
 
               <div className="space-y-1.5 px-1 pb-1">
-                <span className="inline-block px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-500/30">
+                <span className="inline-block px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-500/30 font-display">
                   {item.category}
                 </span>
                 <h3 className="text-base font-serif font-bold text-amber-100 group-hover:text-amber-300 transition-colors">
@@ -111,30 +127,31 @@ export const Gallery: React.FC = () => {
       {/* Lightbox Modal */}
       {activeLightbox && (
         <div
-          className="fixed inset-0 z-50 bg-stone-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
           onClick={() => setActiveLightbox(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-stone-900 border border-amber-500/40 rounded-[2rem] p-4 sm:p-6 shadow-2xl flex flex-col items-center gap-4 overflow-hidden"
+            className="relative max-w-5xl w-full bg-stone-900/95 border border-amber-500/40 rounded-[2rem] p-4 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex flex-col items-center gap-4 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setActiveLightbox(null)}
-              className="absolute top-4 right-4 p-2 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-800 transition-colors z-10"
+              className="absolute top-4 right-4 p-2.5 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-700 transition-all hover:scale-110 z-10 shadow-lg"
+              aria-label="Close dialog"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-10">
+            <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-12">
               <span className="text-[10px] uppercase font-bold text-amber-400 tracking-widest px-2.5 py-0.5 rounded-md bg-amber-500/20 border border-amber-500/30">
                 {activeLightbox.category}
               </span>
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-amber-100">
+              <h3 className="text-lg sm:text-2xl font-serif font-bold text-amber-100">
                 {activeLightbox.title}
               </h3>
             </div>
 
-            <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.25rem] border border-stone-800 p-2 overflow-hidden">
+            <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.5rem] border border-stone-800 p-2 overflow-hidden shadow-inner">
               {lightboxSrc ? (
                 isLightboxVideo ? (
                   <video src={lightboxSrc} controls autoPlay className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
@@ -145,10 +162,15 @@ export const Gallery: React.FC = () => {
                 <div className="p-8 text-center text-stone-400 text-sm">No image available in this slot</div>
               )}
             </div>
+
+            <div className="text-[11px] text-stone-400 tracking-wider">
+              Press <kbd className="px-1.5 py-0.5 bg-stone-800 rounded border border-stone-700 text-amber-300">Esc</kbd> or click outside to close
+            </div>
           </div>
         </div>
       )}
     </section>
   );
 };
+
 

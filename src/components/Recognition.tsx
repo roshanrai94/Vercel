@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Award, Sparkles, Mic, FileCheck2, Maximize2, X } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { usePhotos } from '../context/PhotoContext';
@@ -7,6 +7,24 @@ import { accoladesData, publicSpeakingData, photoAwardSlots, endorsementsData } 
 export const Recognition: React.FC = () => {
   const { photoMapping } = usePhotos();
   const [activeLightbox, setActiveLightbox] = useState<{ key: string; title: string; category?: string } | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveLightbox(null);
+      }
+    };
+    if (activeLightbox) {
+      window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [activeLightbox]);
 
   const lightboxData = activeLightbox ? photoMapping[activeLightbox.key] : null;
   const lightboxSrc = lightboxData?.dataUrl || lightboxData?.path;
@@ -38,20 +56,20 @@ export const Recognition: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           
           {/* Key Felicitations */}
-          <div className="lg:col-span-7 bg-stone-950/80 p-8 rounded-3xl border border-stone-800 space-y-6">
-            <div className="flex items-center gap-2 text-amber-400 text-base font-bold uppercase tracking-wider">
+          <div className="lg:col-span-7 bg-stone-950/80 p-6 sm:p-8 rounded-3xl border border-stone-800 space-y-6">
+            <div className="flex items-center gap-2 text-amber-400 text-sm sm:text-base font-bold uppercase tracking-wider font-display">
               <Award className="w-5 h-5" />
               <span>Distinguished Honors & Commendations</span>
             </div>
 
             <div className="space-y-4">
               {accoladesData.map((accolade) => (
-                <div key={accolade.id} className="p-4 sm:p-5 rounded-xl bg-stone-900 border border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div key={accolade.id} className="p-4 sm:p-5 rounded-2xl bg-stone-900/90 border border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-amber-500/30 transition-colors">
                   <div>
-                    <h4 className="text-lg font-serif font-bold text-amber-100">{accolade.title}</h4>
-                    <p className="text-sm text-stone-300 mt-0.5">{accolade.location}</p>
+                    <h4 className="text-base sm:text-lg font-serif font-bold text-amber-100">{accolade.title}</h4>
+                    <p className="text-xs sm:text-sm text-stone-300 mt-0.5">{accolade.location}</p>
                   </div>
-                  <span className="shrink-0 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider text-center">
+                  <span className="shrink-0 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider text-center border border-amber-500/30">
                     {accolade.date}
                   </span>
                 </div>
@@ -60,20 +78,20 @@ export const Recognition: React.FC = () => {
           </div>
 
           {/* Speaking & Resource Engagements */}
-          <div className="lg:col-span-5 bg-stone-950/80 p-8 rounded-3xl border border-stone-800 space-y-6">
-            <div className="flex items-center gap-2 text-amber-400 text-base font-bold uppercase tracking-wider">
+          <div className="lg:col-span-5 bg-stone-950/80 p-6 sm:p-8 rounded-3xl border border-stone-800 space-y-6">
+            <div className="flex items-center gap-2 text-amber-400 text-sm sm:text-base font-bold uppercase tracking-wider font-display">
               <Mic className="w-5 h-5" />
               <span>Academic & Public Engagements</span>
             </div>
 
             <div className="space-y-4">
               {publicSpeakingData.map((talk, idx) => (
-                <div key={idx} className="p-4 rounded-xl bg-stone-900 border border-stone-800 space-y-1.5">
-                  <span className="inline-block px-2.5 py-0.5 rounded bg-amber-600/30 text-amber-300 text-xs font-bold">
+                <div key={idx} className="p-4 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-1.5 hover:border-amber-500/30 transition-colors">
+                  <span className="inline-block px-2.5 py-0.5 rounded-md bg-amber-600/30 text-amber-300 text-xs font-bold border border-amber-500/30">
                     {talk.role}
                   </span>
-                  <h4 className="text-base font-bold text-amber-100">{talk.event}</h4>
-                  <p className="text-sm text-stone-300">{talk.location}</p>
+                  <h4 className="text-sm sm:text-base font-bold text-amber-100">{talk.event}</h4>
+                  <p className="text-xs sm:text-sm text-stone-300">{talk.location}</p>
                 </div>
               ))}
             </div>
@@ -127,7 +145,7 @@ export const Recognition: React.FC = () => {
         {/* Endorsement Certificates & Handwritten Testimonies Grid */}
         <div>
           <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs sm:text-sm font-bold uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs sm:text-sm font-bold uppercase tracking-wider mb-2 font-display">
               <FileCheck2 className="w-4 h-4" />
               <span>TESTIMONIES & REVIEWS</span>
             </div>
@@ -166,35 +184,36 @@ export const Recognition: React.FC = () => {
 
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox Modal with smooth escape key and full frame rendering */}
       {activeLightbox && (
         <div
-          className="fixed inset-0 z-50 bg-stone-950/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+          className="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
           onClick={() => setActiveLightbox(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-stone-900 border border-amber-500/40 rounded-[2rem] p-4 sm:p-6 shadow-2xl flex flex-col items-center gap-4 overflow-hidden"
+            className="relative max-w-5xl w-full bg-stone-900/95 border border-amber-500/40 rounded-[2rem] p-4 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex flex-col items-center gap-4 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setActiveLightbox(null)}
-              className="absolute top-4 right-4 p-2 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-800 transition-colors z-10"
+              className="absolute top-4 right-4 p-2.5 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-700 transition-all hover:scale-110 z-10 shadow-lg"
+              aria-label="Close dialog"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-10">
+            <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-12">
               {activeLightbox.category && (
                 <span className="text-[10px] uppercase font-bold text-amber-400 tracking-widest px-2.5 py-0.5 rounded-md bg-amber-500/20 border border-amber-500/30">
                   {activeLightbox.category}
                 </span>
               )}
-              <h3 className="text-lg sm:text-xl font-serif font-bold text-amber-100">
+              <h3 className="text-lg sm:text-2xl font-serif font-bold text-amber-100">
                 {activeLightbox.title}
               </h3>
             </div>
 
-            <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.25rem] border border-stone-800 p-2 overflow-hidden">
+            <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.5rem] border border-stone-800 p-2 overflow-hidden shadow-inner">
               {lightboxSrc ? (
                 isLightboxVideo ? (
                   <video src={lightboxSrc} controls autoPlay className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
@@ -205,9 +224,14 @@ export const Recognition: React.FC = () => {
                 <div className="p-8 text-center text-stone-400 text-sm">No photo or video uploaded for this slot yet</div>
               )}
             </div>
+
+            <div className="text-[11px] text-stone-400 tracking-wider">
+              Press <kbd className="px-1.5 py-0.5 bg-stone-800 rounded border border-stone-700 text-amber-300">Esc</kbd> or click outside to close
+            </div>
           </div>
         </div>
       )}
     </section>
   );
 };
+
