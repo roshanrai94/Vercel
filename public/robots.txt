@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ais-pre-drs4mta6fvinz3h5rfftbo-690964946488.asia-southeast1.run.app/sitemap.xml
+Sitemap: https://www.shovarai.in/sitemap.xml
