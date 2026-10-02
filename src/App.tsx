@@ -8,6 +8,7 @@ import { Ventures } from './components/Ventures';
 import { Impact } from './components/Impact';
 import { Recognition } from './components/Recognition';
 import { Gallery } from './components/Gallery';
+import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ArrowUp, MessageCircle } from 'lucide-react';
@@ -58,6 +59,7 @@ export default function App() {
           <Impact />
           <Recognition />
           <Gallery />
+          <FAQ />
           <Contact />
         </main>
 
