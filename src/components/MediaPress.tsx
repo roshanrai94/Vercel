@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, PlusCircle, X, Film, RotateCcw, CheckCircle2 } from 'lucide-react';
+import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, X, Film, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { mediaFeaturesData } from '../data/portfolioData';
 import { MediaCategory, MediaFeature } from '../types';
 
@@ -354,30 +354,6 @@ export const MediaPress: React.FC = () => {
               </article>
             );
           })}
-        </div>
-
-        {/* Suggest / Add Media Note Card */}
-        <div className="mt-14 rounded-2xl bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 border border-amber-500/20 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center shrink-0 text-amber-400">
-              <PlusCircle className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="font-serif font-bold text-lg sm:text-xl text-amber-200">
-                Have a News Report, Video, or Article to Feature?
-              </h4>
-              <p className="text-xs sm:text-sm text-stone-300 max-w-2xl mt-1 leading-relaxed">
-                You can easily add new newspaper reports, TV interviews, YouTube links, or music video appearances to this list anytime in <code className="text-amber-300 px-1.5 py-0.5 rounded bg-stone-800 font-mono text-xs">src/data/portfolioData.ts</code>.
-              </p>
-            </div>
-          </div>
-
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-amber-500 hover:text-stone-950 text-amber-200 border border-amber-500/30 hover:border-amber-500 text-xs sm:text-sm font-semibold transition-all duration-300 shrink-0"
-          >
-            <span>Share a Link / Inquire</span>
-          </a>
         </div>
 
       </div>
