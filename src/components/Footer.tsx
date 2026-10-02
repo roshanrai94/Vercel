@@ -54,7 +54,9 @@ export const Footer: React.FC = () => {
               <a href="#ventures" className="text-stone-300 hover:text-amber-300 transition-colors py-1">VENTURES</a>
               <a href="#impact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">IMPACT</a>
               <a href="#recognition" className="text-stone-300 hover:text-amber-300 transition-colors py-1">RECOGNITION</a>
+              <a href="#media" className="text-stone-300 hover:text-amber-300 transition-colors py-1">MEDIA &amp; PRESS</a>
               <a href="#gallery" className="text-stone-300 hover:text-amber-300 transition-colors py-1">GALLERY</a>
+              <a href="#faq" className="text-stone-300 hover:text-amber-300 transition-colors py-1">FAQ</a>
               <a href="#contact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">CONTACT</a>
             </div>
           </div>

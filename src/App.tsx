@@ -7,6 +7,7 @@ import { Journey } from './components/Journey';
 import { Ventures } from './components/Ventures';
 import { Impact } from './components/Impact';
 import { Recognition } from './components/Recognition';
+import { MediaPress } from './components/MediaPress';
 import { Gallery } from './components/Gallery';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
@@ -58,6 +59,7 @@ export default function App() {
           <Ventures />
           <Impact />
           <Recognition />
+          <MediaPress />
           <Gallery />
           <FAQ />
           <Contact />

@@ -1,4 +1,4 @@
-import { PhotoMapping, Venture, Accolade, PublicSpeaking, ChronicleItem, EditorialItem, Endorsement } from '../types';
+import { PhotoMapping, Venture, Accolade, PublicSpeaking, ChronicleItem, EditorialItem, Endorsement, MediaFeature } from '../types';
 
 export const DEFAULT_PHOTO_MAPPING: PhotoMapping = {
   hero_portrait: {
@@ -620,4 +620,77 @@ export const endorsementsData: Endorsement[] = [
   { id: "e4", title: "Artisanal Craftsmanship Recognition", photoKey: "endorsement_4" },
   { id: "e5", title: "Client Satisfaction & Success Review", photoKey: "endorsement_5" },
   { id: "e6", title: "Empowerment & Mentorship Testimony", photoKey: "endorsement_6" }
+];
+
+export const mediaFeaturesData: MediaFeature[] = [
+  {
+    id: "media-1",
+    title: "Inspiring Women of Sikkim: Exclusive TV Interview with Mrs. Shova Rai",
+    category: "interview",
+    sourceName: "Doordarshan (DD) Gangtok",
+    publishedDate: "Doordarshan Official Broadcast",
+    description: "Official broadcast interview on DD Gangtok exploring the inspiring journey of Mrs. Shova Rai — from establishing Cutting Edge Hair & Beauty and Blush in Gangtok to empowering women's livelihoods and traditional Sikkimese culinary entrepreneurship.",
+    url: "https://www.youtube.com/watch?v=vr6VxkkS8fY",
+    thumbnail: "https://img.youtube.com/vi/vr6VxkkS8fY/hqdefault.jpg",
+    tags: ["DD Gangtok Interview", "Doordarshan Sikkim", "Women In Business", "Cutting Edge"],
+    featured: true
+  },
+  {
+    id: "media-omg-zindagi",
+    title: "Life, Passion & Entrepreneurship: In-Depth Interview on OMG Zindagi",
+    category: "interview",
+    sourceName: "OMG Zindagi Official",
+    publishedDate: "Featured Video Interview",
+    description: "An inspiring and candid conversation on the popular OMG Zindagi channel, capturing Mrs. Shova Rai's relentless spirit, business achievements in Gangtok, and dedication to women's empowerment across Sikkim.",
+    url: "https://www.youtube.com/watch?v=Ppa7be09g3k",
+    thumbnail: "https://img.youtube.com/vi/Ppa7be09g3k/hqdefault.jpg",
+    tags: ["OMG Zindagi", "Video Interview", "Inspiring Stories", "Shova Rai"],
+    featured: true
+  },
+  {
+    id: "media-2",
+    title: "Grassroots Economic Empowerment & Livelihood in Sikkim",
+    category: "report",
+    sourceName: "Regional Media & Press Report",
+    publishedDate: "Press Coverage",
+    description: "Extensive news report documenting how Mrs. Shova Rai has mentored 50+ Self-Help Groups (SHGs) and differently-abled youth in commercial baking, food processing, and hand-block textile printing.",
+    url: "https://www.facebook.com/share/1FGMEjv4Qr/",
+    thumbnail: "/Award1.jpeg",
+    tags: ["Press Report", "SHG Mentorship", "Sikkim Impact"],
+    featured: true
+  },
+  {
+    id: "media-3",
+    title: "Sikkimese Traditional Attire & Music Video Styling Collaboration",
+    category: "music_video",
+    sourceName: "Music Video Production & YouTube",
+    publishedDate: "Creative Collaboration",
+    description: "Music video styling, ethnic wardrobe design, and traditional aesthetics curated by Mrs. Shova Rai and Blush Fashion Store celebrating Himalayan artistic traditions.",
+    url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
+    thumbnail: "/Blush.jpeg",
+    tags: ["Music Video", "Costume Curation", "Blush Fashion"],
+    featured: true
+  },
+  {
+    id: "media-4",
+    title: "State Felicitation Ceremony at Sikkim Premier League (SPL)",
+    category: "feature",
+    sourceName: "Sikkim Sports & Media Broadcast",
+    publishedDate: "State Honor",
+    description: "Public felicitation and live broadcast commending Mrs. Shova Rai for her outstanding contributions to Sikkim's local economy, skill development, and community support.",
+    url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
+    thumbnail: "/Award2.jpeg",
+    tags: ["Live Broadcast", "State Felicitation", "SPL Gala"]
+  },
+  {
+    id: "media-5",
+    title: "Mrs. Shova Rai Official Video Channel — Masterclasses & Inspiring Stories",
+    category: "interview",
+    sourceName: "YouTube (@shovarai963)",
+    publishedDate: "Official Channel",
+    description: "Official video repository featuring step-by-step masterclasses in advanced hair styling, baking techniques, artisanal pickle crafting, and motivational talks on entrepreneurship.",
+    url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
+    thumbnail: "/Hero.jpg",
+    tags: ["Masterclasses", "Official Channel", "Tutorials & Talks"]
+  }
 ];

@@ -48,6 +48,21 @@ export interface Endorsement {
   photoKey: string;
 }
 
+export type MediaCategory = 'all' | 'report' | 'interview' | 'music_video' | 'feature';
+
+export interface MediaFeature {
+  id: string;
+  title: string;
+  category: 'report' | 'interview' | 'music_video' | 'feature';
+  sourceName: string;
+  publishedDate?: string;
+  description: string;
+  url: string;
+  thumbnail?: string;
+  tags?: string[];
+  featured?: boolean;
+}
+
 export interface PhotoSlotConfig {
   path?: string;
   dataUrl?: string;
