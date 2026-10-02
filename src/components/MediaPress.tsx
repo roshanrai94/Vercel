@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, PlusCircle, X, Film } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, PlusCircle, X, Film, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { mediaFeaturesData } from '../data/portfolioData';
 import { MediaCategory, MediaFeature } from '../types';
 
@@ -13,7 +13,10 @@ export const MediaPress: React.FC = () => {
     originalUrl: string;
     platformName: string;
     type: 'youtube' | 'facebook';
+    thumbnail?: string;
   } | null>(null);
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const [replayKey, setReplayKey] = useState(0);
 
   const categories: { id: MediaCategory; label: string; icon: React.FC<{ className?: string }> }[] = [
     { id: 'all', label: 'All Media', icon: Sparkles },
@@ -21,7 +24,6 @@ export const MediaPress: React.FC = () => {
     { id: 'film', label: 'Short Films', icon: Film },
     { id: 'music_video', label: 'Music Videos', icon: Music },
     { id: 'report', label: 'News & Reports', icon: Newspaper },
-    { id: 'feature', label: 'Broadcast Features', icon: Tv },
   ];
 
   const filteredMedia = selectedCategory === 'all'
@@ -33,14 +35,14 @@ export const MediaPress: React.FC = () => {
     if (ytMatch) {
       return {
         type: 'youtube' as const,
-        embedUrl: `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0`,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0&modestbranding=1&iv_load_policy=3&enablejsapi=1`,
         platformName: 'YouTube',
       };
     }
     if (url.includes('facebook.com') && (url.includes('/videos/') || url.includes('/watch/'))) {
       return {
         type: 'facebook' as const,
-        embedUrl: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0&width=500`,
+        embedUrl: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0&autoplay=1&width=500`,
         platformName: 'Facebook',
       };
     }
@@ -78,9 +80,51 @@ export const MediaPress: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (!activeVideo) {
+      setIsVideoEnded(false);
+      return;
+    }
+
+    const handleMessage = (event: MessageEvent) => {
+      // YouTube Iframe API onStateChange ended event (data: 0)
+      if (typeof event.data === 'string') {
+        try {
+          const parsed = JSON.parse(event.data);
+          if (parsed.event === 'onStateChange' && parsed.info === 0) {
+            setIsVideoEnded(true);
+          }
+        } catch {
+          // ignore non-json messages
+        }
+      }
+      // Facebook video player events
+      if (event.origin && event.origin.includes('facebook.com')) {
+        if (typeof event.data === 'string' && (event.data.includes('finished') || event.data.includes('ended'))) {
+          setIsVideoEnded(true);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [activeVideo]);
+
+  const handleReplay = () => {
+    setIsVideoEnded(false);
+    setReplayKey((k) => k + 1);
+  };
+
   const handleCardClick = (item: MediaFeature) => {
     const video = getVideoEmbed(item.url);
     if (video) {
+      const ytMatch = item.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|(?:embed|v)\/))([\w-]{11})/);
+      const thumb = ytMatch
+        ? `https://i.ytimg.com/vi/${ytMatch[1]}/maxresdefault.jpg`
+        : (item.thumbnail || '/Hero.jpg');
+
+      setIsVideoEnded(false);
+      setReplayKey((k) => k + 1);
       setActiveVideo({
         title: item.title,
         embedUrl: video.embedUrl,
@@ -88,6 +132,7 @@ export const MediaPress: React.FC = () => {
         originalUrl: item.url,
         platformName: video.platformName,
         type: video.type,
+        thumbnail: thumb,
       });
     } else {
       window.open(item.url, '_blank', 'noopener,noreferrer');
@@ -373,6 +418,15 @@ export const MediaPress: React.FC = () => {
 
                 <button
                   type="button"
+                  onClick={handleReplay}
+                  className="p-1.5 rounded-lg text-stone-400 hover:text-amber-200 hover:bg-stone-800 transition-colors cursor-pointer"
+                  title="Restart interview from beginning"
+                >
+                  <RotateCcw className="w-4 h-4" />
+                </button>
+
+                <button
+                  type="button"
                   onClick={() => setActiveVideo(null)}
                   className="p-1.5 rounded-lg text-stone-400 hover:text-amber-200 hover:bg-stone-800 transition-colors cursor-pointer"
                   title="Close video"
@@ -383,31 +437,110 @@ export const MediaPress: React.FC = () => {
             </div>
 
             {/* Video Player Frame */}
-            <div className="relative aspect-video w-full bg-black">
+            <div className="relative aspect-video w-full bg-black overflow-hidden">
               <iframe
+                key={replayKey}
                 src={activeVideo.embedUrl}
                 title={activeVideo.title}
                 className="w-full h-full border-0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
+
+              {/* End Screen: Blocks suggestions/recommendations and offers clean replay */}
+              {isVideoEnded && (
+                <div className="absolute inset-0 bg-stone-950/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-20">
+                  <div className="relative w-full max-w-sm aspect-video rounded-xl overflow-hidden mb-4 border border-amber-500/40 shadow-2xl bg-stone-900">
+                    <img
+                      src={activeVideo.thumbnail || '/Hero.jpg'}
+                      alt={activeVideo.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-stone-950/40 flex items-center justify-center">
+                      <button
+                        type="button"
+                        onClick={handleReplay}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs shadow-lg transition-transform hover:scale-105 cursor-pointer"
+                      >
+                        <RotateCcw className="w-3.5 h-3.5" />
+                        <span>Replay Interview</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30 mb-2">
+                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <span>Interview Complete</span>
+                  </div>
+
+                  <h3 className="text-base sm:text-lg font-serif font-bold text-amber-100 max-w-lg mb-1 truncate px-2">
+                    {activeVideo.title}
+                  </h3>
+                  <p className="text-xs text-stone-400 max-w-md mb-4">
+                    Exclusive interview feature with Mrs. Shova Rai. Replay the interview below or explore her other initiatives.
+                  </p>
+
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleReplay}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-stone-950 font-bold text-xs hover:bg-amber-400 transition-colors cursor-pointer shadow-md"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Watch Again</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveVideo(null)}
+                      className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-medium transition-colors cursor-pointer"
+                    >
+                      Close Player
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Platform indicator / direct link note */}
-            <div className="px-5 py-2.5 bg-stone-950/90 border-t border-stone-800 flex items-center justify-between text-[11px] text-stone-400">
+            <div className="px-5 py-2.5 bg-stone-950/90 border-t border-stone-800 flex flex-wrap items-center justify-between gap-3 text-[11px] text-stone-400">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>Streaming from {activeVideo.source}</span>
+                <span>Streaming official interview • Suggestions blocked</span>
               </span>
-              <a
-                href={activeVideo.originalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1"
-              >
-                <span>Watch on original {activeVideo.platformName} page</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
+
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleReplay}
+                  className="text-amber-400 hover:text-amber-300 inline-flex items-center gap-1 text-[11px] font-medium transition-colors cursor-pointer"
+                  title="Restart video from beginning"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Restart Video</span>
+                </button>
+
+                <span className="text-stone-700">•</span>
+
+                <button
+                  type="button"
+                  onClick={() => setIsVideoEnded((prev) => !prev)}
+                  className="text-stone-400 hover:text-stone-300 text-[11px] transition-colors cursor-pointer"
+                >
+                  {isVideoEnded ? 'Resume Video' : 'Finish & Replay'}
+                </button>
+
+                <span className="text-stone-700">•</span>
+
+                <a
+                  href={activeVideo.originalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1"
+                >
+                  <span>Open on {activeVideo.platformName}</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

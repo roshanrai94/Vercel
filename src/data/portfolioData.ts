@@ -657,7 +657,7 @@ export const mediaFeaturesData: MediaFeature[] = [
     publishedDate: "National News Report",
     description: "Official news report published by All India Radio (News On AIR, Prasar Bharati) covering the felicitation of Sikkim entrepreneur Mrs. Shova Rai by the National Commission for Women (NCW) in New Delhi, honoring her outstanding contributions to women's empowerment, entrepreneurship, and community building.",
     url: "https://newsonair.gov.in/ncw-felicitates-sikkim-entrepreneur-shova-rai-for-her-contributions/",
-    thumbnail: "/Award1.jpeg",
+    thumbnail: "/air-news-ncw.jpg",
     tags: ["All India Radio", "NCW New Delhi", "Government Of India", "National Recognition", "News On AIR"],
     featured: true
   },
@@ -669,7 +669,7 @@ export const mediaFeaturesData: MediaFeature[] = [
     publishedDate: "Biographical Feature",
     description: "In-depth biographical profile chronicling the inspiring journey of Mrs. Shova Rai — from her childhood roots, early perseverance, and passion for craft, to establishing herself as one of Sikkim's leading women entrepreneurs and livelihood mentors.",
     url: "https://myvillagemypride.wordpress.com/2015/02/04/sikkim-an-inspiring-story-of-shova-rai/",
-    thumbnail: "/Hero.jpg",
+    thumbnail: "/myvillagemypride-shovarai.jpg",
     tags: ["Inspirational Story", "Biography", "My Village My Pride", "Women Leaders", "Sikkim Life Journey"],
     featured: true
   },
@@ -705,7 +705,7 @@ export const mediaFeaturesData: MediaFeature[] = [
     publishedDate: "Video Feature",
     description: "Exclusive interview by Sikkim's leading digital platform 'Digital Sikkim', spotlighting Mrs. Shova Rai's entrepreneurial journey in Gangtok, multi-sector ventures, and dedication to women's empowerment across Sikkim.",
     url: "https://www.facebook.com/digitalsikkim/videos/local-entrepreneur/274054662401128/",
-    thumbnail: "/Block1.jpeg",
+    thumbnail: "/fb-interview-entrepreneur.jpg",
     tags: ["Digital Sikkim", "Local Entrepreneur", "Women In Business", "Sikkim Spotlight"],
     featured: true
   },
@@ -717,30 +717,8 @@ export const mediaFeaturesData: MediaFeature[] = [
     publishedDate: "Inspiring Women Feature",
     description: "Compelling video feature on Sikkim.Com and Digital Sikkim exploring Mrs. Shova Rai's journey — transforming her culinary dedication and passion for baking into thriving self-reliance, and inspiring homemakers across Sikkim.",
     url: "https://www.facebook.com/digitalsikkim/videos/self-empowermentshova-rai-a-home-maker-chose-baking-to-gain-self-reliance-she-no/255383502231893/",
-    thumbnail: "/Shova.jpg",
+    thumbnail: "/fb-interview-baking.jpg",
     tags: ["Self-Empowerment", "Baking & Confectionery", "Sikkim.Com", "Self-Reliance", "Women In Business"],
     featured: true
-  },
-  {
-    id: "media-4",
-    title: "State Felicitation Ceremony at Sikkim Premier League (SPL)",
-    category: "feature",
-    sourceName: "Sikkim Sports & Media Broadcast",
-    publishedDate: "State Honor",
-    description: "Public felicitation and live broadcast commending Mrs. Shova Rai for her outstanding contributions to Sikkim's local economy, skill development, and community support.",
-    url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
-    thumbnail: "/Award2.jpeg",
-    tags: ["Live Broadcast", "State Felicitation", "SPL Gala"]
-  },
-  {
-    id: "media-5",
-    title: "Mrs. Shova Rai Official Video Channel — Masterclasses & Inspiring Stories",
-    category: "interview",
-    sourceName: "YouTube (@shovarai963)",
-    publishedDate: "Official Channel",
-    description: "Official video repository featuring step-by-step masterclasses in advanced hair styling, baking techniques, artisanal pickle crafting, and motivational talks on entrepreneurship.",
-    url: "https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs",
-    thumbnail: "/Hero.jpg",
-    tags: ["Masterclasses", "Official Channel", "Tutorials & Talks"]
   }
 ];
