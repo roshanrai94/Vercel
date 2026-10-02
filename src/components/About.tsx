@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, BookOpen, Heart, Sparkles, ShieldCheck, GraduationCap } from 'lucide-react';
+import { Award, BookOpen, Heart, Sparkles, ShieldCheck, GraduationCap, ExternalLink } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { personalData, qualificationsData, statsData } from '../data/portfolioData';
 
@@ -56,6 +56,18 @@ export const About: React.FC = () => {
                 {paragraph}
               </p>
             ))}
+
+            <div className="pt-1 pb-2">
+              <a
+                href="https://myvillagemypride.wordpress.com/2015/02/04/sikkim-an-inspiring-story-of-shova-rai/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-amber-200 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all group"
+              >
+                <span>Read published profile story: &ldquo;Sikkim: An Inspiring Story of Shova Rai&rdquo;</span>
+                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            </div>
 
             <div className="grid grid-cols-2 gap-4 pt-4 border-t border-stone-800">
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-stone-800/50 border border-stone-700/50">

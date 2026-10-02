@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Award, Sparkles, Mic, FileCheck2, Maximize2, X } from 'lucide-react';
+import { Award, Sparkles, Mic, FileCheck2, Maximize2, X, ExternalLink } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { usePhotos } from '../context/PhotoContext';
 import { accoladesData, publicSpeakingData, photoAwardSlots, endorsementsData } from '../data/portfolioData';
@@ -65,9 +65,20 @@ export const Recognition: React.FC = () => {
             <div className="space-y-4">
               {accoladesData.map((accolade) => (
                 <div key={accolade.id} className="p-4 sm:p-5 rounded-2xl bg-stone-900/90 border border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-amber-500/30 transition-colors">
-                  <div>
+                  <div className="flex-1">
                     <h4 className="text-base sm:text-lg font-serif font-bold text-amber-100">{accolade.title}</h4>
                     <p className="text-xs sm:text-sm text-stone-300 mt-0.5">{accolade.location}</p>
+                    {accolade.articleUrl && (
+                      <a
+                        href={accolade.articleUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 hover:underline mt-2 font-medium"
+                      >
+                        <span>Official coverage on {accolade.articleSource || 'Government Portal'}</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                   </div>
                   <span className="shrink-0 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider text-center border border-amber-500/30">
                     {accolade.date}

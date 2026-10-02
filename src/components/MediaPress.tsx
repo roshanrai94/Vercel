@@ -1,34 +1,58 @@
 import React, { useState } from 'react';
-import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, PlusCircle, X } from 'lucide-react';
+import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, PlusCircle, X, Film } from 'lucide-react';
 import { mediaFeaturesData } from '../data/portfolioData';
 import { MediaCategory, MediaFeature } from '../types';
 
 export const MediaPress: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<MediaCategory>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [activeVideo, setActiveVideo] = useState<{ title: string; embedUrl: string; source: string; originalUrl: string } | null>(null);
+  const [activeVideo, setActiveVideo] = useState<{
+    title: string;
+    embedUrl: string;
+    source: string;
+    originalUrl: string;
+    platformName: string;
+    type: 'youtube' | 'facebook';
+  } | null>(null);
 
   const categories: { id: MediaCategory; label: string; icon: React.FC<{ className?: string }> }[] = [
     { id: 'all', label: 'All Media', icon: Sparkles },
     { id: 'interview', label: 'Video Interviews', icon: Video },
-    { id: 'report', label: 'News & Press Reports', icon: Newspaper },
+    { id: 'film', label: 'Short Films', icon: Film },
     { id: 'music_video', label: 'Music Videos', icon: Music },
-    { id: 'feature', label: 'Special Features', icon: Tv },
+    { id: 'report', label: 'News & Reports', icon: Newspaper },
+    { id: 'feature', label: 'Broadcast Features', icon: Tv },
   ];
 
   const filteredMedia = selectedCategory === 'all'
     ? mediaFeaturesData
     : mediaFeaturesData.filter((item) => item.category === selectedCategory);
 
-  const getYouTubeEmbedUrl = (url: string) => {
-    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|(?:embed|v)\/))([\w-]{11})/);
-    return match ? `https://www.youtube-nocookie.com/embed/${match[1]}?autoplay=1&rel=0` : null;
+  const getVideoEmbed = (url: string) => {
+    const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|(?:embed|v)\/))([\w-]{11})/);
+    if (ytMatch) {
+      return {
+        type: 'youtube' as const,
+        embedUrl: `https://www.youtube-nocookie.com/embed/${ytMatch[1]}?autoplay=1&rel=0`,
+        platformName: 'YouTube',
+      };
+    }
+    if (url.includes('facebook.com') && (url.includes('/videos/') || url.includes('/watch/'))) {
+      return {
+        type: 'facebook' as const,
+        embedUrl: `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}&show_text=0&width=500`,
+        platformName: 'Facebook',
+      };
+    }
+    return null;
   };
 
   const getCategoryBadge = (category: MediaFeature['category']) => {
     switch (category) {
       case 'interview':
         return { label: 'Video Interview', color: 'bg-rose-500/20 text-rose-300 border-rose-500/30' };
+      case 'film':
+        return { label: 'Short Film', color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' };
       case 'report':
         return { label: 'Press & News Report', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' };
       case 'music_video':
@@ -55,13 +79,15 @@ export const MediaPress: React.FC = () => {
   };
 
   const handleCardClick = (item: MediaFeature) => {
-    const embedUrl = getYouTubeEmbedUrl(item.url);
-    if (embedUrl) {
+    const video = getVideoEmbed(item.url);
+    if (video) {
       setActiveVideo({
         title: item.title,
-        embedUrl,
+        embedUrl: video.embedUrl,
         source: item.sourceName,
         originalUrl: item.url,
+        platformName: video.platformName,
+        type: video.type,
       });
     } else {
       window.open(item.url, '_blank', 'noopener,noreferrer');
@@ -130,7 +156,19 @@ export const MediaPress: React.FC = () => {
           {filteredMedia.map((item) => {
             const badge = getCategoryBadge(item.category);
             const isCopied = copiedId === item.id;
-            const hasEmbed = !!getYouTubeEmbedUrl(item.url);
+            const videoInfo = getVideoEmbed(item.url);
+            const hasEmbed = !!videoInfo;
+            const ytMatch = item.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|(?:embed|v)\/))([\w-]{11})/);
+            const ytId = ytMatch ? ytMatch[1] : null;
+            const thumbnailSrc = ytId
+              ? `https://i.ytimg.com/vi/${ytId}/maxresdefault.jpg`
+              : (item.thumbnail || '/Hero.jpg');
+
+            const platformLabel = item.url.includes('facebook.com')
+              ? 'Facebook'
+              : ytId
+              ? 'YouTube'
+              : 'External Link';
 
             return (
               <article
@@ -143,29 +181,29 @@ export const MediaPress: React.FC = () => {
                   className="relative aspect-[16/9] w-full overflow-hidden bg-stone-900 cursor-pointer"
                   title={hasEmbed ? `Click to watch "${item.title}"` : `Click to open link`}
                 >
-                  {item.thumbnail ? (
-                    <img
-                      src={item.thumbnail}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = '/Hero.jpg';
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-stone-900 text-amber-400/50">
-                      <Tv className="w-12 h-12" />
-                    </div>
-                  )}
+                  <img
+                    src={thumbnailSrc}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    onError={(e) => {
+                      const img = e.currentTarget as HTMLImageElement;
+                      if (ytId && !img.src.includes('hqdefault.jpg')) {
+                        img.src = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
+                      } else {
+                        img.src = '/Hero.jpg';
+                      }
+                    }}
+                  />
 
-                  {/* Dark gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent" />
+                  {/* Clean subtle hover effect (not obscuring the YouTube thumbnail) */}
+                  <div className="absolute inset-0 bg-stone-950/5 group-hover:bg-black/25 transition-colors duration-300 pointer-events-none" />
 
                   {/* Category Badge */}
-                  <div className="absolute top-3 left-3 z-10">
-                    <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border backdrop-blur-md ${badge.color}`}>
+                  <div className="absolute top-2.5 left-2.5 z-10">
+                    <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border backdrop-blur-md shadow-sm ${badge.color}`}>
                       {item.category === 'interview' && <Video className="w-3 h-3" />}
+                      {item.category === 'film' && <Film className="w-3 h-3" />}
                       {item.category === 'report' && <Newspaper className="w-3 h-3" />}
                       {item.category === 'music_video' && <Music className="w-3 h-3" />}
                       {item.category === 'feature' && <Tv className="w-3 h-3" />}
@@ -173,17 +211,21 @@ export const MediaPress: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Play icon overlay for videos */}
-                  {(item.category === 'interview' || item.category === 'music_video' || item.category === 'feature') && (
+                  {/* Sleek Play indicator for videos */}
+                  {(item.category === 'interview' || item.category === 'film' || item.category === 'music_video' || item.category === 'feature') && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      <div className="w-14 h-14 rounded-full bg-amber-500/90 text-stone-950 flex items-center justify-center shadow-[0_4px_25px_rgba(245,158,11,0.5)] group-hover:scale-115 group-hover:bg-amber-400 transition-all duration-300">
-                        <Play className="w-6 h-6 fill-current translate-x-0.5" />
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 backdrop-blur-[2px] ${
+                        ytId 
+                          ? 'bg-red-600/90 text-white shadow-[0_4px_20px_rgba(220,38,38,0.5)] group-hover:scale-115 group-hover:bg-red-600' 
+                          : 'bg-amber-500/90 text-stone-950 shadow-[0_4px_20px_rgba(245,158,11,0.5)] group-hover:scale-115 group-hover:bg-amber-400'
+                      }`}>
+                        <Play className="w-5 h-5 fill-current translate-x-0.5" />
                       </div>
                     </div>
                   )}
 
                   {/* Source Name tag on bottom right of thumbnail */}
-                  <div className="absolute bottom-2.5 right-3 text-[11px] font-medium text-amber-200/90 bg-stone-950/85 backdrop-blur-sm px-2.5 py-0.5 rounded-md border border-stone-800">
+                  <div className="absolute bottom-2 right-2 text-[11px] font-medium text-amber-200/90 bg-stone-950/85 backdrop-blur-sm px-2.5 py-0.5 rounded-md border border-stone-800 shadow-sm z-10">
                     {item.sourceName}
                   </div>
                 </div>
@@ -226,7 +268,9 @@ export const MediaPress: React.FC = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-stone-950 transition-all duration-200 shadow-sm hover:shadow-[0_2px_12px_rgba(245,158,11,0.25)] flex-1 justify-center cursor-pointer"
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
-                        <span>Watch Video</span>
+                        <span>
+                          {item.category === 'film' ? 'Watch Short Film' : item.category === 'music_video' ? 'Watch Music Video' : item.category === 'interview' ? 'Watch Interview' : 'Watch Feature'}
+                        </span>
                       </button>
                     ) : (
                       <a
@@ -246,7 +290,7 @@ export const MediaPress: React.FC = () => {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      title="Open on YouTube / External Site"
+                      title={`Open on ${platformLabel}`}
                       className="p-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-amber-300 border border-stone-800 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -323,7 +367,7 @@ export const MediaPress: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-amber-300 hover:text-amber-200 px-2.5 py-1 rounded-lg bg-stone-800 hover:bg-stone-700 transition-colors"
                 >
-                  <span>Open in YouTube</span>
+                  <span>Open on {activeVideo.platformName}</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
 
@@ -347,6 +391,23 @@ export const MediaPress: React.FC = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
+            </div>
+
+            {/* Platform indicator / direct link note */}
+            <div className="px-5 py-2.5 bg-stone-950/90 border-t border-stone-800 flex items-center justify-between text-[11px] text-stone-400">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                <span>Streaming from {activeVideo.source}</span>
+              </span>
+              <a
+                href={activeVideo.originalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1"
+              >
+                <span>Watch on original {activeVideo.platformName} page</span>
+                <ExternalLink className="w-3 h-3" />
+              </a>
             </div>
           </div>
         </div>

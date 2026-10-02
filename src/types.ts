@@ -17,6 +17,8 @@ export interface Accolade {
   title: string;
   location: string;
   date: string;
+  articleUrl?: string;
+  articleSource?: string;
 }
 
 export interface PublicSpeaking {
@@ -48,12 +50,12 @@ export interface Endorsement {
   photoKey: string;
 }
 
-export type MediaCategory = 'all' | 'report' | 'interview' | 'music_video' | 'feature';
+export type MediaCategory = 'all' | 'interview' | 'film' | 'music_video' | 'report' | 'feature';
 
 export interface MediaFeature {
   id: string;
   title: string;
-  category: 'report' | 'interview' | 'music_video' | 'feature';
+  category: 'report' | 'interview' | 'music_video' | 'film' | 'feature';
   sourceName: string;
   publishedDate?: string;
   description: string;
