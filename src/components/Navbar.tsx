@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, Menu, X, PhoneCall } from 'lucide-react';
+import { LiveHeaderStrip } from './LiveHeaderStrip';
 
 interface NavbarProps {
   darkMode?: boolean;
@@ -48,22 +49,27 @@ export const Navbar: React.FC<NavbarProps> = () => {
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      const yOffset = -70;
+      const yOffset = -110;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'py-2.5 bg-stone-950/95 border-b border-amber-500/20 backdrop-blur-xl shadow-[0_4px_25px_rgba(0,0,0,0.6)]'
-          : 'py-3.5 bg-stone-950/80 border-b border-amber-800/30 backdrop-blur-md'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      {/* Live Date, Time & 24h/Total Visitor Counter Strip */}
+      <LiveHeaderStrip />
+
+      {/* Main Navigation Bar */}
+      <div
+        className={`transition-all duration-300 ${
+          isScrolled
+            ? 'py-2.5 bg-stone-950/95 border-b border-amber-500/20 backdrop-blur-xl shadow-[0_4px_25px_rgba(0,0,0,0.6)]'
+            : 'py-3.5 bg-stone-950/80 border-b border-amber-800/30 backdrop-blur-md'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
           
           {/* Logo / Brand Name */}
           <a
@@ -160,10 +166,11 @@ export const Navbar: React.FC<NavbarProps> = () => {
         </div>
 
       </div>
+      </div>
 
       {/* Mobile Drawer Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[68px] bg-stone-950/95 border-b border-amber-500/30 backdrop-blur-2xl p-6 shadow-2xl animate-fadeIn">
+        <div className="lg:hidden absolute inset-x-0 top-full bg-stone-950/98 border-b border-amber-500/30 backdrop-blur-2xl p-6 shadow-2xl animate-fadeIn">
           <div className="grid grid-cols-2 gap-3 mb-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;

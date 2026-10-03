@@ -3,7 +3,7 @@ import { PhotoProvider } from './context/PhotoContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { Journey } from './components/Journey';
+import { ProfessionalJourneyTimeline } from './components/ProfessionalJourneyTimeline';
 import { Ventures } from './components/Ventures';
 import { Impact } from './components/Impact';
 import { Recognition } from './components/Recognition';
@@ -55,7 +55,7 @@ export default function App() {
         <main>
           <Hero />
           <About />
-          <Journey />
+          <ProfessionalJourneyTimeline />
           <Ventures />
           <Impact />
           <Recognition />

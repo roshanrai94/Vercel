@@ -1,8 +1,11 @@
 import React from 'react';
-import { ArrowUp, Sparkles, MapPin, Heart } from 'lucide-react';
+import { ArrowUp, Sparkles, MapPin, Heart, Clock, Calendar, Users, Eye, Radio } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
+import { useLiveVisitorStats } from '../hooks/useLiveVisitorStats';
 
 export const Footer: React.FC = () => {
+  const { dateString, timeString, dailyVisitors, totalVisitors } = useLiveVisitorStats();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -86,6 +89,87 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
+        </div>
+
+        {/* Live Site Metrics & Sikkim Time Strip */}
+        <div className="rounded-2xl bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-stone-900/90 border border-amber-500/20 p-5 sm:p-6 backdrop-blur-md shadow-xl">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 mb-4 border-b border-stone-800">
+            <div className="flex items-center gap-2.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs uppercase tracking-widest font-bold text-amber-200 font-display">
+                Real-Time Website Activity &amp; Official Sikkim Time
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] text-stone-400">
+              <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-medium">
+                System Active
+              </span>
+              <span>• Gangtok, Sikkim (UTC+5:30)</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+            {/* Metric 1: Live Date */}
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-stone-950/70 border border-stone-800/90">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-400">
+                <Calendar className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
+                  Current Date (IST)
+                </span>
+                <span className="text-sm font-semibold text-amber-100">
+                  {dateString}
+                </span>
+              </div>
+            </div>
+
+            {/* Metric 2: Live Time */}
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-stone-950/70 border border-stone-800/90">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-400">
+                <Clock className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Live Sikkim Time
+                </span>
+                <span className="text-sm font-mono font-bold text-amber-300 tabular-nums">
+                  {timeString} <span className="text-xs text-amber-400/80 font-sans">IST</span>
+                </span>
+              </div>
+            </div>
+
+            {/* Metric 3: 24h Visitors */}
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-stone-950/70 border border-stone-800/90">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-400">
+                <Users className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
+                  Visitors in 24 Hours
+                </span>
+                <span className="text-base font-mono font-bold text-amber-200 tabular-nums">
+                  {dailyVisitors.toLocaleString()}
+                </span>
+              </div>
+            </div>
+
+            {/* Metric 4: Total Visitors */}
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl bg-stone-950/70 border border-stone-800/90">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center shrink-0 text-amber-400">
+                <Eye className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
+                  Total Site Visits
+                </span>
+                <span className="text-base font-mono font-bold text-amber-300 tabular-nums">
+                  {totalVisitors.toLocaleString()}
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Bar */}

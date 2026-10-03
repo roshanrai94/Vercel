@@ -8,14 +8,14 @@ export const Hero: React.FC = () => {
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const yOffset = -70;
+      const yOffset = -110;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <section id="home" className="relative pt-24 pb-20 md:pt-32 md:pb-28 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 text-amber-50 overflow-hidden">
+    <section id="home" className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-b from-stone-950 via-stone-900 to-stone-950 text-amber-50 overflow-hidden">
       {/* Decorative Subtle Ambient Background Layers */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,119,6,0.15),rgba(255,255,255,0))] pointer-events-none" />
       <div className="absolute top-1/4 -left-32 w-96 h-96 bg-amber-600/10 rounded-full blur-3xl pointer-events-none" />
