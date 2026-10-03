@@ -20,7 +20,7 @@ export const MediaPress: React.FC = () => {
 
   const categories: { id: MediaCategory; label: string; icon: React.FC<{ className?: string }> }[] = [
     { id: 'all', label: 'All Media', icon: Sparkles },
-    { id: 'interview', label: 'Video Interviews', icon: Video },
+    { id: 'interview', label: 'Podcasts & Interviews', icon: Video },
     { id: 'film', label: 'Short Films', icon: Film },
     { id: 'music_video', label: 'Music Videos', icon: Music },
     { id: 'report', label: 'News & Reports', icon: Newspaper },
@@ -49,9 +49,12 @@ export const MediaPress: React.FC = () => {
     return null;
   };
 
-  const getCategoryBadge = (category: MediaFeature['category']) => {
+  const getCategoryBadge = (category: MediaFeature['category'], title?: string) => {
     switch (category) {
       case 'interview':
+        if (title && title.toLowerCase().includes('podcast')) {
+          return { label: 'Video Podcast', color: 'bg-rose-500/20 text-rose-300 border-rose-500/30' };
+        }
         return { label: 'Video Interview', color: 'bg-rose-500/20 text-rose-300 border-rose-500/30' };
       case 'film':
         return { label: 'Short Film', color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' };
@@ -199,7 +202,7 @@ export const MediaPress: React.FC = () => {
         {/* Media Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredMedia.map((item) => {
-            const badge = getCategoryBadge(item.category);
+            const badge = getCategoryBadge(item.category, item.title);
             const isCopied = copiedId === item.id;
             const videoInfo = getVideoEmbed(item.url);
             const hasEmbed = !!videoInfo;
@@ -314,7 +317,13 @@ export const MediaPress: React.FC = () => {
                       >
                         <Play className="w-3.5 h-3.5 fill-current" />
                         <span>
-                          {item.category === 'film' ? 'Watch Short Film' : item.category === 'music_video' ? 'Watch Music Video' : item.category === 'interview' ? 'Watch Interview' : 'Watch Feature'}
+                          {item.category === 'film' 
+                            ? 'Watch Short Film' 
+                            : item.category === 'music_video' 
+                            ? 'Watch Music Video' 
+                            : item.category === 'interview' 
+                            ? (item.title.toLowerCase().includes('podcast') ? 'Watch Podcast' : 'Watch Interview') 
+                            : 'Watch Feature'}
                         </span>
                       </button>
                     ) : (

@@ -626,6 +626,18 @@ export const endorsementsData: Endorsement[] = [
 
 export const mediaFeaturesData: MediaFeature[] = [
   {
+    id: "media-ins-podcast",
+    title: "Shova Rai | I.N.S Podcast | Season 2 Episode 4",
+    category: "interview",
+    sourceName: "I.N.S. Production Darjeeling",
+    publishedDate: "Video Podcast",
+    description: "Join Shova Rai, a dynamic entrepreneur who wears many hats—baker, hairstylist, painter, and restaurant owner—as she shares her inspiring journey of building businesses and breaking barriers. Shova delves into feminism, entrepreneurship, and women's empowerment, discussing the challenges women face in male-dominated industries and how they rise above societal norms with resilience and ambition.",
+    url: "https://www.youtube.com/watch?v=ZuFv1Ik6cvI",
+    thumbnail: "/podcast-ins-shovarai.jpg",
+    tags: ["I.N.S Podcast", "Women Empowerment", "Feminism & Business", "Shova Rai", "Entrepreneurship"],
+    featured: true
+  },
+  {
     id: "media-1",
     title: "Inspiring Women of Sikkim: Exclusive TV Interview with Mrs. Shova Rai",
     category: "interview",
