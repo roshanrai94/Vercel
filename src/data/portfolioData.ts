@@ -638,18 +638,6 @@ export const mediaFeaturesData: MediaFeature[] = [
     featured: true
   },
   {
-    id: "media-omg-zindagi",
-    title: "Life, Passion & Entrepreneurship: In-Depth Interview on OMG Zindagi",
-    category: "interview",
-    sourceName: "OMG Zindagi Official",
-    publishedDate: "Featured Video Interview",
-    description: "An inspiring and candid conversation on the popular OMG Zindagi channel, capturing Mrs. Shova Rai's relentless spirit, business achievements in Gangtok, and dedication to women's empowerment across Sikkim.",
-    url: "https://www.youtube.com/watch?v=Ppa7be09g3k",
-    thumbnail: "https://i.ytimg.com/vi/Ppa7be09g3k/maxresdefault.jpg",
-    tags: ["OMG Zindagi", "Video Interview", "Inspiring Stories", "Shova Rai"],
-    featured: true
-  },
-  {
     id: "media-ncw-newsonair",
     title: "NCW Felicitates Sikkim Entrepreneur Shova Rai for Her Contributions",
     category: "report",
