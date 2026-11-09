@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Menu, X, PhoneCall } from 'lucide-react';
+import { Sparkles, Menu, X, PhoneCall, Globe } from 'lucide-react';
 import { LiveHeaderStrip } from './LiveHeaderStrip';
+import { useLanguage } from '../context/LanguageContext';
 
 interface NavbarProps {
   darkMode?: boolean;
@@ -8,21 +9,23 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = () => {
+  const { language, setLanguage, t } = useLanguage();
   const [activeSection, setActiveSection] = useState<string>('home');
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home', id: 'home' },
-    { name: 'About', href: '#about', id: 'about' },
-    { name: 'Journey', href: '#journey', id: 'journey' },
-    { name: 'Ventures', href: '#ventures', id: 'ventures' },
-    { name: 'Impact', href: '#impact', id: 'impact' },
-    { name: 'Recognition', href: '#recognition', id: 'recognition' },
-    { name: 'Media', href: '#media', id: 'media' },
-    { name: 'Gallery', href: '#gallery', id: 'gallery' },
-    { name: 'FAQ', href: '#faq', id: 'faq' },
-    { name: 'Contact', href: '#contact', id: 'contact' },
+    { name: t.nav.home, href: '#home', id: 'home' },
+    { name: t.nav.about, href: '#about', id: 'about' },
+    { name: t.nav.journey, href: '#journey', id: 'journey' },
+    { name: t.nav.ventures, href: '#ventures', id: 'ventures' },
+    { name: t.nav.impact, href: '#impact', id: 'impact' },
+    { name: t.nav.updates, href: '#newsletter', id: 'newsletter' },
+    { name: t.nav.recognition, href: '#recognition', id: 'recognition' },
+    { name: t.nav.media, href: '#media', id: 'media' },
+    { name: t.nav.gallery, href: '#gallery', id: 'gallery' },
+    { name: t.nav.faq, href: '#faq', id: 'faq' },
+    { name: t.nav.contact, href: '#contact', id: 'contact' },
   ];
 
   useEffect(() => {
@@ -85,10 +88,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
             </div>
             <div className="flex flex-col">
               <span className="font-serif font-bold text-base sm:text-lg text-amber-100 group-hover:text-amber-300 transition-colors tracking-wide">
-                Shova Rai
+                {t.brand.name}
               </span>
               <span className="text-[9px] uppercase tracking-widest text-amber-400/80 font-sans font-semibold">
-                Sikkim • India
+                {t.brand.location}
               </span>
             </div>
           </a>
@@ -105,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                     e.preventDefault();
                     handleNavClick(link.href);
                   }}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 tracking-wider whitespace-nowrap ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 tracking-wider whitespace-nowrap ${
                     isActive
                       ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-[0_2px_10px_rgba(245,158,11,0.35)]'
                       : 'text-stone-300 hover:text-amber-200 hover:bg-stone-800/80'
@@ -117,27 +120,66 @@ export const Navbar: React.FC<NavbarProps> = () => {
             })}
           </nav>
 
-          {/* Right Action: Direct WhatsApp / Connect CTA */}
-          <div className="hidden sm:flex items-center gap-3">
-            <a
-              href="https://wa.me/917431833009"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all hover:scale-105 shadow-sm"
+          {/* Right Action: Language Switcher Toggle + Direct Connect CTA */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            
+            {/* Language Switcher Toggle */}
+            <div
+              className="flex items-center p-0.5 rounded-xl bg-stone-900/95 border border-amber-500/30 backdrop-blur-md shadow-inner"
+              role="group"
+              aria-label={t.switcher.ariaLabel}
             >
-              <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Connect</span>
-            </a>
-          </div>
+              <div className="pl-2 pr-1 text-amber-400/80 hidden sm:flex items-center" aria-hidden="true">
+                <Globe className="w-3.5 h-3.5 text-amber-400" />
+              </div>
+              <button
+                type="button"
+                onClick={() => setLanguage('en')}
+                title="Switch to English"
+                className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                  language === 'en'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-[0_2px_8px_rgba(245,158,11,0.4)]'
+                    : 'text-stone-400 hover:text-amber-200'
+                }`}
+              >
+                EN
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage('ne')}
+                title="नेपाली भाषामा बदल्नुहोस्"
+                className={`px-2.5 py-1 rounded-lg text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
+                  language === 'ne'
+                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-[0_2px_8px_rgba(245,158,11,0.4)]'
+                    : 'text-stone-400 hover:text-amber-200'
+                }`}
+              >
+                नेपाली
+              </button>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl bg-stone-900 text-amber-300 border border-amber-500/30 focus:outline-none"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+            {/* Direct Connect WhatsApp CTA */}
+            <div className="hidden sm:flex items-center">
+              <a
+                href="https://wa.me/917431833009"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/40 text-xs font-bold transition-all hover:scale-105 shadow-sm"
+              >
+                <PhoneCall className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{t.nav.connect}</span>
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2 rounded-xl bg-stone-900 text-amber-300 border border-amber-500/30 focus:outline-none cursor-pointer"
+              aria-label="Toggle navigation menu"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
 
         </div>
 
@@ -171,6 +213,39 @@ export const Navbar: React.FC<NavbarProps> = () => {
       {/* Mobile Drawer Dropdown Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden absolute inset-x-0 top-full bg-stone-950/98 border-b border-amber-500/30 backdrop-blur-2xl p-6 shadow-2xl animate-fadeIn">
+          
+          {/* Mobile Language Switcher Banner */}
+          <div className="flex items-center justify-between p-3 rounded-xl bg-stone-900/90 border border-amber-500/30 mb-4">
+            <div className="flex items-center gap-2 text-xs font-bold text-amber-200">
+              <Globe className="w-4 h-4 text-amber-400" />
+              <span>Language / भाषा:</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                onClick={() => setLanguage('en')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  language === 'en'
+                    ? 'bg-amber-500 text-stone-950 shadow-sm'
+                    : 'bg-stone-800 text-stone-400 hover:text-stone-200'
+                }`}
+              >
+                English
+              </button>
+              <button
+                type="button"
+                onClick={() => setLanguage('ne')}
+                className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  language === 'ne'
+                    ? 'bg-amber-500 text-stone-950 shadow-sm'
+                    : 'bg-stone-800 text-stone-400 hover:text-stone-200'
+                }`}
+              >
+                नेपाली
+              </button>
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-3 mb-4">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;

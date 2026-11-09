@@ -2,8 +2,10 @@ import React from 'react';
 import { ArrowDown, Award, Compass, Sparkles, Star } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
 import { personalData, statsData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Hero: React.FC = () => {
+  const { t } = useLanguage();
 
   const handleScrollTo = (href: string) => {
     const element = document.querySelector(href);
@@ -28,28 +30,28 @@ export const Hero: React.FC = () => {
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-6 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span className="font-display font-semibold tracking-widest text-[11px] sm:text-xs">SIKKIM'S VISIONARY LEADER & MENTOR</span>
+            <span className="font-display font-semibold tracking-widest text-[11px] sm:text-xs">{t.hero.badge}</span>
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-amber-100 leading-[1.05] mb-6">
-            {personalData.name}
+            {t.brand.name}
           </h1>
 
           <p className="text-xl sm:text-2xl md:text-3xl font-serif text-amber-200/90 font-light max-w-3xl mx-auto leading-snug mb-6 text-center italic">
-            Empowering Sikkim Through Entrepreneurship, Creativity &amp; Skill Development
+            {t.hero.subheadline}
           </p>
 
           <div className="flex items-center justify-center gap-3 text-amber-400/80 text-sm mb-6">
             <span className="h-[1px] w-12 bg-amber-500/30" />
             <Star className="w-3.5 h-3.5 fill-amber-400/40 text-amber-400" />
-            <span className="font-display text-xs tracking-widest uppercase text-amber-300">Namnang, Gangtok</span>
+            <span className="font-display text-xs tracking-widest uppercase text-amber-300">{t.hero.locationGangtok}</span>
             <Star className="w-3.5 h-3.5 fill-amber-400/40 text-amber-400" />
             <span className="h-[1px] w-12 bg-amber-500/30" />
           </div>
 
           <p className="text-xs sm:text-sm font-semibold text-amber-300/80 tracking-widest uppercase mb-8 text-center font-sans">
-            Entrepreneur • Artist • Mentor • Baker • Hairstylist • Community Builder
+            {t.hero.roles}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
@@ -62,7 +64,7 @@ export const Hero: React.FC = () => {
               className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-stone-950 font-bold text-sm sm:text-base transition-all shadow-[0_4px_20px_rgba(245,158,11,0.3)] hover:scale-105 flex items-center gap-2 tracking-wider"
             >
               <Compass className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span>EXPLORE VENTURES</span>
+              <span>{t.hero.exploreVentures}</span>
             </a>
 
             <a
@@ -74,7 +76,7 @@ export const Hero: React.FC = () => {
               className="px-6 py-3.5 rounded-xl bg-stone-900/90 hover:bg-stone-800 text-amber-200 border border-amber-500/40 font-semibold text-sm sm:text-base transition-all flex items-center gap-2 hover:scale-105 shadow-md"
             >
               <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
-              <span>COMMUNITY IMPACT</span>
+              <span>{t.hero.communityImpact}</span>
             </a>
           </div>
         </div>

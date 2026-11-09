@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { PhotoProvider } from './context/PhotoContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { ProfessionalJourneyTimeline } from './components/ProfessionalJourneyTimeline';
 import { Ventures } from './components/Ventures';
 import { Impact } from './components/Impact';
+import { NewsletterSignup } from './components/NewsletterSignup';
 import { Recognition } from './components/Recognition';
 import { MediaPress } from './components/MediaPress';
 import { Gallery } from './components/Gallery';
@@ -37,7 +39,8 @@ export default function App() {
   };
 
   return (
-    <PhotoProvider>
+    <LanguageProvider>
+      <PhotoProvider>
       <div className="min-h-screen bg-stone-950 text-stone-100 font-sans selection:bg-amber-500 selection:text-stone-950 transition-colors duration-300 relative">
         
         {/* Top Reading Progress Bar */}
@@ -58,6 +61,7 @@ export default function App() {
           <ProfessionalJourneyTimeline />
           <Ventures />
           <Impact />
+          <NewsletterSignup />
           <Recognition />
           <MediaPress />
           <Gallery />
@@ -95,6 +99,7 @@ export default function App() {
 
       </div>
     </PhotoProvider>
+    </LanguageProvider>
   );
 }
 

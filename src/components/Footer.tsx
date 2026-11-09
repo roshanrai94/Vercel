@@ -2,8 +2,10 @@ import React from 'react';
 import { ArrowUp, Sparkles, MapPin, Heart, Clock, Calendar, Users, Eye, Radio } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
 import { useLiveVisitorStats } from '../hooks/useLiveVisitorStats';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = () => {
+  const { t } = useLanguage();
   const { dateString, timeString, dailyVisitors, totalVisitors } = useLiveVisitorStats();
 
   const scrollToTop = () => {
@@ -27,47 +29,48 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-xl font-serif font-bold text-amber-100 block">
-                  {personalData.name}
+                  {t.brand.name}
                 </span>
                 <span className="text-xs text-amber-400/90 font-display tracking-widest uppercase block">
-                  Sikkim Visionary &amp; Entrepreneur
+                  {t.brand.title}
                 </span>
               </div>
             </div>
 
             <p className="text-sm text-stone-300 leading-relaxed max-w-sm">
-              Empowering communities through beauty, artisanal heritage food, traditional Himalayan crafts, and women's economic self-reliance.
+              {t.footer.tagline}
             </p>
 
             <div className="flex items-center gap-2 text-xs text-stone-400 pt-1">
               <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>Namnang, Gangtok, Sikkim — 737101, India</span>
+              <span>{t.footer.locationText}</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-4 space-y-3">
             <h4 className="text-xs font-bold text-amber-300 uppercase tracking-widest font-display">
-              PORTFOLIO SECTIONS
+              {t.footer.sectionsTitle}
             </h4>
             <div className="grid grid-cols-2 gap-2 text-xs font-medium">
-              <a href="#home" className="text-stone-300 hover:text-amber-300 transition-colors py-1">HOME</a>
-              <a href="#about" className="text-stone-300 hover:text-amber-300 transition-colors py-1">ABOUT</a>
-              <a href="#journey" className="text-stone-300 hover:text-amber-300 transition-colors py-1">JOURNEY</a>
-              <a href="#ventures" className="text-stone-300 hover:text-amber-300 transition-colors py-1">VENTURES</a>
-              <a href="#impact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">IMPACT</a>
-              <a href="#recognition" className="text-stone-300 hover:text-amber-300 transition-colors py-1">RECOGNITION</a>
-              <a href="#media" className="text-stone-300 hover:text-amber-300 transition-colors py-1">MEDIA &amp; PRESS</a>
-              <a href="#gallery" className="text-stone-300 hover:text-amber-300 transition-colors py-1">GALLERY</a>
-              <a href="#faq" className="text-stone-300 hover:text-amber-300 transition-colors py-1">FAQ</a>
-              <a href="#contact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">CONTACT</a>
+              <a href="#home" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.home.toUpperCase()}</a>
+              <a href="#about" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.about.toUpperCase()}</a>
+              <a href="#journey" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.journey.toUpperCase()}</a>
+              <a href="#ventures" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.ventures.toUpperCase()}</a>
+              <a href="#impact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.impact.toUpperCase()}</a>
+              <a href="#newsletter" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.updates.toUpperCase()}</a>
+              <a href="#recognition" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.recognition.toUpperCase()}</a>
+              <a href="#media" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.media.toUpperCase()}</a>
+              <a href="#gallery" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.gallery.toUpperCase()}</a>
+              <a href="#faq" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.faq.toUpperCase()}</a>
+              <a href="#contact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.contact.toUpperCase()}</a>
             </div>
           </div>
 
           {/* Core Enterprises */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="text-xs font-bold text-amber-300 uppercase tracking-widest font-display">
-              VENTURES &amp; INITIATIVES
+              {t.footer.venturesTitle}
             </h4>
             <ul className="space-y-2 text-xs text-stone-300">
               <li className="flex items-center gap-2">

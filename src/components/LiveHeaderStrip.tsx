@@ -1,8 +1,10 @@
 import React from 'react';
 import { Clock, Calendar, Users, Eye, Radio } from 'lucide-react';
 import { useLiveVisitorStats } from '../hooks/useLiveVisitorStats';
+import { useLanguage } from '../context/LanguageContext';
 
 export const LiveHeaderStrip: React.FC = () => {
+  const { t } = useLanguage();
   const { dateString, timeString, dailyVisitors, totalVisitors } = useLiveVisitorStats();
 
   return (
@@ -14,7 +16,7 @@ export const LiveHeaderStrip: React.FC = () => {
           <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold text-[10px] tracking-wider uppercase">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <Radio className="w-3 h-3 text-emerald-400" />
-            <span>IST Live</span>
+            <span>{t.liveStrip.istLive}</span>
           </div>
 
           <div className="flex items-center gap-1.5 text-stone-300">
@@ -40,7 +42,7 @@ export const LiveHeaderStrip: React.FC = () => {
           >
             <Users className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-stone-400 hidden sm:inline text-[10px] uppercase tracking-wider font-semibold">
-              24h Visitors:
+              {t.liveStrip.dailyVisitors}
             </span>
             <span className="text-stone-400 sm:hidden text-[10px] uppercase tracking-wider font-semibold">
               24h:
@@ -57,7 +59,7 @@ export const LiveHeaderStrip: React.FC = () => {
           >
             <Eye className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-stone-400 hidden sm:inline text-[10px] uppercase tracking-wider font-semibold">
-              Total Visits:
+              {t.liveStrip.totalVisits}
             </span>
             <span className="text-stone-400 sm:hidden text-[10px] uppercase tracking-wider font-semibold">
               Total:

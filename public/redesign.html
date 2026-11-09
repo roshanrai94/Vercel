@@ -137,9 +137,16 @@
           <a href="#contact" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Contact</a>
         </nav>
 
-        <!-- CTA & Mobile Toggle -->
-        <div class="flex items-center gap-4">
-          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-brass-glow hover:scale-105 active:scale-95">
+        <!-- Language Switcher, CTA & Mobile Toggle -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          
+          <!-- Language Switcher Toggle -->
+          <div class="inline-flex items-center p-0.5 rounded-xl bg-forest-900/90 border border-brass-500/30 text-xs font-bold shadow-inner">
+            <button type="button" id="lang-btn-en" class="px-2.5 py-1 rounded-lg transition-all bg-brass-500 text-forest-950 font-bold shadow-sm cursor-pointer">EN</button>
+            <button type="button" id="lang-btn-ne" class="px-2.5 py-1 rounded-lg transition-all text-slate-400 hover:text-brass-300 cursor-pointer">नेपाली</button>
+          </div>
+
+          <a href="#contact" id="nav-cta-btn" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-brass-glow hover:scale-105 active:scale-95">
             <span>Book Mentorship</span>
             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
           </a>
@@ -599,6 +606,112 @@
         </blockquote>
         <div class="font-serif font-bold text-brass-300 text-base">Mrs. Shova Rai</div>
         <div class="text-xs text-slate-400 uppercase tracking-widest mt-0.5">National Commission for Women (NCW) Awardee · Sikkim</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 5B. NEWSLETTER SIGNUP (PROGRAMS & EVENTS UPDATES) -->
+  <!-- ========================================================= -->
+  <section id="newsletter" class="py-20 bg-forest-950 text-white relative overflow-hidden border-y border-forest-800">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-brass-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <div class="rounded-3xl bg-forest-900/90 border border-brass-500/30 p-8 sm:p-12 shadow-2xl relative overflow-hidden reveal">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brass-600 via-brass-400 to-brass-600"></div>
+
+        <div id="newsletter-form-container" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Content Left -->
+          <div class="lg:col-span-6 space-y-4">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brass-500/10 border border-brass-500/30 text-brass-300 text-xs font-bold uppercase tracking-widest">
+              Direct Dispatches
+            </span>
+            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-white leading-tight">
+              Stay Updated on Mentorship Programs &amp; Business Events
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Subscribe to receive priority notifications on upcoming women entrepreneurship cohorts, vocational workshops, regional business summits, and inspirational case studies across Sikkim.
+            </p>
+            <div class="space-y-2 pt-2 text-xs text-slate-300">
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brass-400 shrink-0"></span>
+                <span>Priority registration for 2026 Masterclasses in Gangtok.</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brass-400 shrink-0"></span>
+                <span>Invitations to regional business summits &amp; networking events.</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-brass-400 shrink-0"></span>
+                <span>Strict zero-spam policy. Unsubscribe anytime in one click.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Right -->
+          <div class="lg:col-span-6 bg-forest-950 p-6 sm:p-8 rounded-2xl border border-forest-800 shadow-xl">
+            <form id="newsletter-form" class="space-y-4" novalidate>
+              <div>
+                <label for="newsletter-name" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Your Full Name <span class="text-slate-500 font-normal lowercase">(optional)</span>
+                </label>
+                <input type="text" id="newsletter-name" placeholder="e.g. Roshni Sharma" class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-forest-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brass-400">
+              </div>
+
+              <div>
+                <label for="newsletter-email" class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Email Address <span class="text-brass-400">*</span>
+                </label>
+                <input type="email" id="newsletter-email" placeholder="you@domain.com" required class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-forest-700 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-brass-400">
+                <p id="newsletter-error" class="hidden text-xs text-rose-400 mt-1.5 flex items-center gap-1">
+                  <span>Please enter a valid email address.</span>
+                </p>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
+                  Primary Interest
+                </label>
+                <select id="newsletter-interest" class="w-full px-4 py-3 rounded-xl bg-forest-900 border border-forest-700 text-white text-sm focus:outline-none focus:border-brass-400">
+                  <option value="All Updates">All Updates &amp; Mentorship Dispatches</option>
+                  <option value="Mentorship Cohorts">Mentorship Cohorts &amp; Masterclasses</option>
+                  <option value="Business Events">Sikkim Business Summits &amp; Trade Events</option>
+                  <option value="Artisanal & Food Crafts">Artisanal Food &amp; Culinary Preservation</option>
+                </select>
+              </div>
+
+              <button type="submit" id="newsletter-btn" class="w-full py-3.5 px-6 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 font-bold text-sm tracking-wide transition-all shadow-brass-glow hover:scale-102 flex items-center justify-center gap-2 cursor-pointer">
+                <span>Subscribe for Program Updates</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+        <!-- Success Thank-You State (Hidden by Default) -->
+        <div id="newsletter-success" class="hidden py-8 text-center max-w-xl mx-auto space-y-5">
+          <div class="w-16 h-16 rounded-full bg-brass-500/20 border-2 border-brass-400 text-brass-300 mx-auto flex items-center justify-center">
+            <svg class="w-8 h-8 text-brass-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <div class="space-y-2">
+            <span class="inline-block px-3 py-1 rounded-full bg-emerald-900/60 text-emerald-300 border border-emerald-500/40 text-xs font-semibold uppercase tracking-wider">
+              Subscription Confirmed
+            </span>
+            <h4 id="newsletter-thank-title" class="text-2xl sm:text-3xl font-serif font-bold text-white">
+              Thank You for Subscribing!
+            </h4>
+            <p id="newsletter-thank-msg" class="text-slate-300 text-sm leading-relaxed">
+              You are now registered for priority updates on Mrs. Shova Rai's upcoming mentorship programs and business events.
+            </p>
+          </div>
+          <button type="button" id="newsletter-reset-btn" class="mt-4 px-6 py-2.5 rounded-xl bg-forest-950 hover:bg-forest-800 border border-forest-700 text-slate-300 hover:text-white text-xs font-semibold transition-all">
+            Subscribe Another Email
+          </button>
+        </div>
+
       </div>
 
     </div>
@@ -1157,10 +1270,132 @@
         });
       }
 
+      // 5B. Newsletter Form Handling with Validation and Thank-You State
+      const nlForm = document.getElementById('newsletter-form');
+      const nlContainer = document.getElementById('newsletter-form-container');
+      const nlSuccess = document.getElementById('newsletter-success');
+      const nlEmail = document.getElementById('newsletter-email');
+      const nlName = document.getElementById('newsletter-name');
+      const nlError = document.getElementById('newsletter-error');
+      const nlBtn = document.getElementById('newsletter-btn');
+      const nlReset = document.getElementById('newsletter-reset-btn');
+      const nlThankTitle = document.getElementById('newsletter-thank-title');
+      const nlThankMsg = document.getElementById('newsletter-thank-msg');
+
+      if (nlForm && nlContainer && nlSuccess && nlEmail && nlBtn) {
+        nlForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const emailVal = nlEmail.value.trim().toLowerCase();
+          const nameVal = nlName ? nlName.value.trim() : '';
+
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailVal || !emailRegex.test(emailVal)) {
+            if (nlError) nlError.classList.remove('hidden');
+            nlEmail.focus();
+            return;
+          }
+
+          if (nlError) nlError.classList.add('hidden');
+
+          const originalText = nlBtn.innerHTML;
+          nlBtn.disabled = true;
+          nlBtn.innerHTML = '<span>Subscribing...</span>';
+
+          setTimeout(() => {
+            nlBtn.disabled = false;
+            nlBtn.innerHTML = originalText;
+
+            // Save to localStorage
+            try {
+              const stored = localStorage.getItem('shova_subscribers_list');
+              const list = stored ? JSON.parse(stored) : [];
+              list.push({ email: emailVal, name: nameVal, date: new Date().toISOString() });
+              localStorage.setItem('shova_subscribers_list', JSON.stringify(list));
+            } catch (err) {}
+
+            if (nlThankTitle) {
+              nlThankTitle.innerText = nameVal ? `Thank You, ${nameVal}!` : 'Thank You for Subscribing!';
+            }
+            if (nlThankMsg) {
+              nlThankMsg.innerHTML = `We have registered <strong class="text-brass-300">${emailVal}</strong> for priority alerts on Mrs. Shova Rai's upcoming mentorship sessions, entrepreneurship cohorts, and business summits across Sikkim.`;
+            }
+
+            nlContainer.classList.add('hidden');
+            nlSuccess.classList.remove('hidden');
+          }, 800);
+        });
+
+        if (nlReset) {
+          nlReset.addEventListener('click', () => {
+            nlForm.reset();
+            nlSuccess.classList.add('hidden');
+            nlContainer.classList.remove('hidden');
+          });
+        }
+      }
+
       // 6. Dynamic Copyright Year
       const yearSpan = document.getElementById('copyright-year');
       if (yearSpan) {
         yearSpan.innerText = new Date().getFullYear();
+      }
+
+      // 7. Language Switcher State for Redesign Page
+      const btnEn = document.getElementById('lang-btn-en');
+      const btnNe = document.getElementById('lang-btn-ne');
+      const logoText = document.getElementById('logo-text');
+      const navLinks = document.querySelectorAll('nav a.nav-link');
+      const navCtaBtn = document.getElementById('nav-cta-btn');
+
+      const i18n = {
+        en: {
+          logo: 'Shova Rai',
+          links: ['About', 'Expertise', 'Impact', 'Journey', 'Endorsements', 'Contact'],
+          cta: 'Book Mentorship'
+        },
+        ne: {
+          logo: 'शोभा राई',
+          links: ['परिचय', 'दक्षता', 'प्रभाव', 'यात्रा', 'प्रशंसापत्र', 'सम्पर्क'],
+          cta: 'परामर्श बुक गर्नुहोस्'
+        }
+      };
+
+      const setRedesignLang = (lang) => {
+        if (lang === 'ne') {
+          btnNe.className = 'px-2.5 py-1 rounded-lg transition-all bg-brass-500 text-forest-950 font-bold shadow-sm cursor-pointer';
+          btnEn.className = 'px-2.5 py-1 rounded-lg transition-all text-slate-400 hover:text-brass-300 cursor-pointer';
+          if (logoText) logoText.innerText = i18n.ne.logo;
+          if (navCtaBtn) {
+            const span = navCtaBtn.querySelector('span');
+            if (span) span.innerText = i18n.ne.cta;
+          }
+          navLinks.forEach((link, idx) => {
+            if (i18n.ne.links[idx]) link.innerText = i18n.ne.links[idx];
+          });
+        } else {
+          btnEn.className = 'px-2.5 py-1 rounded-lg transition-all bg-brass-500 text-forest-950 font-bold shadow-sm cursor-pointer';
+          btnNe.className = 'px-2.5 py-1 rounded-lg transition-all text-slate-400 hover:text-brass-300 cursor-pointer';
+          if (logoText) logoText.innerText = i18n.en.logo;
+          if (navCtaBtn) {
+            const span = navCtaBtn.querySelector('span');
+            if (span) span.innerText = i18n.en.cta;
+          }
+          navLinks.forEach((link, idx) => {
+            if (i18n.en.links[idx]) link.innerText = i18n.en.links[idx];
+          });
+        }
+        try { localStorage.setItem('shova_app_lang', lang); } catch (e) {}
+      };
+
+      if (btnEn && btnNe) {
+        btnEn.addEventListener('click', () => setRedesignLang('en'));
+        btnNe.addEventListener('click', () => setRedesignLang('ne'));
+
+        // Init language from storage
+        try {
+          const savedLang = localStorage.getItem('shova_app_lang');
+          if (savedLang === 'ne') setRedesignLang('ne');
+        } catch (e) {}
       }
 
     });
