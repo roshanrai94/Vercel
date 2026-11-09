@@ -57,6 +57,7 @@ export const Footer: React.FC = () => {
               <a href="#about" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.about.toUpperCase()}</a>
               <a href="#journey" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.journey.toUpperCase()}</a>
               <a href="#ventures" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.ventures.toUpperCase()}</a>
+              <a href="#locations" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.locations.toUpperCase()}</a>
               <a href="#impact" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.impact.toUpperCase()}</a>
               <a href="#newsletter" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.updates.toUpperCase()}</a>
               <a href="#recognition" className="text-stone-300 hover:text-amber-300 transition-colors py-1">{t.nav.recognition.toUpperCase()}</a>

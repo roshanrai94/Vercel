@@ -6,6 +6,7 @@ import { Hero } from './components/Hero';
 import { About } from './components/About';
 import { ProfessionalJourneyTimeline } from './components/ProfessionalJourneyTimeline';
 import { Ventures } from './components/Ventures';
+import { Locations } from './components/Locations';
 import { Impact } from './components/Impact';
 import { NewsletterSignup } from './components/NewsletterSignup';
 import { Recognition } from './components/Recognition';
@@ -92,6 +93,7 @@ export default function App() {
           <About />
           <ProfessionalJourneyTimeline />
           <Ventures />
+          <Locations />
           <Impact />
           <NewsletterSignup />
           <Recognition />

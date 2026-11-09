@@ -19,6 +19,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
     { name: t.nav.about, href: '#about', id: 'about' },
     { name: t.nav.journey, href: '#journey', id: 'journey' },
     { name: t.nav.ventures, href: '#ventures', id: 'ventures' },
+    { name: t.nav.locations, href: '#locations', id: 'locations' },
     { name: t.nav.impact, href: '#impact', id: 'impact' },
     { name: t.nav.updates, href: '#newsletter', id: 'newsletter' },
     { name: t.nav.recognition, href: '#recognition', id: 'recognition' },

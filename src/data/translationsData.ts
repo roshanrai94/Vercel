@@ -7,6 +7,7 @@ export const portfolioTranslations = {
       about: 'About',
       journey: 'Journey',
       ventures: 'Ventures',
+      locations: 'Locations',
       impact: 'Impact',
       updates: 'Updates',
       recognition: 'Recognition',
@@ -256,6 +257,30 @@ export const portfolioTranslations = {
         }
       ]
     },
+    locations: {
+      badge: 'SIKKIM & GANGTOK HUBS',
+      heading: 'Enterprise Locations in Sikkim',
+      subheading: 'A visual geographic guide to Shova Rai’s business establishments in Gangtok and her sustainable organic supply network across Sikkim’s Himalayan districts.',
+      sikkimMapTitle: 'Interactive Stylized Map of Sikkim',
+      sikkimMapSub: 'Himalayan terrain, district capitals, and agro-sourcing corridors',
+      gangtokHubTitle: 'Gangtok Enterprise Cluster',
+      gangtokHubSub: 'Centrally situated around Namnang Road, Gangtok — East Sikkim',
+      allLocations: 'All Locations',
+      viewOnMap: 'View on Map',
+      getDirections: 'Get Directions on Google Maps',
+      elevation: 'Elevation: 1,650 m (5,410 ft)',
+      coordinates: '27.3314° N, 88.6138° E',
+      activeStatus: 'Active & Welcoming Visitors',
+      openHours: 'Operating Hours',
+      organicTrailTitle: 'Grassroots Organic Supply Trail',
+      organicTrailDesc: 'Organic Dalle Khorsani and traditional bamboo shoots are harvested by local farmers in South and West Sikkim, then transported to Gangtok for FSSAI-standard processing and bottling.',
+      districts: {
+        north: 'North Sikkim (Mangan)',
+        west: 'West Sikkim (Gyalshing)',
+        south: 'South Sikkim (Namchi)',
+        east: 'East Sikkim (Gangtok)'
+      }
+    },
     impact: {
       badge: 'COMMUNITY LEGACY',
       heading: 'Livelihood & Community Impact',
@@ -463,6 +488,7 @@ export const portfolioTranslations = {
       about: 'परिचय',
       journey: 'यात्रा',
       ventures: 'व्यवसायहरू',
+      locations: 'स्थानहरू',
       impact: 'प्रभाव',
       updates: 'अपडेटहरू',
       recognition: 'सम्मान',
@@ -711,6 +737,30 @@ export const portfolioTranslations = {
           ]
         }
       ]
+    },
+    locations: {
+      badge: 'सिक्किम र गान्तोकमा उपस्थिति',
+      heading: 'सिक्किममा व्यावसायिक स्थानहरू',
+      subheading: 'गान्तोक, सिक्किममा अवस्थित श्रीमती शोभा राईका प्रमुख उद्यमहरू र हिमाली जिल्लाहरूमा फैलिएको प्राङ्गारिक आपूर्ति सञ्जालको भौगोलिक नक्सा।',
+      sikkimMapTitle: 'अन्तर्क्रियात्मक सिक्किम नक्सा',
+      sikkimMapSub: 'हिमाली भू-बनौट, जिल्ला सदरमुकामहरू र प्राङ्गारिक उत्पादन करिडोर',
+      gangtokHubTitle: 'गान्तोक व्यावसायिक केन्द्र',
+      gangtokHubSub: 'नामनाङ रोड, गान्तोक — पूर्व सिक्किमको मुख्य मुटुमा अवस्थित',
+      allLocations: 'सबै स्थानहरू',
+      viewOnMap: 'नक्सामा हेर्नुहोस्',
+      getDirections: 'गुगल म्याप्समा दिशा हेर्नुहोस्',
+      elevation: 'उचाइ: १,६५० मिटर (५,४१० फिट)',
+      coordinates: '२७.३३१४° उत्तर, ८८.६१३८° पूर्व',
+      activeStatus: 'सक्रिय र आगन्तुकहरूलाई स्वागत',
+      openHours: 'सञ्चालन समय',
+      organicTrailTitle: 'तृणमूल प्राङ्गारिक आपूर्ति सञ्जाल',
+      organicTrailDesc: 'दक्षिण र पश्चिम सिक्किमका ग्रामीण किसान समूहहरूबाट प्राङ्गारिक डल्ले खोर्सानी र बाँसको तामा सिधै खरिद गरी गान्तोकमा FSSAI मापदण्डअनुसार परम्परागत विधिबाट प्रशोधन र प्याकेजिङ गरिन्छ।',
+      districts: {
+        north: 'उत्तर सिक्किम (मङ्गन)',
+        west: 'पश्चिम सिक्किम (ग्याल्सिङ)',
+        south: 'दक्षिण सिक्किम (नाम्ची)',
+        east: 'पूर्व सिक्किम (गान्तोक)'
+      }
     },
     impact: {
       badge: 'सामुदायिक सम्पदा',
