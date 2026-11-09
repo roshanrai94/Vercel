@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Shova Rai (Mrs. Shova Rai) — Sikkim Entrepreneur &amp; Mentor | Official Website</title>
+  <meta name="description" content="Official website of Shova Rai (Mrs. Shova Rai) — award-winning Sikkim entrepreneur, mentor, and founder of Cutting Edge Hair &amp; Beauty, Blush, and Zayel's Organic Pickles. Elevating businesses and empowering leaders.">
+  <meta name="author" content="Mrs. Shova Rai">
+  <meta name="keywords" content="Shova Rai, Mrs Shova Rai, Sikkim Entrepreneur, Women Entrepreneur Sikkim, Gangtok Business Mentor, Cutting Edge Hair & Beauty, Zayel's Pickle, Blush Gangtok">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google Fonts: Playfair Display (Serif) & Inter (Sans-Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Inter"', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            forest: {
+              950: '#071813',
+              900: '#0c241d',
+              850: '#0f2d24',
+              800: '#133a2e',
+              700: '#1b4d3e',
+              600: '#236450',
+              500: '#2f8168',
+              100: '#e3ede9',
+              50: '#f1f6f4',
+            },
+            brass: {
+              900: '#695115',
+              800: '#8c6c1d',
+              700: '#af8825',
+              600: '#c59b27',
+              500: '#d4af37',
+              400: '#e0c25a',
+              300: '#ecd686',
+              200: '#f5e8b4',
+              100: '#faf3d7',
+              50: '#fdfbf2',
+            },
+            cream: {
+              50: '#faf8f5',
+              100: '#f4efe6',
+              200: '#eae2d3',
+            }
+          },
+          boxShadow: {
+            'brass-glow': '0 10px 30px -10px rgba(212, 175, 55, 0.25)',
+            'forest-glow': '0 20px 40px -15px rgba(12, 36, 29, 0.5)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS for Bespoke Touches & Smooth Reveal -->
+  <style>
+    /* Smooth Scroll and Typography selection */
+    ::selection {
+      background-color: #d4af37;
+      color: #0c241d;
+    }
+    
+    /* Reveal animation on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Floating label form field logic */
+    .floating-input:focus ~ .floating-label,
+    .floating-input:not(:placeholder-shown) ~ .floating-label {
+      transform: translateY(-1.5rem) scale(0.85);
+      color: #d4af37;
+    }
+
+    /* Subtle Himalayan contour background texture */
+    .bg-topo {
+      background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px), radial-gradient(rgba(27, 77, 62, 0.12) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
+  </style>
+</head>
+
+<body class="bg-cream-50 text-slate-800 font-sans antialiased selection:bg-brass-500 selection:text-forest-950 overflow-x-hidden">
+
+  <!-- ========================================================= -->
+  <!-- 1. DYNAMIC NAVIGATION BAR -->
+  <!-- ========================================================= -->
+  <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 bg-transparent">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo / Monogram -->
+        <a href="#hero" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-brass-500 rounded-lg">
+          <div class="w-10 h-10 rounded-xl bg-forest-900 border border-brass-500/40 flex items-center justify-center text-brass-400 font-serif font-bold text-lg shadow-md group-hover:border-brass-400 group-hover:scale-105 transition-all">
+            SR
+          </div>
+          <div class="flex flex-col">
+            <span class="font-serif font-bold text-lg text-white group-hover:text-brass-300 transition-colors tracking-wide leading-tight" id="logo-text">
+              Shova Rai
+            </span>
+            <span class="text-[10px] uppercase tracking-widest text-brass-400/90 font-medium">
+              Sikkim · Entrepreneur &amp; Mentor
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+          <a href="#about" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">About</a>
+          <a href="#expertise" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Expertise</a>
+          <a href="#impact" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Impact</a>
+          <a href="#journey" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Journey</a>
+          <a href="#testimonials" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Endorsements</a>
+          <a href="#contact" class="nav-link text-white/90 hover:text-brass-300 transition-colors py-1">Contact</a>
+        </nav>
+
+        <!-- CTA & Mobile Toggle -->
+        <div class="flex items-center gap-4">
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-brass-glow hover:scale-105 active:scale-95">
+            <span>Book Mentorship</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+
+          <!-- Hamburger Button -->
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle Navigation Menu" class="md:hidden p-2 rounded-xl text-white bg-forest-900/80 border border-brass-500/30 hover:text-brass-300 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-x-0 top-[76px] bg-forest-950/98 border-b border-brass-500/20 backdrop-blur-xl p-6 shadow-2xl transition-all">
+      <div class="flex flex-col gap-4 text-center">
+        <a href="#about" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">About Shova Rai</a>
+        <a href="#expertise" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">Areas of Expertise</a>
+        <a href="#impact" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">Milestones &amp; Impact</a>
+        <a href="#journey" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">Entrepreneurial Journey</a>
+        <a href="#testimonials" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">Testimonials</a>
+        <a href="#contact" class="mobile-nav-link text-white text-base py-2 hover:text-brass-400">Contact &amp; Mentorship</a>
+        <div class="pt-2">
+          <a href="#contact" class="mobile-nav-link inline-block w-full py-3 rounded-xl bg-brass-500 text-forest-950 font-bold uppercase tracking-wider text-xs">
+            Book a Mentorship Session
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- 2. HERO SECTION -->
+  <!-- ========================================================= -->
+  <section id="hero" class="relative min-h-[92vh] flex items-center pt-32 pb-20 bg-forest-950 text-white overflow-hidden">
+    <!-- Ambient Atmospheric Glows -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-forest-800/40 rounded-full blur-[140px] pointer-events-none -mr-40 -mt-20"></div>
+    <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brass-600/10 rounded-full blur-[120px] pointer-events-none -ml-32 -mb-20"></div>
+    <div class="absolute inset-0 bg-topo opacity-30 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Left Column: Copy & CTAs -->
+        <div class="lg:col-span-7 space-y-8 text-center lg:text-left reveal">
+          
+          <!-- Prestige Pill -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-forest-900 border border-brass-500/30 text-brass-300 text-xs font-semibold uppercase tracking-widest shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-brass-400 animate-pulse"></span>
+            <span>National Commission for Women (NCW) Awardee</span>
+          </div>
+
+          <!-- Main Impactful Headline -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-extrabold text-white leading-[1.1] tracking-tight">
+            Elevating Businesses. <br class="hidden sm:inline">
+            <span class="italic font-normal bg-gradient-to-r from-brass-200 via-brass-400 to-brass-300 bg-clip-text text-transparent">Empowering Leaders.</span>
+          </h1>
+
+          <!-- Subheadline positioning her -->
+          <p class="text-slate-300 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Pioneering Sikkim’s business landscape for over two decades. Founder of landmark Himalayan enterprises, mentor to hundreds of women and youth, and dedicated catalyst for grassroots economic self-reliance.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 font-bold text-sm tracking-wide transition-all duration-300 shadow-brass-glow hover:scale-105 active:scale-95">
+              <span>Book a Mentorship Session</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            
+            <a href="#journey" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-forest-900/80 hover:bg-forest-800 text-brass-300 border border-brass-500/30 hover:border-brass-400 text-sm font-semibold transition-all duration-200">
+              <span>Explore My Journey</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+          </div>
+
+          <!-- Trust Badges Strip -->
+          <div class="pt-6 border-t border-forest-800/80 grid grid-cols-3 gap-6 text-left max-w-lg mx-auto lg:mx-0">
+            <div>
+              <div class="text-2xl font-serif font-bold text-brass-300">20+ Yrs</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider">Enterprise Track</div>
+            </div>
+            <div>
+              <div class="text-2xl font-serif font-bold text-brass-300">500+</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider">Mentees Guided</div>
+            </div>
+            <div>
+              <div class="text-2xl font-serif font-bold text-brass-300">3 Brands</div>
+              <div class="text-xs text-slate-400 uppercase tracking-wider">Built in Sikkim</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Visual Portrait Card -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal">
+          <div class="relative w-full max-w-md">
+            
+            <!-- Brass Glow Border Frame -->
+            <div class="relative rounded-2xl p-2 bg-gradient-to-b from-brass-400/50 via-forest-800 to-brass-600/30 shadow-forest-glow">
+              <div class="relative rounded-xl overflow-hidden bg-forest-900 aspect-[4/5] group">
+                <img src="/Hero.jpg" onerror="this.onerror=null; this.src='/Shova.jpg';" alt="Mrs. Shova Rai - Sikkim Entrepreneur and Mentor" class="w-full h-full object-cover object-top filter brightness-[0.98] contrast-[1.02] group-hover:scale-105 transition-transform duration-700 ease-out">
+                
+                <!-- Gentle Gradient Sheen at bottom -->
+                <div class="absolute inset-0 bg-gradient-to-t from-forest-950 via-transparent to-transparent opacity-80"></div>
+                
+                <!-- Bottom Badge Card -->
+                <div class="absolute bottom-5 inset-x-5 p-4 rounded-xl bg-forest-950/85 backdrop-blur-md border border-brass-500/30 shadow-lg text-left">
+                  <div class="text-xs font-serif font-bold text-brass-300 uppercase tracking-wider">Namnang, Gangtok · Sikkim</div>
+                  <div class="text-sm font-semibold text-white mt-0.5">Mrs. Shova Rai</div>
+                  <div class="text-xs text-slate-300 font-light mt-0.5">Founder: Cutting Edge, Blush &amp; Zayel's Organic Pickles</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Credibility Chip (Top Right) -->
+            <div class="absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-forest-900/90 border border-brass-400/40 shadow-xl backdrop-blur-md flex items-center gap-2.5 hidden sm:flex">
+              <div class="w-8 h-8 rounded-lg bg-brass-500/20 text-brass-400 flex items-center justify-center font-bold">
+                ★
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-brass-200">State &amp; National Honor</div>
+                <div class="text-[10px] text-slate-400">Govt. of India Felicitated</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 3. ABOUT SHOVA RAI (NARRATIVE) -->
+  <!-- ========================================================= -->
+  <section id="about" class="py-24 sm:py-32 bg-cream-50 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <span class="text-brass-700 text-xs font-bold uppercase tracking-widest block mb-2">Her Roots · Her Vision</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-forest-950">
+          The Journey of a Himalayan Trailblazer
+        </h2>
+        <div class="w-16 h-1 bg-brass-500 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Story Text -->
+        <div class="lg:col-span-7 space-y-6 text-slate-700 leading-relaxed text-base sm:text-lg reveal">
+          <p class="font-serif text-xl sm:text-2xl text-forest-900 font-semibold leading-snug">
+            "True empowerment is not handed down — it is built through relentless craft, financial independence, and uplifting others along the ascent."
+          </p>
+          
+          <p>
+            Born and raised in the heart of Sikkim, <strong>Mrs. Shova Rai</strong> represents the modern spirit of Eastern Himalayan entrepreneurship. What began in the late 1990s as a self-taught passion for fine needlecraft, confectionery, and beauty styling soon matured into a multi-sector enterprise that transformed Gangtok’s commercial landscape.
+          </p>
+
+          <p>
+            Recognizing the lack of advanced cosmetology in the region, Shova traveled across India to train with industry masters at the premier <em>Nalini &amp; Yasmin Hair Academy</em> in Mumbai and <em>Truffle Nation</em> in New Delhi. In 2007, she established <strong>Cutting Edge Hair &amp; Beauty</strong> in Namnang, Gangtok — turning it into Sikkim’s landmark salon and bridal grooming studio.
+          </p>
+
+          <p>
+            Her visionary footprint expanded into sustainable fashion with <strong>Blush Boutique</strong> and organic food heritage with <strong>Zayel's Pickle</strong> (FSSAI registered, UDYAM certified), partnering with local farmers to export organic Dalle Khorsani and wild mountain preserves nationwide.
+          </p>
+
+          <!-- Highlights Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="p-4 rounded-xl bg-white border border-stone-200 shadow-sm flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-forest-100 text-forest-800 flex items-center justify-center shrink-0 font-bold">
+                ✓
+              </div>
+              <div>
+                <div class="font-bold text-forest-950 text-sm">MSME &amp; FSSAI Certified</div>
+                <div class="text-xs text-slate-500 mt-0.5">Strict standards for authentic organic Himalayan goods.</div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-white border border-stone-200 shadow-sm flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-brass-100 text-brass-800 flex items-center justify-center shrink-0 font-bold">
+                ★
+              </div>
+              <div>
+                <div class="font-bold text-forest-950 text-sm">Inclusive Grassroots Focus</div>
+                <div class="text-xs text-slate-500 mt-0.5">Mentoring SHGs, rural youth &amp; differently-abled artisans.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Graphic Milestone Card -->
+        <div class="lg:col-span-5 reveal">
+          <div class="relative bg-white rounded-2xl p-8 border border-stone-200 shadow-xl space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-2xl bg-forest-900 text-brass-400 flex items-center justify-center font-serif font-bold text-2xl shadow-md">
+                SR
+              </div>
+              <div>
+                <h3 class="font-serif font-bold text-forest-950 text-xl">Mrs. Shova Rai</h3>
+                <p class="text-xs text-slate-500">Serial Entrepreneur · Founder · Keynote Speaker</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 border-t border-b border-stone-100 py-4 text-sm text-slate-600">
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500">Headquarters</span>
+                <span class="font-medium text-forest-950">Namnang, Gangtok, Sikkim</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500">Signature Salon</span>
+                <span class="font-medium text-forest-950">Cutting Edge Hair &amp; Beauty (Est. 2007)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500">Organic Preserves</span>
+                <span class="font-medium text-forest-950">Zayel's Pickle (FSSAI UDYAM)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-slate-500">Fashion Label</span>
+                <span class="font-medium text-forest-950">Blush Contemporary &amp; Ethnic</span>
+              </div>
+            </div>
+
+            <div class="bg-forest-50 p-4 rounded-xl border border-forest-100 text-forest-900 text-xs leading-relaxed">
+              <strong>Official Recognition:</strong> Felicitated in New Delhi by the National Commission for Women (NCW), Government of India, for transformative contributions to women’s entrepreneurship.
+            </div>
+
+            <a href="#contact" class="block w-full py-3 text-center rounded-xl bg-forest-900 hover:bg-forest-800 text-brass-300 font-bold text-xs uppercase tracking-wider transition-colors">
+              Request Speaking or Mentorship
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 4. AREAS OF EXPERTISE (SERVICES GRID - 3 COLUMNS) -->
+  <!-- ========================================================= -->
+  <section id="expertise" class="py-24 sm:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+        <span class="text-brass-700 text-xs font-bold uppercase tracking-widest block mb-2">Core Offerings &amp; Advisory</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-forest-950">
+          Areas of Strategic Expertise
+        </h2>
+        <div class="w-16 h-1 bg-brass-500 mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-600 text-base sm:text-lg mt-4">
+          Leveraging two decades of hard-won execution across services, retail, and manufacturing to advise entrepreneurs, institutions, and leaders.
+        </p>
+      </div>
+
+      <!-- 3-Column Card Layout -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Startup Incubation -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Startup Incubation &amp; MSME Launch
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Practical, battle-tested guidance on navigating business registration, MSME UDYAM certification, FSSAI compliance, capital budgeting, and early product-market validation in Himalayan terrain.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Women in Leadership -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Women in Leadership &amp; SHGs
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Tailored leadership coaching and structured livelihood programs for Self-Help Groups (SHGs), homemakers, and young women looking to transition into confident, self-sustaining micro-entrepreneurs.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Artisanal Food & Packaging -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Artisanal Food Enterprise &amp; Sourcing
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Building authentic regional food brands. Best practices on small-batch organic preservation (Dalle Khorsani, bamboo shoot), chemical-free shelf stability, hygienic bottling, and export scaling.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Salon Cosmetology & Apprenticeship -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879a3 3 0 11-4.242-4.242L10.757 7.757m0 0L19 19"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Salon Architecture &amp; Skill Masterclasses
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Masterclass instruction on precision hair design, bridal styling logistics, client retention, hygiene certification, and running apprentice academies that turn aspiring stylists into studio owners.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Strategic Business Growth -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Strategic Retail &amp; Brand Expansion
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Advising established local brands on brand storytelling, omnichannel retail presence, premium positioning, and preserving Himalayan authenticity while competing in regional urban markets.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Keynote Speaking & Mentorship -->
+        <div class="group bg-cream-50 hover:bg-forest-950 rounded-2xl p-8 border border-stone-200 hover:border-brass-500/40 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between reveal">
+          <div>
+            <div class="w-14 h-14 rounded-xl bg-forest-900 group-hover:bg-brass-500 text-brass-400 group-hover:text-forest-950 flex items-center justify-center mb-6 transition-colors duration-300 shadow-md">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </div>
+            <h3 class="text-xl font-serif font-bold text-forest-950 group-hover:text-white transition-colors mb-3">
+              Keynote Speaking &amp; Youth Inspiration
+            </h3>
+            <p class="text-slate-600 group-hover:text-slate-300 text-sm leading-relaxed transition-colors mb-6">
+              Motivational keynote addresses delivered at academic institutions (including Sikkim University), government enterprise conclaves, and youth summits, providing candid lessons on perseverance and grit.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-200 group-hover:border-forest-800 flex items-center text-xs font-bold text-brass-700 group-hover:text-brass-300 transition-colors">
+            <span>Learn More</span>
+            <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 5. IMPACT & MILESTONES (ANIMATED COUNTER STATISTICS) -->
+  <!-- ========================================================= -->
+  <section id="impact" class="py-24 sm:py-32 bg-forest-900 text-white relative overflow-hidden">
+    <!-- Atmospheric Accents -->
+    <div class="absolute inset-0 bg-topo opacity-20 pointer-events-none"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brass-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+        <span class="text-brass-300 text-xs font-bold uppercase tracking-widest block mb-2">Verified Real-World Results</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white">
+          Two Decades of Measurable Impact
+        </h2>
+        <div class="w-16 h-1 bg-brass-400 mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-300 text-base sm:text-lg mt-4">
+          Grassroots empowerment is validated by lasting institutions, empowered individuals, and certified sustainable growth across Sikkim.
+        </p>
+      </div>
+
+      <!-- Counter Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- Stat 1 -->
+        <div class="bg-forest-950/80 rounded-2xl p-8 border border-brass-500/20 text-center shadow-lg hover:border-brass-400/50 transition-all reveal">
+          <div class="text-brass-400 font-serif font-bold text-4xl sm:text-5xl mb-2 flex items-center justify-center">
+            <span class="counter" data-target="20">0</span><span>+</span>
+          </div>
+          <div class="text-white font-serif font-semibold text-lg mb-1">Years of Leadership</div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Continuous enterprise building in Gangtok since the early 2000s.
+          </p>
+        </div>
+
+        <!-- Stat 2 -->
+        <div class="bg-forest-950/80 rounded-2xl p-8 border border-brass-500/20 text-center shadow-lg hover:border-brass-400/50 transition-all reveal">
+          <div class="text-brass-400 font-serif font-bold text-4xl sm:text-5xl mb-2 flex items-center justify-center">
+            <span class="counter" data-target="500">0</span><span>+</span>
+          </div>
+          <div class="text-white font-serif font-semibold text-lg mb-1">Women &amp; Artisans Trained</div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Directly mentored in salons, baking academies, and rural SHGs.
+          </p>
+        </div>
+
+        <!-- Stat 3 -->
+        <div class="bg-forest-950/80 rounded-2xl p-8 border border-brass-500/20 text-center shadow-lg hover:border-brass-400/50 transition-all reveal">
+          <div class="text-brass-400 font-serif font-bold text-4xl sm:text-5xl mb-2 flex items-center justify-center">
+            <span class="counter" data-target="3">0</span><span>+</span>
+          </div>
+          <div class="text-white font-serif font-semibold text-lg mb-1">Active Enterprises</div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Cutting Edge (Salon), Blush (Fashion), Zayel's (FSSAI Foods).
+          </p>
+        </div>
+
+        <!-- Stat 4 -->
+        <div class="bg-forest-950/80 rounded-2xl p-8 border border-brass-500/20 text-center shadow-lg hover:border-brass-400/50 transition-all reveal">
+          <div class="text-brass-400 font-serif font-bold text-4xl sm:text-5xl mb-2 flex items-center justify-center">
+            <span class="counter" data-target="100">0</span><span>%</span>
+          </div>
+          <div class="text-white font-serif font-semibold text-lg mb-1">Grassroots Sourcing</div>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Zero chemical additives; sourcing directly from rural growers.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Featured Quotation Strip -->
+      <div class="mt-16 bg-forest-950/60 rounded-2xl p-8 sm:p-10 border border-brass-500/20 text-center max-w-4xl mx-auto reveal">
+        <svg class="w-10 h-10 text-brass-400/40 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        <blockquote class="font-serif italic text-xl sm:text-2xl text-slate-200 font-light leading-relaxed mb-4">
+          "When you empower one woman with a livelihood skill in Sikkim, you fortify an entire household, preserve local mountain culture, and inspire the next three generations."
+        </blockquote>
+        <div class="font-serif font-bold text-brass-300 text-base">Mrs. Shova Rai</div>
+        <div class="text-xs text-slate-400 uppercase tracking-widest mt-0.5">National Commission for Women (NCW) Awardee · Sikkim</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 6. PROFESSIONAL TIMELINE / JOURNEY -->
+  <!-- ========================================================= -->
+  <section id="journey" class="py-24 sm:py-32 bg-cream-50 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+        <span class="text-brass-700 text-xs font-bold uppercase tracking-widest block mb-2">Chronology of Excellence</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-forest-950">
+          The Professional Journey
+        </h2>
+        <div class="w-16 h-1 bg-brass-500 mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-600 text-base sm:text-lg mt-4">
+          A progression of grit, continuous education, and multi-industry execution across the Eastern Himalayas.
+        </p>
+      </div>
+
+      <!-- Vertical Timeline Track -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Center line -->
+        <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 top-4 bottom-4 w-0.5 bg-stone-300"></div>
+
+        <div class="space-y-12">
+          
+          <!-- Node 1 -->
+          <div class="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 group reveal">
+            <div class="sm:w-1/2 sm:text-right pl-12 sm:pl-0">
+              <span class="inline-block px-3 py-1 rounded-md bg-forest-100 text-forest-800 text-xs font-bold uppercase tracking-wider mb-1">1998 – 2003</span>
+              <h3 class="font-serif font-bold text-xl text-forest-950">Self-Taught Artistic Foundations</h3>
+              <p class="text-slate-600 text-sm mt-1">Immersed in baking, fine embroidery, and traditional block printing in Gangtok, proving that passion and discipline forge opportunity.</p>
+            </div>
+            <!-- Bullet -->
+            <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-forest-900 border-4 border-brass-400 text-white flex items-center justify-center font-bold text-xs shadow-md z-10">
+              1
+            </div>
+            <div class="sm:w-1/2 pl-12 sm:pl-0">
+              <div class="text-xs text-brass-700 font-semibold uppercase">Initial Milestones</div>
+              <div class="text-xs text-slate-500">Self-initiated experiments in organic cosmetic craft &amp; baking</div>
+            </div>
+          </div>
+
+          <!-- Node 2 -->
+          <div class="relative flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 sm:gap-12 group reveal">
+            <div class="sm:w-1/2 sm:text-left pl-12 sm:pl-0">
+              <span class="inline-block px-3 py-1 rounded-md bg-brass-100 text-brass-900 text-xs font-bold uppercase tracking-wider mb-1">2004 – 2006</span>
+              <h3 class="font-serif font-bold text-xl text-forest-950">National Skill Masteries</h3>
+              <p class="text-slate-600 text-sm mt-1">Traveled to Mumbai's Nalini &amp; Yasmin Hair Academy and New Delhi's Truffle Nation to master international beauty styling and commercial confectionery.</p>
+            </div>
+            <!-- Bullet -->
+            <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-forest-900 border-4 border-brass-400 text-white flex items-center justify-center font-bold text-xs shadow-md z-10">
+              2
+            </div>
+            <div class="sm:w-1/2 sm:text-right pl-12 sm:pl-0">
+              <div class="text-xs text-brass-700 font-semibold uppercase">Accreditations</div>
+              <div class="text-xs text-slate-500">Certified Hair Stylist &amp; Professional Confectioner</div>
+            </div>
+          </div>
+
+          <!-- Node 3 -->
+          <div class="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 group reveal">
+            <div class="sm:w-1/2 sm:text-right pl-12 sm:pl-0">
+              <span class="inline-block px-3 py-1 rounded-md bg-forest-100 text-forest-800 text-xs font-bold uppercase tracking-wider mb-1">2007</span>
+              <h3 class="font-serif font-bold text-xl text-forest-950">Cutting Edge Hair &amp; Beauty</h3>
+              <p class="text-slate-600 text-sm mt-1">Founded Cutting Edge in Namnang, Gangtok. Became Sikkim's premier styling destination and instituted a perpetual apprenticeship ground for young women.</p>
+            </div>
+            <!-- Bullet -->
+            <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-forest-900 border-4 border-brass-400 text-white flex items-center justify-center font-bold text-xs shadow-md z-10">
+              3
+            </div>
+            <div class="sm:w-1/2 pl-12 sm:pl-0">
+              <div class="text-xs text-brass-700 font-semibold uppercase">Flagship Enterprise</div>
+              <div class="text-xs text-slate-500">17+ continuous years serving thousands of clients</div>
+            </div>
+          </div>
+
+          <!-- Node 4 -->
+          <div class="relative flex flex-col sm:flex-row-reverse items-start sm:items-center gap-6 sm:gap-12 group reveal">
+            <div class="sm:w-1/2 sm:text-left pl-12 sm:pl-0">
+              <span class="inline-block px-3 py-1 rounded-md bg-brass-100 text-brass-900 text-xs font-bold uppercase tracking-wider mb-1">2010 – 2020</span>
+              <h3 class="font-serif font-bold text-xl text-forest-950">Multi-Sector Expansion</h3>
+              <p class="text-slate-600 text-sm mt-1">Launched Blush Fashion Store for modern &amp; ethnic apparel, and founded Zayel's Organic Pickles, obtaining MSME UDYAM and FSSAI certification.</p>
+            </div>
+            <!-- Bullet -->
+            <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-forest-900 border-4 border-brass-400 text-white flex items-center justify-center font-bold text-xs shadow-md z-10">
+              4
+            </div>
+            <div class="sm:w-1/2 sm:text-right pl-12 sm:pl-0">
+              <div class="text-xs text-brass-700 font-semibold uppercase">Diversified Portfolio</div>
+              <div class="text-xs text-slate-500">Retail, Fashion &amp; Organic Food Manufacturing</div>
+            </div>
+          </div>
+
+          <!-- Node 5 -->
+          <div class="relative flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-12 group reveal">
+            <div class="sm:w-1/2 sm:text-right pl-12 sm:pl-0">
+              <span class="inline-block px-3 py-1 rounded-md bg-forest-100 text-forest-800 text-xs font-bold uppercase tracking-wider mb-1">2024 – Present</span>
+              <h3 class="font-serif font-bold text-xl text-forest-950">National NCW Honor &amp; Mentorship</h3>
+              <p class="text-slate-600 text-sm mt-1">Felicitated in New Delhi by the National Commission for Women (NCW), Govt. of India. Scaling regional mentorship programs and expanding Sikkim's craft globally.</p>
+            </div>
+            <!-- Bullet -->
+            <div class="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-brass-500 border-4 border-forest-900 text-forest-950 flex items-center justify-center font-bold text-xs shadow-md z-10">
+              ★
+            </div>
+            <div class="sm:w-1/2 pl-12 sm:pl-0">
+              <div class="text-xs text-brass-700 font-semibold uppercase">National Prominence</div>
+              <div class="text-xs text-slate-500">All India Radio, DD Gangtok &amp; Conclave Features</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 7. TESTIMONIALS & ENDORSEMENTS -->
+  <!-- ========================================================= -->
+  <section id="testimonials" class="py-24 sm:py-32 bg-white relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+        <span class="text-brass-700 text-xs font-bold uppercase tracking-widest block mb-2">Voices of Impact</span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-forest-950">
+          Endorsements &amp; Mentee Testimonials
+        </h2>
+        <div class="w-16 h-1 bg-brass-500 mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-600 text-base sm:text-lg mt-4">
+          Words from entrepreneurs, apprentices, and community leaders whose lives were reshaped under Mrs. Shova Rai's guidance.
+        </p>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Testimonial 1 -->
+        <div class="bg-cream-50 rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
+          <div>
+            <div class="text-brass-500 text-xl mb-4">★★★★★</div>
+            <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+              "Training under Shova Ma'am at Cutting Edge wasn't merely learning haircuts and beauty techniques — it was an intensive education in business ethics, client dignity, and self-confidence. Today, I run my own salon in Namchi."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-200">
+            <div class="w-10 h-10 rounded-full bg-forest-900 text-brass-300 font-bold flex items-center justify-center text-xs">
+              PL
+            </div>
+            <div>
+              <div class="font-serif font-bold text-forest-950 text-sm">Pema Lhamu</div>
+              <div class="text-xs text-slate-500">Salon Founder · Namchi, South Sikkim</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-cream-50 rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
+          <div>
+            <div class="text-brass-500 text-xl mb-4">★★★★★</div>
+            <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+              "When our rural women's SHG wanted to commercialize our Dalle pickle production, Shova Rai personally audited our kitchen setup, guided our FSSAI filing, and taught us hygienic packaging. She is a true guardian of Sikkimese enterprise."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-200">
+            <div class="w-10 h-10 rounded-full bg-forest-900 text-brass-300 font-bold flex items-center justify-center text-xs">
+              DC
+            </div>
+            <div>
+              <div class="font-serif font-bold text-forest-950 text-sm">Dikila Chettri</div>
+              <div class="text-xs text-slate-500">SHG Coordinator · West Sikkim</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-cream-50 rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between reveal">
+          <div>
+            <div class="text-brass-500 text-xl mb-4">★★★★★</div>
+            <p class="text-slate-700 text-sm leading-relaxed italic mb-6">
+              "Mrs. Shova Rai’s guest address at our campus was easily the most grounding, inspiring session of the year. She speaks not from academic theory, but from 20 years of real, hands-on Himalayan entrepreneurship."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-stone-200">
+            <div class="w-10 h-10 rounded-full bg-forest-900 text-brass-300 font-bold flex items-center justify-center text-xs">
+              RT
+            </div>
+            <div>
+              <div class="font-serif font-bold text-forest-950 text-sm">Dr. R. Tamang</div>
+              <div class="text-xs text-slate-500">Entrepreneurship Cell Faculty · Gangtok</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 8. CONTACT SECTION WITH FLOATING LABELS -->
+  <!-- ========================================================= -->
+  <section id="contact" class="py-24 sm:py-32 bg-forest-950 text-white relative overflow-hidden">
+    <!-- Atmospheric Accents -->
+    <div class="absolute inset-0 bg-topo opacity-25 pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-forest-800/40 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left: Inquiry Info -->
+        <div class="lg:col-span-5 space-y-8 reveal">
+          <div>
+            <span class="text-brass-300 text-xs font-bold uppercase tracking-widest block mb-2">Connect &amp; Collaborate</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
+              Let's Build Something Enduring.
+            </h2>
+            <div class="w-16 h-1 bg-brass-400 mt-4 rounded-full"></div>
+          </div>
+
+          <p class="text-slate-300 text-base leading-relaxed">
+            Whether you are looking to book a 1-on-1 business mentorship session, invite Mrs. Shova Rai as a keynote speaker, or explore collaborative regional enterprise initiatives, we welcome your inquiry.
+          </p>
+
+          <!-- Contact Details Cards -->
+          <div class="space-y-4 pt-2">
+            
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-forest-900/80 border border-forest-800">
+              <div class="w-10 h-10 rounded-lg bg-brass-500/20 text-brass-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider">Office &amp; Studio</div>
+                <div class="text-sm font-medium text-white mt-0.5">Namnang, Gangtok, Sikkim — 737101, India</div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-forest-900/80 border border-forest-800">
+              <div class="w-10 h-10 rounded-lg bg-brass-500/20 text-brass-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider">Direct Email</div>
+                <a href="mailto:shovarai.sikkim@gmail.com" class="text-sm font-medium text-brass-300 hover:underline mt-0.5 block">
+                  shovarai.sikkim@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-forest-900/80 border border-forest-800">
+              <div class="w-10 h-10 rounded-lg bg-brass-500/20 text-brass-400 flex items-center justify-center shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs uppercase text-slate-400 font-semibold tracking-wider">Direct WhatsApp / Call</div>
+                <a href="https://wa.me/917431833009" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-emerald-400 hover:underline mt-0.5 block">
+                  +91 74318 33009
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Modern Contact Form with Floating Labels -->
+        <div class="lg:col-span-7 reveal">
+          <div class="bg-forest-900/90 rounded-2xl p-8 sm:p-10 border border-brass-500/30 shadow-2xl backdrop-blur-md">
+            
+            <h3 class="font-serif font-bold text-2xl text-white mb-2">Schedule a Session or Inquire</h3>
+            <p class="text-slate-300 text-xs sm:text-sm mb-8">
+              Fill out the details below. Mrs. Shova Rai’s office reviews each inquiry within 24 hours.
+            </p>
+
+            <form id="mentorship-form" class="space-y-6">
+              
+              <!-- Floating Input: Full Name -->
+              <div class="relative">
+                <input type="text" id="name" name="name" required placeholder=" " class="floating-input peer w-full px-4 py-3.5 bg-forest-950/80 border border-forest-800 rounded-xl text-white text-sm focus:outline-none focus:border-brass-400 transition-colors">
+                <label for="name" class="floating-label absolute left-4 top-3.5 text-slate-400 text-sm pointer-events-none transition-all duration-200">
+                  Full Name *
+                </label>
+              </div>
+
+              <!-- Floating Input: Email Address -->
+              <div class="relative">
+                <input type="email" id="email" name="email" required placeholder=" " class="floating-input peer w-full px-4 py-3.5 bg-forest-950/80 border border-forest-800 rounded-xl text-white text-sm focus:outline-none focus:border-brass-400 transition-colors">
+                <label for="email" class="floating-label absolute left-4 top-3.5 text-slate-400 text-sm pointer-events-none transition-all duration-200">
+                  Email Address *
+                </label>
+              </div>
+
+              <!-- Select Topic / Service -->
+              <div class="relative">
+                <select id="topic" name="topic" required class="w-full px-4 py-3.5 bg-forest-950/80 border border-forest-800 rounded-xl text-white text-sm focus:outline-none focus:border-brass-400 transition-colors appearance-none cursor-pointer">
+                  <option value="" disabled selected class="text-slate-500">Select Purpose of Inquiry *</option>
+                  <option value="mentorship" class="bg-forest-950 text-white">1-on-1 Business Mentorship</option>
+                  <option value="shg" class="bg-forest-950 text-white">SHG / Women's Livelihood Program</option>
+                  <option value="speaking" class="bg-forest-950 text-white">Keynote Speaking / Summit Guest</option>
+                  <option value="salon" class="bg-forest-950 text-white">Salon &amp; Bridal Masterclass</option>
+                  <option value="press" class="bg-forest-950 text-white">Media Interview / Press Inquiry</option>
+                  <option value="other" class="bg-forest-950 text-white">Other Partnership</option>
+                </select>
+                <div class="absolute right-4 top-4 pointer-events-none text-slate-400">
+                  ▼
+                </div>
+              </div>
+
+              <!-- Floating Input: Message -->
+              <div class="relative">
+                <textarea id="message" name="message" rows="4" required placeholder=" " class="floating-input peer w-full px-4 py-3.5 bg-forest-950/80 border border-forest-800 rounded-xl text-white text-sm focus:outline-none focus:border-brass-400 transition-colors resize-none"></textarea>
+                <label for="message" class="floating-label absolute left-4 top-3.5 text-slate-400 text-sm pointer-events-none transition-all duration-200">
+                  Tell us about your venture, challenge, or event... *
+                </label>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="submit-btn" class="w-full py-4 rounded-xl bg-brass-500 hover:bg-brass-400 text-forest-950 font-bold text-sm uppercase tracking-wider transition-all duration-300 shadow-brass-glow hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+                Send Mentorship Inquiry
+              </button>
+
+              <!-- Form Feedback Message -->
+              <div id="form-feedback" class="hidden p-4 rounded-xl text-center text-xs font-semibold"></div>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- 9. FOOTER -->
+  <!-- ========================================================= -->
+  <footer class="bg-forest-950 border-t border-forest-900 text-slate-400 py-16 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+        
+        <!-- Brand & Mission -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-forest-900 border border-brass-500/40 text-brass-400 font-serif font-bold text-base flex items-center justify-center">
+              SR
+            </div>
+            <div>
+              <span class="font-serif font-bold text-lg text-white block">Shova Rai</span>
+              <span class="text-xs text-brass-400 uppercase tracking-widest block">Sikkim Entrepreneur &amp; Mentor</span>
+            </div>
+          </div>
+          <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+            Empowering Himalayan communities through sustainable beauty, artisanal organic food preservation, authentic handcrafts, and women’s economic sovereignty.
+          </p>
+          <div class="text-xs text-slate-500">
+            Registered: MSME UDYAM &amp; FSSAI Certified · Gangtok, Sikkim
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="md:col-span-4 space-y-3">
+          <h4 class="text-xs font-bold text-brass-300 uppercase tracking-widest">Navigation</h4>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <a href="#hero" class="hover:text-brass-300 transition-colors py-1">Home</a>
+            <a href="#about" class="hover:text-brass-300 transition-colors py-1">About Shova</a>
+            <a href="#expertise" class="hover:text-brass-300 transition-colors py-1">Expertise</a>
+            <a href="#impact" class="hover:text-brass-300 transition-colors py-1">Milestones</a>
+            <a href="#journey" class="hover:text-brass-300 transition-colors py-1">Journey Track</a>
+            <a href="#testimonials" class="hover:text-brass-300 transition-colors py-1">Testimonials</a>
+            <a href="#contact" class="hover:text-brass-300 transition-colors py-1">Book Session</a>
+            <a href="https://wa.me/917431833009" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition-colors py-1">Direct WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="md:col-span-3 space-y-3">
+          <h4 class="text-xs font-bold text-brass-300 uppercase tracking-widest">Connect Online</h4>
+          <div class="flex items-center gap-3 pt-1">
+            
+            <!-- YouTube -->
+            <a href="https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs" target="_blank" rel="noopener noreferrer" aria-label="YouTube Channel" class="w-10 h-10 rounded-xl bg-forest-900 border border-forest-800 text-slate-300 hover:text-brass-300 hover:border-brass-400 flex items-center justify-center transition-all">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/1FGMEjv4Qr/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile" class="w-10 h-10 rounded-xl bg-forest-900 border border-forest-800 text-slate-300 hover:text-brass-300 hover:border-brass-400 flex items-center justify-center transition-all">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/cuttingedge_hair_salon_gtk__" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" class="w-10 h-10 rounded-xl bg-forest-900 border border-forest-800 text-slate-300 hover:text-brass-300 hover:border-brass-400 flex items-center justify-center transition-all">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" class="w-10 h-10 rounded-xl bg-forest-900 border border-forest-800 text-slate-300 hover:text-brass-300 hover:border-brass-400 flex items-center justify-center transition-all">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+
+          </div>
+          <p class="text-xs text-slate-500 pt-2">
+            Based in Gangtok, Sikkim. Available for regional &amp; international engagements.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright Bottom Bar -->
+      <div class="pt-8 border-t border-forest-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>
+          © <span id="copyright-year">2026</span> Mrs. Shova Rai. All rights reserved. Namnang, Gangtok, Sikkim, India.
+        </div>
+        <div class="flex items-center gap-6">
+          <span>Crafted for Sikkim’s Entrepreneurial Future</span>
+          <a href="#hero" class="text-brass-400 hover:underline">Back to top ↑</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- 10. VANILLA JAVASCRIPT FOR DYNAMIC INTERACTIVITY -->
+  <!-- ========================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // 1. Dynamic Header (Transparent to Solid Deep Forest Green on scroll)
+      const header = document.getElementById('main-header');
+      const handleScrollHeader = () => {
+        if (window.scrollY > 40) {
+          header.classList.remove('bg-transparent', 'py-5');
+          header.classList.add('bg-forest-950/95', 'py-3.5', 'border-b', 'border-brass-500/20', 'backdrop-blur-xl', 'shadow-forest-glow');
+        } else {
+          header.classList.remove('bg-forest-950/95', 'py-3.5', 'border-b', 'border-brass-500/20', 'backdrop-blur-xl', 'shadow-forest-glow');
+          header.classList.add('bg-transparent', 'py-5');
+        }
+      };
+      window.addEventListener('scroll', handleScrollHeader, { passive: true });
+      handleScrollHeader();
+
+      // 2. Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+          });
+        });
+      }
+
+      // 3. Scroll Reveal Animation for Sections & Cards
+      const reveals = document.querySelectorAll('.reveal');
+      const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        reveals.forEach(el => {
+          const elementTop = el.getBoundingClientRect().top;
+          const elementVisible = 120;
+          if (elementTop < windowHeight - elementVisible) {
+            el.classList.add('active');
+          }
+        });
+      };
+      window.addEventListener('scroll', revealOnScroll, { passive: true });
+      revealOnScroll(); // Trigger initial view
+
+      // 4. Animated Statistics Counters on Viewport Scroll
+      const counters = document.querySelectorAll('.counter');
+      let countersStarted = false;
+
+      const runCounters = () => {
+        const impactSection = document.getElementById('impact');
+        if (!impactSection || countersStarted) return;
+
+        const rect = impactSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight * 0.8) {
+          countersStarted = true;
+          counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const duration = 1800; // 1.8 seconds
+            const startTime = performance.now();
+
+            const updateCount = (currentTime) => {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // Ease-out cubic
+              const easeOut = 1 - Math.pow(1 - progress, 3);
+              const currentVal = Math.floor(easeOut * target);
+
+              counter.innerText = currentVal.toLocaleString();
+
+              if (progress < 1) {
+                requestAnimationFrame(updateCount);
+              } else {
+                counter.innerText = target.toLocaleString();
+              }
+            };
+
+            requestAnimationFrame(updateCount);
+          });
+        }
+      };
+      window.addEventListener('scroll', runCounters, { passive: true });
+      runCounters();
+
+      // 5. Contact Form Submission Handling with Feedback
+      const form = document.getElementById('mentorship-form');
+      const feedback = document.getElementById('form-feedback');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (form && feedback && submitBtn) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          
+          const originalText = submitBtn.innerText;
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Transmitting Inquiry...';
+          submitBtn.classList.add('opacity-75');
+
+          // Simulate processing
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+            submitBtn.classList.remove('opacity-75');
+
+            // Success feedback
+            feedback.classList.remove('hidden', 'bg-rose-900/50', 'text-rose-200', 'border', 'border-rose-500/30');
+            feedback.classList.add('bg-emerald-900/60', 'text-emerald-200', 'border', 'border-emerald-500/40');
+            feedback.innerHTML = `
+              <div class="font-serif font-bold text-sm mb-1 text-emerald-100">Inquiry Received with Gratitude</div>
+              <div>Thank you! Your mentorship request has been dispatched to Mrs. Shova Rai's desk. Expect a personal reply within 24 hours.</div>
+            `;
+            
+            form.reset();
+
+            // Clear feedback after 8 seconds
+            setTimeout(() => {
+              feedback.classList.add('hidden');
+            }, 8000);
+
+          }, 1200);
+        });
+      }
+
+      // 6. Dynamic Copyright Year
+      const yearSpan = document.getElementById('copyright-year');
+      if (yearSpan) {
+        yearSpan.innerText = new Date().getFullYear();
+      }
+
+    });
+  </script>
+
+</body>
+</html>
