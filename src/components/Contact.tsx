@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, MapPin, Sparkles, HeartHandshake, Facebook, Instagram, Youtube, ExternalLink, Navigation, Copy, Check } from 'lucide-react';
 import { personalData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 const WhatsappIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
   <svg className={className} fill="currentColor" viewBox="0 0 24 24">
@@ -9,6 +10,7 @@ const WhatsappIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" 
 );
 
 export const Contact: React.FC = () => {
+  const { t, language } = useLanguage();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
 
@@ -26,7 +28,7 @@ export const Contact: React.FC = () => {
   const socialLinks = [
     {
       id: 'whatsapp',
-      name: 'WhatsApp Direct Line',
+      name: language === 'ne' ? 'ह्वाट्सएप प्रत्यक्ष सम्पर्क' : 'WhatsApp Direct Line',
       handle: '+91 7431833009',
       url: 'https://wa.me/917431833009',
       icon: WhatsappIcon,
@@ -35,7 +37,7 @@ export const Contact: React.FC = () => {
     },
     {
       id: 'fb',
-      name: 'Shova Rai Official Facebook',
+      name: language === 'ne' ? 'शोभा राई आधिकारिक फेसबुक' : 'Shova Rai Official Facebook',
       handle: 'Shova Rai Official',
       url: 'https://www.facebook.com/share/1FGMEjv4Qr/',
       icon: Facebook,
@@ -44,7 +46,7 @@ export const Contact: React.FC = () => {
     },
     {
       id: 'cuttingedge_ig',
-      name: 'Cutting Edge Hair Salon',
+      name: language === 'ne' ? 'कटिङ एज हेयर सैलुन इन्स्टाग्राम' : 'Cutting Edge Hair Salon',
       handle: '@cuttingedge_hair_salon_gtk__',
       url: 'https://www.instagram.com/cuttingedge_hair_salon_gtk__?igsh=aG8xamhqcHlvMmpx',
       icon: Instagram,
@@ -53,7 +55,7 @@ export const Contact: React.FC = () => {
     },
     {
       id: 'blush_ig',
-      name: 'Blush Fashion Boutique',
+      name: language === 'ne' ? 'ब्लश फेसन बुटिक इन्स्टाग्राम' : 'Blush Fashion Boutique',
       handle: '@blush.clothingstore',
       url: 'https://www.instagram.com/blush.clothingstore?igsh=MWtpeGFvMm84eDJ2ag==',
       icon: Instagram,
@@ -62,7 +64,7 @@ export const Contact: React.FC = () => {
     },
     {
       id: 'yt',
-      name: 'Shova Rai YouTube Channel',
+      name: language === 'ne' ? 'शोभा राई युट्युब च्यानल' : 'Shova Rai YouTube Channel',
       handle: '@shovarai963',
       url: 'https://youtube.com/@shovarai963?si=q1TtfmDNex0Nekrs',
       icon: Youtube,
@@ -79,14 +81,14 @@ export const Contact: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>CONNECT & COLLABORATE</span>
+            <span>{t.contact.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            Contact &amp; Studio Location
+            {t.contact.heading}
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed text-center">
-            Reach out for business collaborations, salon appointments, artisanal pickle orders, block printing workshops, or community skill training.
+            {t.contact.subheading}
           </p>
         </div>
 
@@ -97,13 +99,13 @@ export const Contact: React.FC = () => {
             <div className="space-y-6">
               <div>
                 <span className="text-xs font-bold text-amber-400 uppercase tracking-widest font-display">
-                  PRIMARY HUB
+                  {t.contact.studioTitle}
                 </span>
                 <h3 className="text-2xl font-serif font-bold text-amber-100 mt-1">
                   Cutting Edge Headquarters
                 </h3>
                 <p className="text-stone-400 text-sm mt-0.5">
-                  Located in the heart of Namnang, Gangtok, Sikkim.
+                  {language === 'ne' ? 'नामनाङ, गान्तोक, सिक्किमको मुख्य केन्द्रमा अवस्थित।' : 'Located in the heart of Namnang, Gangtok, Sikkim.'}
                 </p>
               </div>
 
@@ -115,7 +117,9 @@ export const Contact: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">Studio Location</h4>
+                    <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">
+                      {language === 'ne' ? 'स्टुडियो ठेगाना' : 'Studio Location'}
+                    </h4>
                     <p className="text-stone-300 text-sm leading-relaxed mt-0.5">
                       Cutting Edge Hair & Beauty Salon<br />
                       Namnang, Gangtok, Sikkim - 737101, India
@@ -130,7 +134,9 @@ export const Contact: React.FC = () => {
                       <Mail className="w-5 h-5" />
                     </div>
                     <div className="min-w-0">
-                      <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">Official Email</h4>
+                      <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">
+                        {t.contact.officialEmail}
+                      </h4>
                       <a
                         href={`mailto:${personalData.email}`}
                         className="text-stone-300 hover:text-amber-300 text-sm transition-colors block truncate"
@@ -145,7 +151,7 @@ export const Contact: React.FC = () => {
                     className="px-2.5 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 text-xs font-semibold flex items-center gap-1.5 shrink-0 border border-stone-700 transition-colors"
                   >
                     {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-amber-400" />}
-                    <span>{copiedEmail ? 'Copied' : 'Copy'}</span>
+                    <span>{copiedEmail ? t.contact.copied : t.contact.copy}</span>
                   </button>
                 </div>
 
@@ -157,8 +163,12 @@ export const Contact: React.FC = () => {
                     </div>
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <h4 className="text-sm font-bold text-emerald-200 uppercase tracking-wide">Direct Line</h4>
-                        <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full shrink-0">Active</span>
+                        <h4 className="text-sm font-bold text-emerald-200 uppercase tracking-wide">
+                          {t.contact.directLine}
+                        </h4>
+                        <span className="px-2 py-0.5 text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full shrink-0">
+                          {t.contact.activeStatus}
+                        </span>
                       </div>
                       <p className="text-stone-200 text-sm font-mono mt-0.5">+91 7431833009</p>
                     </div>
@@ -178,7 +188,7 @@ export const Contact: React.FC = () => {
                       rel="noopener noreferrer"
                       className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1"
                     >
-                      <span>Chat</span>
+                      <span>{t.contact.chat}</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
@@ -190,9 +200,11 @@ export const Contact: React.FC = () => {
                     <HeartHandshake className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">Collaboration Inquiries</h4>
+                    <h4 className="text-sm font-bold text-amber-200 uppercase tracking-wide">
+                      {t.contact.collabTitle}
+                    </h4>
                     <p className="text-stone-300 text-xs sm:text-sm leading-relaxed mt-0.5">
-                      Bridal styling appointments, organic pickle supply, handicraft workshops, and SHG skill programs.
+                      {t.contact.collabDesc}
                     </p>
                   </div>
                 </div>
@@ -203,8 +215,8 @@ export const Contact: React.FC = () => {
             {/* Official Social Media Channels */}
             <div className="space-y-2.5 pt-4 border-t border-stone-800/80">
               <h4 className="text-xs font-bold text-amber-300 uppercase tracking-widest flex items-center justify-between font-display">
-                <span>Official Channels</span>
-                <span className="text-xs text-stone-400 font-normal font-sans">Click to Visit</span>
+                <span>{t.contact.officialChannels}</span>
+                <span className="text-xs text-stone-400 font-normal font-sans">{t.contact.clickToVisit}</span>
               </h4>
 
               <div className="grid grid-cols-1 gap-2">
@@ -246,10 +258,10 @@ export const Contact: React.FC = () => {
                 <div>
                   <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wider mb-1 font-display">
                     <Navigation className="w-3.5 h-3.5" />
-                    <span>LOCATION MAP</span>
+                    <span>{t.contact.locationMap}</span>
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-amber-100">
-                    Find Us in Gangtok
+                    {t.contact.findUs}
                   </h3>
                 </div>
                 <a
@@ -259,12 +271,12 @@ export const Contact: React.FC = () => {
                   className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold transition-all shrink-0 w-fit"
                 >
                   <MapPin className="w-3.5 h-3.5" />
-                  <span>Open in Google Maps</span>
+                  <span>{t.contact.openMaps}</span>
                   <ExternalLink className="w-3 h-3 ml-0.5" />
                 </a>
               </div>
               <p className="text-stone-300 text-sm mb-4">
-                Visit Cutting Edge Hair & Beauty Salon at Namnang, Gangtok. Centrally situated with convenient access across Sikkim.
+                {t.contact.mapSub}
               </p>
             </div>
 
@@ -289,11 +301,11 @@ export const Contact: React.FC = () => {
             <div className="p-4 rounded-2xl bg-stone-900/90 border border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs sm:text-sm text-stone-300">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Namnang Road, Gangtok, East Sikkim - 737101</span>
+                <span>{t.contact.addressFooter}</span>
               </div>
               <div className="flex flex-col items-center sm:items-end gap-0.5 text-amber-300 font-semibold text-xs bg-amber-500/10 px-3 py-1.5 rounded-lg border border-amber-500/20">
-                <span>Open: Monday–Sunday | Closed: Tuesday</span>
-                <span className="text-amber-400/80">9:00 AM - 7:00 PM</span>
+                <span>{t.contact.openHours}</span>
+                <span className="text-amber-400/80">{t.contact.hoursTime}</span>
               </div>
             </div>
 

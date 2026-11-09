@@ -16,6 +16,38 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ArrowUp, MessageCircle } from 'lucide-react';
 
+import { useLanguage } from './context/LanguageContext';
+
+const FloatingActionButtons: React.FC<{ showScrollTop: boolean; scrollToTop: () => void }> = ({ showScrollTop, scrollToTop }) => {
+  const { language } = useLanguage();
+
+  return (
+    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
+      {/* Quick WhatsApp Bubble */}
+      <a
+        href="https://wa.me/917431833009"
+        target="_blank"
+        rel="noopener noreferrer"
+        title={language === 'ne' ? "ह्वाट्सएपमा सिधै कुरा गर्नुहोस्" : "Chat directly on WhatsApp"}
+        className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-[0_8px_25px_rgba(16,185,129,0.4)] hover:scale-110 transition-all border border-emerald-400/40 group"
+      >
+        <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+      </a>
+
+      {/* Back to top button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          title={language === 'ne' ? "माथि जानुहोस्" : "Scroll back to top"}
+          className="w-10 h-10 rounded-full bg-stone-900/90 hover:bg-amber-500 hover:text-stone-950 text-amber-300 border border-amber-500/40 backdrop-blur-md flex items-center justify-center shadow-xl hover:scale-110 transition-all cursor-pointer"
+        >
+          <ArrowUp className="w-4 h-4" />
+        </button>
+      )}
+    </div>
+  );
+};
+
 export default function App() {
   const [scrollProgress, setScrollProgress] = useState<number>(0);
   const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
@@ -73,29 +105,7 @@ export default function App() {
         <Footer />
 
         {/* Floating Quick Action Widget (WhatsApp & Back-to-Top) */}
-        <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
-          {/* Quick WhatsApp Bubble */}
-          <a
-            href="https://wa.me/917431833009"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Chat directly on WhatsApp"
-            className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-[0_8px_25px_rgba(16,185,129,0.4)] hover:scale-110 transition-all border border-emerald-400/40 group"
-          >
-            <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-          </a>
-
-          {/* Back to top button */}
-          {showScrollTop && (
-            <button
-              onClick={scrollToTop}
-              title="Scroll back to top"
-              className="w-10 h-10 rounded-full bg-stone-900/90 hover:bg-amber-500 hover:text-stone-950 text-amber-300 border border-amber-500/40 backdrop-blur-md flex items-center justify-center shadow-xl hover:scale-110 transition-all"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
-          )}
-        </div>
+        <FloatingActionButtons showScrollTop={showScrollTop} scrollToTop={scrollToTop} />
 
       </div>
     </PhotoProvider>

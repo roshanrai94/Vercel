@@ -1,9 +1,12 @@
 import React from 'react';
 import { Award, BookOpen, Heart, Sparkles, ShieldCheck, GraduationCap, ExternalLink } from 'lucide-react';
 import { PhotoPlaceholder } from './PhotoPlaceholder';
-import { personalData, qualificationsData, statsData } from '../data/portfolioData';
+import { statsData } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const About: React.FC = () => {
+  const { t, language } = useLanguage();
+
   return (
     <section id="about" className="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -12,14 +15,14 @@ export const About: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>BIOGRAPHY & LEGACY</span>
+            <span>{t.about.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            About Mrs. Shova Rai
+            {t.about.heading}
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed text-center">
-            A self-made visionary blending Himalayan tradition with modern entrepreneurship and community uplifting.
+            {t.about.subheading}
           </p>
         </div>
 
@@ -34,24 +37,24 @@ export const About: React.FC = () => {
                   slotKey="about_portrait"
                   aspectRatio="portrait"
                   className="w-full aspect-[4/5]"
-                  label="Mrs. Shova Rai Portrait"
+                  label={t.about.portraitLabel}
                   imageClassName="w-full h-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               </div>
             </div>
             <p className="mt-3.5 text-xs sm:text-sm text-amber-300/90 font-medium tracking-wider text-center flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Mrs. Shova Rai — Entrepreneur &amp; Visionary</span>
+              <span>{t.about.portraitLabel}</span>
             </p>
           </div>
 
           {/* Right Column: Bio Content */}
           <div className="lg:col-span-7 space-y-6">
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-amber-200">
-              Two Decades of Resilient Entrepreneurship & Community Building
+              {t.about.bioHeading}
             </h3>
 
-            {personalData.bioParagraphs.map((paragraph, index) => (
+            {t.about.bioParagraphs.map((paragraph, index) => (
               <p key={index} className="text-stone-300 text-base sm:text-lg leading-relaxed font-light text-justify">
                 {paragraph}
               </p>
@@ -64,7 +67,7 @@ export const About: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-amber-200 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all group"
               >
-                <span>Read published profile story: &ldquo;Sikkim: An Inspiring Story of Shova Rai&rdquo;</span>
+                <span>{t.about.readStory}</span>
                 <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
               </a>
             </div>
@@ -73,16 +76,16 @@ export const About: React.FC = () => {
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-stone-800/50 border border-stone-700/50">
                 <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">Registered Business</div>
-                  <div className="text-xs sm:text-sm text-stone-300">MSME UDYAM & FSSAI Certified</div>
+                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">{t.about.registeredBiz}</div>
+                  <div className="text-xs sm:text-sm text-stone-300">{t.about.registeredBizDesc}</div>
                 </div>
               </div>
 
               <div className="flex items-start gap-3 p-3.5 rounded-xl bg-stone-800/50 border border-stone-700/50">
                 <Heart className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">Community Focus</div>
-                  <div className="text-xs sm:text-sm text-stone-300">SHGs, Youth & Differently-Abled</div>
+                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">{t.about.communityFocus}</div>
+                  <div className="text-xs sm:text-sm text-stone-300">{t.about.communityFocusDesc}</div>
                 </div>
               </div>
             </div>
@@ -93,15 +96,15 @@ export const About: React.FC = () => {
         <div className="mb-20">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100">
-              Professional Qualifications & Mastery
+              {t.about.qualificationsTitle}
             </h3>
             <p className="text-stone-300 text-base sm:text-lg mt-2 text-center">
-              Combining formal professional diplomas from India's premier institutes with master-craftsman traditions.
+              {t.about.qualificationsSub}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {qualificationsData.map((item, idx) => (
+            {t.about.qualificationsList.map((item, idx) => (
               <div
                 key={idx}
                 className="bg-stone-800/70 p-6 rounded-2xl border border-stone-700/60 hover:border-amber-500/40 transition-all flex flex-col justify-between"
@@ -130,13 +133,19 @@ export const About: React.FC = () => {
           {statsData.map((stat, idx) => (
             <div key={idx} className="text-center p-3">
               <div className="text-3xl sm:text-4xl font-serif font-bold text-amber-400 mb-1">
-                {stat.value}
+                {language === 'ne' ? (idx === 0 ? '२०+' : idx === 1 ? '४+' : idx === 2 ? '१०+' : '५०+') : stat.value}
               </div>
               <div className="text-xs sm:text-sm font-bold text-amber-100 uppercase tracking-wider mb-1">
-                {stat.label}
+                {language === 'ne' 
+                  ? (idx === 0 ? 'उत्कृष्टताका वर्षहरू' : idx === 1 ? 'सफल उद्यमहरू' : idx === 2 ? 'राष्ट्रिय तथा राज्य सम्मान' : 'सीप कार्यशालाहरू')
+                  : stat.label
+                }
               </div>
               <div className="text-xs text-stone-400 leading-tight text-center">
-                {stat.description}
+                {language === 'ne'
+                  ? (idx === 0 ? 'सौन्दर्य, फेसन, खाद्य र हस्तकलामा' : idx === 1 ? 'गान्तोकमा स्थापित तथा विस्तारित' : idx === 2 ? 'NCW र मन्त्रीहरूद्वारा मान्यताप्राप्त' : 'महिला तथा महिला समूहको सशक्तीकरण')
+                  : stat.description
+                }
               </div>
             </div>
           ))}

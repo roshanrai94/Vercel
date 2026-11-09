@@ -17,6 +17,7 @@ import {
   Layers,
   ArrowRight
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export interface TimelineMilestone {
   id: string;
@@ -165,17 +166,37 @@ export const milestonesData: TimelineMilestone[] = [
 ];
 
 export const ProfessionalJourneyTimeline: React.FC = () => {
+  const { t, language } = useLanguage();
   const [selectedFilter, setSelectedFilter] = useState<'all' | 'enterprise' | 'mastery' | 'mentorship' | 'recognition'>('all');
-  const [activeMilestoneId, setActiveMilestoneId] = useState<string>(milestonesData[0].id);
-  const [expandedId, setExpandedId] = useState<string | null>(milestonesData[0].id);
+
+  const localizedMilestones: TimelineMilestone[] = milestonesData.map((m, idx) => {
+    const tr = t.journey.milestones[idx];
+    if (!tr) return m;
+    return {
+      ...m,
+      title: tr.title,
+      period: tr.period,
+      year: tr.year,
+      subtitle: tr.subtitle,
+      summary: tr.summary,
+      achievements: tr.achievements,
+      keyImpact: tr.keyImpact,
+      statsValue: tr.statsValue,
+      statsLabel: tr.statsLabel,
+      location: language === 'ne' ? (m.location.includes('Mumbai') ? 'मुम्बई र नयाँ दिल्ली' : m.location.includes('New Delhi') ? 'नयाँ दिल्ली र गान्तोक' : 'गान्तोक, सिक्किम') : m.location,
+    };
+  });
+
+  const [activeMilestoneId, setActiveMilestoneId] = useState<string>(localizedMilestones[0].id);
+  const [expandedId, setExpandedId] = useState<string | null>(localizedMilestones[0].id);
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const milestoneRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   const filteredMilestones = selectedFilter === 'all'
-    ? milestonesData
-    : milestonesData.filter((m) => m.category === selectedFilter);
+    ? localizedMilestones
+    : localizedMilestones.filter((m) => m.category === selectedFilter);
 
   // Scroll Progress and Active Node Calculation
   useEffect(() => {
@@ -277,26 +298,26 @@ export const ProfessionalJourneyTimeline: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>PROFESSIONAL TIMELINE</span>
+            <span>{t.journey.badge}</span>
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-amber-100 leading-tight mb-4">
-            The Professional Journey
+            {t.journey.heading}
           </h2>
 
           <p className="text-stone-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            From humble beginnings in Gangtok to founding landmark salons, multi-sector enterprises, and earning national felicitation by the Government of India.
+            {t.journey.subheading}
           </p>
 
           {/* Interactive Filter Tabs */}
           <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-8 p-1.5 rounded-2xl bg-stone-900/90 border border-amber-500/20 backdrop-blur-md max-w-2xl mx-auto">
             {[
-              { id: 'all', label: 'All Milestones' },
-              { id: 'mastery', label: 'Masteries & Roots' },
-              { id: 'enterprise', label: 'Enterprises & Salons' },
-              { id: 'mentorship', label: 'Social Mentorship' },
-              { id: 'recognition', label: 'National Recognition' }
+              { id: 'all', label: t.journey.categories.all },
+              { id: 'mastery', label: t.journey.categories.mastery },
+              { id: 'enterprise', label: t.journey.categories.enterprise },
+              { id: 'mentorship', label: t.journey.categories.mentorship },
+              { id: 'recognition', label: t.journey.categories.recognition }
             ].map((tab) => {
               const isActive = selectedFilter === tab.id;
               return (
@@ -328,12 +349,15 @@ export const ProfessionalJourneyTimeline: React.FC = () => {
             }`}
           >
             <ChevronLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Previous Era</span>
+            <span className="hidden sm:inline">{language === 'ne' ? 'अघिल्लो चरण' : 'Previous Era'}</span>
           </button>
 
           <div className="flex items-center gap-2">
             <span className="text-stone-400 text-[11px] uppercase tracking-wider font-semibold">
-              Milestone {currentIdx >= 0 ? currentIdx + 1 : 1} of {filteredMilestones.length}
+              {language === 'ne' 
+                ? `माइलस्टोन ${currentIdx >= 0 ? currentIdx + 1 : 1} / ${filteredMilestones.length}`
+                : `Milestone ${currentIdx >= 0 ? currentIdx + 1 : 1} of ${filteredMilestones.length}`
+              }
             </span>
             <span className="text-stone-600">•</span>
             <span className="font-serif font-bold text-amber-300 truncate max-w-[140px] sm:max-w-[200px]">
@@ -350,7 +374,7 @@ export const ProfessionalJourneyTimeline: React.FC = () => {
                 : 'text-amber-300 hover:bg-stone-800 hover:text-amber-200 cursor-pointer'
             }`}
           >
-            <span className="hidden sm:inline">Next Era</span>
+            <span className="hidden sm:inline">{language === 'ne' ? 'पछिल्लो चरण' : 'Next Era'}</span>
             <ChevronRight className="w-4 h-4" />
           </button>
         </div>
@@ -478,10 +502,18 @@ export const ProfessionalJourneyTimeline: React.FC = () => {
                         >
                           <span className="flex items-center gap-1.5">
                             <Layers className="w-3.5 h-3.5 text-amber-400" />
-                            <span>{isExpanded ? 'Hide Key Milestones' : 'View Key Milestones & Details'}</span>
+                            <span>
+                              {language === 'ne' 
+                                ? (isExpanded ? 'विवरण लुकाउनुहोस्' : 'प्रमुख उपलब्धिहरू र विवरण हेर्नुहोस्')
+                                : (isExpanded ? 'Hide Key Milestones' : 'View Key Milestones & Details')
+                              }
+                            </span>
                           </span>
                           <span className="text-[11px] text-stone-400">
-                            {isExpanded ? 'Collapse ▲' : `${milestone.achievements.length} Points ▼`}
+                            {language === 'ne'
+                              ? (isExpanded ? 'बन्द गर्नुहोस् ▲' : `${milestone.achievements.length} मुख्य बुँदा ▼`)
+                              : (isExpanded ? 'Collapse ▲' : `${milestone.achievements.length} Points ▼`)
+                            }
                           </span>
                         </button>
 
@@ -511,19 +543,22 @@ export const ProfessionalJourneyTimeline: React.FC = () => {
         <div className="mt-16 sm:mt-20 p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-stone-900/90 via-stone-900/70 to-stone-900/90 border border-amber-500/30 max-w-3xl mx-auto text-center backdrop-blur-md shadow-xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold uppercase tracking-wider mb-3 border border-emerald-500/30">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Continuously Evolving Legacy</span>
+            <span>{language === 'ne' ? 'निरन्तर विकसित सम्पदा' : 'Continuously Evolving Legacy'}</span>
           </div>
           <h4 className="text-xl sm:text-2xl font-serif font-bold text-amber-100 mb-2">
-            Pioneering Sikkim’s Future with Purpose
+            {language === 'ne' ? 'उद्देश्यसहित सिक्किमको भविष्य निर्माण' : 'Pioneering Sikkim’s Future with Purpose'}
           </h4>
           <p className="text-stone-300 text-xs sm:text-sm leading-relaxed mb-5 max-w-xl mx-auto">
-            Mrs. Shova Rai continues to mentor the next generation of Himalayan entrepreneurs, expanding craft preservation, organic culinary heritage, and regional women’s livelihood programs.
+            {language === 'ne'
+              ? 'श्रीमती शोभा राईले हिमाली नयाँ पुस्ताका उद्यमीहरूलाई निरन्तर मार्गदर्शन गर्दै, हस्तकला संरक्षण, प्राङ्गारिक खाद्य सम्पदा र क्षेत्रीय महिला जीविकोपार्जनलाई नयाँ उचाइमा पुर्‍याइरहनुभएको छ।'
+              : 'Mrs. Shova Rai continues to mentor the next generation of Himalayan entrepreneurs, expanding craft preservation, organic culinary heritage, and regional women’s livelihood programs.'
+            }
           </p>
           <a
             href="#ventures"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs shadow-md hover:scale-105 transition-all"
           >
-            <span>Explore Enterprises &amp; Ventures</span>
+            <span>{language === 'ne' ? 'उद्यम तथा व्यवसायहरू हेर्नुहोस्' : 'Explore Enterprises & Ventures'}</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>

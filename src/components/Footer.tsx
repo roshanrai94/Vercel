@@ -5,7 +5,7 @@ import { useLiveVisitorStats } from '../hooks/useLiveVisitorStats';
 import { useLanguage } from '../context/LanguageContext';
 
 export const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { dateString, timeString, dailyVisitors, totalVisitors } = useLiveVisitorStats();
 
   const scrollToTop = () => {
@@ -75,19 +75,19 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-xs text-stone-300">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                <span>Cutting Edge Hair &amp; Beauty</span>
+                <span>{language === 'ne' ? 'कटिङ एज हेयर एन्ड ब्युटी' : 'Cutting Edge Hair & Beauty'}</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                <span>Blush Fashion Boutique</span>
+                <span>{language === 'ne' ? 'ब्लश फेसन बुटिक' : 'Blush Fashion Boutique'}</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                <span>A Taste of Sikkim – Zayel's Pickle</span>
+                <span>{language === 'ne' ? 'अ टेस्ट अफ सिक्किम – जायल्स अचार' : "A Taste of Sikkim – Zayel's Pickle"}</span>
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
-                <span>Traditional Block Printing Art</span>
+                <span>{language === 'ne' ? 'परम्परागत ब्लक प्रिन्टिङ कला' : 'Traditional Block Printing Art'}</span>
               </li>
             </ul>
           </div>
@@ -100,14 +100,14 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs uppercase tracking-widest font-bold text-amber-200 font-display">
-                Real-Time Website Activity &amp; Official Sikkim Time
+                {language === 'ne' ? 'प्रत्यक्ष वेबसाइट गतिविधि तथा आधिकारिक सिक्किम समय' : 'Real-Time Website Activity & Official Sikkim Time'}
               </span>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-stone-400">
               <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-medium">
-                System Active
+                {language === 'ne' ? 'प्रणाली सक्रिय' : 'System Active'}
               </span>
-              <span>• Gangtok, Sikkim (UTC+5:30)</span>
+              <span>• {language === 'ne' ? 'गान्तोक, सिक्किम (UTC+5:30)' : 'Gangtok, Sikkim (UTC+5:30)'}</span>
             </div>
           </div>
 
@@ -119,7 +119,7 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
-                  Current Date (IST)
+                  {language === 'ne' ? 'हालको मिति (IST)' : 'Current Date (IST)'}
                 </span>
                 <span className="text-sm font-semibold text-amber-100">
                   {dateString}
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Live Sikkim Time
+                  {language === 'ne' ? 'प्रत्यक्ष सिक्किम समय' : 'Live Sikkim Time'}
                 </span>
                 <span className="text-sm font-mono font-bold text-amber-300 tabular-nums">
                   {timeString} <span className="text-xs text-amber-400/80 font-sans">IST</span>
@@ -150,7 +150,7 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
-                  Visitors in 24 Hours
+                  {t.liveStrip.dailyVisitors}
                 </span>
                 <span className="text-base font-mono font-bold text-amber-200 tabular-nums">
                   {dailyVisitors.toLocaleString()}
@@ -165,7 +165,7 @@ export const Footer: React.FC = () => {
               </div>
               <div>
                 <span className="text-[10px] uppercase font-bold tracking-wider text-stone-400 block">
-                  Total Site Visits
+                  {t.liveStrip.totalVisits}
                 </span>
                 <span className="text-base font-mono font-bold text-amber-300 tabular-nums">
                   {totalVisitors.toLocaleString()}
@@ -178,14 +178,18 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
           <div className="text-center sm:text-left">
-            <span>© {new Date().getFullYear()} {personalData.name}. All rights reserved. Gangtok, Sikkim.</span>
+            <span>
+              {language === 'ne' 
+                ? `© ${new Date().getFullYear()} ${t.brand.name}। सर्वाधिकार सुरक्षित। गान्तोक, सिक्किम।`
+                : `© ${new Date().getFullYear()} ${personalData.name}. All rights reserved. Gangtok, Sikkim.`}
+            </span>
           </div>
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-amber-400 hover:text-amber-300 border border-stone-800 hover:border-amber-500/30 transition-all font-medium text-xs shadow-sm hover:scale-105"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-stone-900 hover:bg-stone-800 text-amber-400 hover:text-amber-300 border border-stone-800 hover:border-amber-500/30 transition-all font-medium text-xs shadow-sm hover:scale-105 cursor-pointer"
           >
-            <span>Back to top</span>
+            <span>{language === 'ne' ? 'माथि जानुहोस्' : 'Back to top'}</span>
             <ArrowUp className="w-3.5 h-3.5" />
           </button>
         </div>

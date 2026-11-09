@@ -1,39 +1,9 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
-
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-export const faqs: FAQItem[] = [
-  {
-    question: "Who is Shova Rai?",
-    answer: "Mrs. Shova Rai is a premier entrepreneur, master artisan, hairstylist, certified baker, and community mentor based in Gangtok, Sikkim. With more than two decades of independent enterprise experience, she is widely celebrated for championing women's economic self-reliance, Himalayan culinary heritage, and sustainable craft development across Sikkim."
-  },
-  {
-    question: "What businesses has Shova Rai founded in Sikkim?",
-    answer: "Shova Rai has founded and operates multiple thriving enterprises in Namnang, Gangtok: Cutting Edge Hair & Beauty (established 2007, an acclaimed modern salon and bridal styling studio), Blush Fashion Store (curated contemporary and traditional Sikkimese apparel), A Taste of Sikkim – Zayel's Pickle (FSSAI-certified, organic artisanal Himalayan preserves including Dalle Khorsani), and traditional Himalayan Block Printing & Textile Craft workshops."
-  },
-  {
-    question: "What national and state awards has Shova Rai received?",
-    answer: "Shova Rai has been honored by the National Commission for Women (NCW) in New Delhi, felicitated by Union Minister Smt. Shobha Karandlaje for grassroots women's empowerment, awarded by the Sikkim Gyan Manch, and recognized as an academic resource person and mentor at Sikkim University."
-  },
-  {
-    question: "How does Shova Rai support local Self-Help Groups (SHGs) and youth in Sikkim?",
-    answer: "Through over 50 vocational training programs and livelihood workshops, Shova Rai trains rural women, SHGs, and differently-abled individuals in commercial baking, hair styling, hygienic food preservation, and block printing, helping them attain financial independence."
-  },
-  {
-    question: "Where are Shova Rai's enterprises located in Gangtok?",
-    answer: "Her core establishments, including Cutting Edge Hair & Beauty and Blush Fashion Store, are centrally located at Namnang, Gangtok, Sikkim, 737101, India."
-  },
-  {
-    question: "How can I get in touch with Shova Rai for styling, classes, or collaborations?",
-    answer: "You can reach out directly via WhatsApp at +91 7431833009, email cuttingedge723@gmail.com, or send a direct inquiry through the contact form on this official website."
-  }
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export const FAQ: React.FC = () => {
+  const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -52,20 +22,20 @@ export const FAQ: React.FC = () => {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>KNOWLEDGE BASE &amp; QUICK FACTS</span>
+            <span>{t.faq.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-amber-100">
-            Frequently Asked Questions About Shova Rai
+            {t.faq.heading}
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
           <p className="text-stone-300 text-sm sm:text-base max-w-2xl mx-auto">
-            Everything you need to know about Mrs. Shova Rai, her enterprises in Gangtok, community initiatives, and public recognitions.
+            {t.about.subheading}
           </p>
         </div>
 
         {/* Accordion list */}
         <div className="space-y-3.5">
-          {faqs.map((faq, idx) => {
+          {t.faq.items.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div

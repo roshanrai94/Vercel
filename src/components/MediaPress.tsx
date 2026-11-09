@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Newspaper, Video, Music, Sparkles, ExternalLink, Play, Tv, Share2, Tag, Check, X, Film, RotateCcw, CheckCircle2 } from 'lucide-react';
 import { mediaFeaturesData } from '../data/portfolioData';
 import { MediaCategory, MediaFeature } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 export const MediaPress: React.FC = () => {
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<MediaCategory>('all');
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [activeVideo, setActiveVideo] = useState<{
@@ -19,12 +21,55 @@ export const MediaPress: React.FC = () => {
   const [replayKey, setReplayKey] = useState(0);
 
   const categories: { id: MediaCategory; label: string; icon: React.FC<{ className?: string }> }[] = [
-    { id: 'all', label: 'All Media', icon: Sparkles },
-    { id: 'interview', label: 'Podcasts & Interviews', icon: Video },
-    { id: 'film', label: 'Short Films', icon: Film },
-    { id: 'music_video', label: 'Music Videos', icon: Music },
-    { id: 'report', label: 'News & Reports', icon: Newspaper },
+    { id: 'all', label: t.media.filterAll, icon: Sparkles },
+    { id: 'interview', label: t.media.filterInterview, icon: Video },
+    { id: 'film', label: t.media.filterFilm, icon: Film },
+    { id: 'music_video', label: t.media.filterMusic, icon: Music },
+    { id: 'report', label: t.media.filterReport, icon: Newspaper },
   ];
+
+  const nepaliMediaTranslations: Record<string, { title: string; description: string; sourceName?: string }> = {
+    'media-ins-podcast': {
+      title: 'शोभा राई | I.N.S पोडकास्ट | सिजन २ भाग ४',
+      description: 'बहुआयामिक उद्यमी शोभा राई (बेकर, हेयरस्टाइलिस्ट, चित्रकार र रेष्टुरेन्ट व्यवसायी) सँगको प्रेरणादायी कुराकानी। उहाँले पुरुषप्रधान क्षेत्रमा महिलाहरूले सामना गर्ने चुनौती र आत्मनिर्भर बन्ने दृढ सङ्कल्पबारे चर्चा गर्नुभएको छ।',
+      sourceName: 'I.N.S. प्रोडक्सन दार्जिलिङ'
+    },
+    'media-1': {
+      title: 'सिक्किमका प्रेरणादायी महिलाहरू: श्रीमती शोभा राईसँग विशेष टिभी अन्तर्वार्ता',
+      description: 'दूरदर्शन (DD) गान्तोकमा प्रसारित आधिकारिक अन्तर्वार्ता: कटिङ एज सैलुन र ब्लश स्थापनादेखि महिला सशक्तीकरण र परम्परागत सिक्किमेली खाद्य उद्यमशीलतासम्मको गौरवमय यात्रा।',
+      sourceName: 'दूरदर्शन (DD) गान्तोक'
+    },
+    'media-ncw-newsonair': {
+      title: 'सिक्किमकी उद्यमी शोभा राईलाई राष्ट्रिय महिला आयोग (NCW) द्वारा अभिनन्दन',
+      description: 'अल इन्डिया रेडियो (News On AIR) द्वारा प्रकाशित आधिकारिक समाचार रिपोर्ट: नयाँ दिल्लीमा राष्ट्रिय महिला आयोग (NCW) द्वारा सिक्किमकी उद्यमी श्रीमती शोभा राईलाई महिला सशक्तीकरण र उद्यमशीलतामा पुर्‍याएको योगदानका लागि सम्मान।',
+      sourceName: 'अल इन्डिया रेडियो (भारत सरकार)'
+    },
+    'media-myvillagemypride': {
+      title: 'सिक्किम: शोभा राईको एक प्रेरणादायी कथा',
+      description: 'माई भिलेज माई प्राइड पोर्टलमा प्रकाशित विशेष जीवनी: प्रारम्भिक सङ्घर्ष र हस्तकलाप्रतिको लगावदेखि सिक्किमकी अग्रणी महिला उद्यमी र परामर्शदातासम्मको यात्रा।',
+      sourceName: 'माई भिलेज माई प्राइड पोर्टल'
+    },
+    'media-music-video-timi-chau': {
+      title: '"तिमी छौ र त प्रिये" — म्युजिक भिडियो (श्रीमती शोभा राई अभिनीत)',
+      description: 'वरिष्ठ गायक उदय सोताङ र मनिला सोताङको स्वरमा सजिएको कालजयी नेपाली गीतको आधिकारिक म्युजिक भिडियोमा श्रीमती शोभा राईको विशेष अभिनय, हिमाली सुन्दरता र कलाको प्रस्तुति।',
+      sourceName: 'वरिष्ठ गायक उदय सोताङ र मनिला सोताङ'
+    },
+    'media-shortfilm-lift': {
+      title: 'नेपाली लघु चलचित्र "लिफ्ट" — श्रीमती शोभा राईको अभिनय',
+      description: 'श्रीमती शोभा राईको सशक्त अभिनय रहेको विचारोत्तेजक नेपाली छोटो चलचित्र "लिफ्ट", जसले मानवीय भावना र हिमाली कथालाई सुन्दर ढङ्गले प्रस्तुत गर्दछ।',
+      sourceName: 'नेपाली सिनेमा र युट्युब'
+    },
+    'media-digital-sikkim': {
+      title: 'स्थानीय उद्यमी विशेष: डिजिटल सिक्किम भिडियो अन्तर्वार्ता',
+      description: 'सिक्किमको अग्रणी डिजिटल मञ्च "डिजिटल सिक्किम" द्वारा गान्तोकमा शोभा राईको बहुआयामिक उद्यमशीलता, सैलुन व्यवस्थापन र महिला सशक्तीकरणमाथि विशेष अन्तर्वार्ता।',
+      sourceName: 'डिजिटल सिक्किम (अनलाइन मिडिया)'
+    },
+    'media-sikkim-com-baking': {
+      title: 'आत्मनिर्भरता: कसरी श्रीमती शोभा राईले बेकिङ रोजेर स्वावलम्बन हासिल गरिन्',
+      description: 'सिक्किम डट कम र डिजिटल सिक्किममा प्रस्तुत प्रेरणादायी फिचर: बेकिङप्रतिको लगावलाई आत्मनिर्भर व्यवसायमा बदलेर अन्य गृहिणीहरूलाई प्रेरित गरेको कथा।',
+      sourceName: 'सिक्किम डट कम र डिजिटल सिक्किम'
+    }
+  };
 
   const filteredMedia = selectedCategory === 'all'
     ? mediaFeaturesData
@@ -53,27 +98,55 @@ export const MediaPress: React.FC = () => {
     switch (category) {
       case 'interview':
         if (title && title.toLowerCase().includes('podcast')) {
-          return { label: 'Video Podcast', color: 'bg-rose-500/20 text-rose-300 border-rose-500/30' };
+          return {
+            label: language === 'ne' ? 'भिडियो पोडकास्ट' : 'Video Podcast',
+            color: 'bg-rose-500/20 text-rose-300 border-rose-500/30'
+          };
         }
-        return { label: 'Video Interview', color: 'bg-rose-500/20 text-rose-300 border-rose-500/30' };
+        return {
+          label: language === 'ne' ? 'भिडियो अन्तर्वार्ता' : 'Video Interview',
+          color: 'bg-rose-500/20 text-rose-300 border-rose-500/30'
+        };
       case 'film':
-        return { label: 'Short Film', color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' };
+        return {
+          label: language === 'ne' ? 'लघु चलचित्र' : 'Short Film',
+          color: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
+        };
       case 'report':
-        return { label: 'Press & News Report', color: 'bg-blue-500/20 text-blue-300 border-blue-500/30' };
+        return {
+          label: language === 'ne' ? 'समाचार तथा प्रेस' : 'Press & News Report',
+          color: 'bg-blue-500/20 text-blue-300 border-blue-500/30'
+        };
       case 'music_video':
-        return { label: 'Music Video', color: 'bg-purple-500/20 text-purple-300 border-purple-500/30' };
+        return {
+          label: language === 'ne' ? 'म्युजिक भिडियो' : 'Music Video',
+          color: 'bg-purple-500/20 text-purple-300 border-purple-500/30'
+        };
       case 'feature':
-        return { label: 'Broadcast Feature', color: 'bg-amber-500/20 text-amber-300 border-amber-500/30' };
+        return {
+          label: language === 'ne' ? 'प्रसारण फिचर' : 'Broadcast Feature',
+          color: 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+        };
       default:
-        return { label: 'Media Mention', color: 'bg-stone-700/40 text-stone-300 border-stone-600/30' };
+        return {
+          label: language === 'ne' ? 'मिडिया कभरेज' : 'Media Mention',
+          color: 'bg-stone-700/40 text-stone-300 border-stone-600/30'
+        };
     }
   };
 
   const handleShare = (item: MediaFeature) => {
+    const title = language === 'ne' && nepaliMediaTranslations[item.id]
+      ? nepaliMediaTranslations[item.id].title
+      : item.title;
+    const text = language === 'ne' && nepaliMediaTranslations[item.id]
+      ? nepaliMediaTranslations[item.id].description
+      : item.description;
+
     if (navigator.share) {
       navigator.share({
-        title: item.title,
-        text: item.description,
+        title,
+        text,
         url: item.url,
       }).catch(() => {});
     } else {
@@ -120,6 +193,13 @@ export const MediaPress: React.FC = () => {
 
   const handleCardClick = (item: MediaFeature) => {
     const video = getVideoEmbed(item.url);
+    const itemTitle = language === 'ne' && nepaliMediaTranslations[item.id]
+      ? nepaliMediaTranslations[item.id].title
+      : item.title;
+    const itemSource = language === 'ne' && nepaliMediaTranslations[item.id]?.sourceName
+      ? nepaliMediaTranslations[item.id].sourceName!
+      : item.sourceName;
+
     if (video) {
       const ytMatch = item.url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|(?:embed|v)\/))([\w-]{11})/);
       const thumb = ytMatch
@@ -129,9 +209,9 @@ export const MediaPress: React.FC = () => {
       setIsVideoEnded(false);
       setReplayKey((k) => k + 1);
       setActiveVideo({
-        title: item.title,
+        title: itemTitle,
         embedUrl: video.embedUrl,
-        source: item.sourceName,
+        source: itemSource,
         originalUrl: item.url,
         platformName: video.platformName,
         type: video.type,
@@ -154,14 +234,14 @@ export const MediaPress: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>PRESS, MEDIA &amp; INTERVIEWS</span>
+            <span>{t.media.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            Media Coverage &amp; External Reports
+            {t.media.heading}
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
           <p className="text-stone-300 text-base sm:text-lg leading-relaxed">
-            Explore verified television interviews, news reports, music videos, and official public features documenting the journey of Mrs. Shova Rai.
+            {t.media.subheading}
           </p>
         </div>
 
@@ -202,6 +282,11 @@ export const MediaPress: React.FC = () => {
         {/* Media Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredMedia.map((item) => {
+            const translatedInfo = language === 'ne' ? nepaliMediaTranslations[item.id] : null;
+            const itemTitle = translatedInfo ? translatedInfo.title : item.title;
+            const itemDesc = translatedInfo ? translatedInfo.description : item.description;
+            const itemSource = (translatedInfo && translatedInfo.sourceName) ? translatedInfo.sourceName : item.sourceName;
+
             const badge = getCategoryBadge(item.category, item.title);
             const isCopied = copiedId === item.id;
             const videoInfo = getVideoEmbed(item.url);
@@ -227,11 +312,11 @@ export const MediaPress: React.FC = () => {
                 <div
                   onClick={() => handleCardClick(item)}
                   className="relative aspect-[16/9] w-full overflow-hidden bg-stone-900 cursor-pointer"
-                  title={hasEmbed ? `Click to watch "${item.title}"` : `Click to open link`}
+                  title={hasEmbed ? `Click to watch "${itemTitle}"` : `Click to open link`}
                 >
                   <img
                     src={thumbnailSrc}
-                    alt={item.title}
+                    alt={itemTitle}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                     onError={(e) => {
@@ -274,7 +359,7 @@ export const MediaPress: React.FC = () => {
 
                   {/* Source Name tag on bottom right of thumbnail */}
                   <div className="absolute bottom-2 right-2 text-[11px] font-medium text-amber-200/90 bg-stone-950/85 backdrop-blur-sm px-2.5 py-0.5 rounded-md border border-stone-800 shadow-sm z-10">
-                    {item.sourceName}
+                    {itemSource}
                   </div>
                 </div>
 
@@ -285,10 +370,10 @@ export const MediaPress: React.FC = () => {
                       onClick={() => handleCardClick(item)}
                       className="text-lg sm:text-xl font-serif font-bold text-amber-100 group-hover:text-amber-300 transition-colors line-clamp-2 leading-snug mb-2.5 cursor-pointer"
                     >
-                      {item.title}
+                      {itemTitle}
                     </h3>
                     <p className="text-stone-300 text-xs sm:text-sm leading-relaxed line-clamp-3 mb-4 font-light">
-                      {item.description}
+                      {itemDesc}
                     </p>
 
                     {/* Tags */}
@@ -318,12 +403,14 @@ export const MediaPress: React.FC = () => {
                         <Play className="w-3.5 h-3.5 fill-current" />
                         <span>
                           {item.category === 'film' 
-                            ? 'Watch Short Film' 
+                            ? (language === 'ne' ? 'लघु चलचित्र हेर्नुहोस्' : 'Watch Short Film')
                             : item.category === 'music_video' 
-                            ? 'Watch Music Video' 
+                            ? (language === 'ne' ? 'म्युजिक भिडियो हेर्नुहोस्' : 'Watch Music Video')
                             : item.category === 'interview' 
-                            ? (item.title.toLowerCase().includes('podcast') ? 'Watch Podcast' : 'Watch Interview') 
-                            : 'Watch Feature'}
+                            ? (item.title.toLowerCase().includes('podcast') 
+                                ? (language === 'ne' ? 'पोडकास्ट हेर्नुहोस्' : 'Watch Podcast')
+                                : (language === 'ne' ? 'अन्तर्वार्ता हेर्नुहोस्' : 'Watch Interview'))
+                            : (language === 'ne' ? 'भिडियो हेर्नुहोस्' : t.media.watchFeature)}
                         </span>
                       </button>
                     ) : (
@@ -334,7 +421,11 @@ export const MediaPress: React.FC = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-amber-500 hover:bg-amber-400 text-stone-950 transition-all duration-200 shadow-sm hover:shadow-[0_2px_12px_rgba(245,158,11,0.25)] flex-1 justify-center"
                       >
                         <span>
-                          {item.category === 'report' ? 'Read Report' : item.category === 'music_video' ? 'Watch Music Video' : 'View Link'}
+                          {item.category === 'report' 
+                            ? (language === 'ne' ? 'रिपोर्ट पढ्नुहोस्' : t.media.readReport)
+                            : item.category === 'music_video' 
+                            ? (language === 'ne' ? 'म्युजिक भिडियो हेर्नुहोस्' : 'Watch Music Video')
+                            : (language === 'ne' ? 'लिङ्क हेर्नुहोस्' : 'View Link')}
                         </span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
@@ -344,7 +435,7 @@ export const MediaPress: React.FC = () => {
                       href={item.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      title={`Open on ${platformLabel}`}
+                      title={language === 'ne' ? `${platformLabel} मा खोल्नुहोस्` : `Open on ${platformLabel}`}
                       className="p-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-amber-300 border border-stone-800 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
@@ -353,7 +444,7 @@ export const MediaPress: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => handleShare(item)}
-                      title="Share link"
+                      title={language === 'ne' ? 'लिङ्क सेयर गर्नुहोस्' : 'Share link'}
                       className="p-2 rounded-xl bg-stone-900 hover:bg-stone-800 text-stone-300 hover:text-amber-300 border border-stone-800 transition-colors cursor-pointer"
                     >
                       {isCopied ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
@@ -397,7 +488,9 @@ export const MediaPress: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-xs text-amber-300 hover:text-amber-200 px-2.5 py-1 rounded-lg bg-stone-800 hover:bg-stone-700 transition-colors"
                 >
-                  <span>Open on {activeVideo.platformName}</span>
+                  <span>
+                    {language === 'ne' ? `${activeVideo.platformName} मा खोल्नुहोस्` : `Open on ${activeVideo.platformName}`}
+                  </span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
 
@@ -405,7 +498,7 @@ export const MediaPress: React.FC = () => {
                   type="button"
                   onClick={handleReplay}
                   className="p-1.5 rounded-lg text-stone-400 hover:text-amber-200 hover:bg-stone-800 transition-colors cursor-pointer"
-                  title="Restart interview from beginning"
+                  title={language === 'ne' ? 'भिडियो सुरुबाट फेरि सुरु गर्नुहोस्' : 'Restart interview from beginning'}
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
@@ -414,7 +507,7 @@ export const MediaPress: React.FC = () => {
                   type="button"
                   onClick={() => setActiveVideo(null)}
                   className="p-1.5 rounded-lg text-stone-400 hover:text-amber-200 hover:bg-stone-800 transition-colors cursor-pointer"
-                  title="Close video"
+                  title={language === 'ne' ? 'भिडियो बन्द गर्नुहोस्' : 'Close video'}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -448,21 +541,23 @@ export const MediaPress: React.FC = () => {
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs shadow-lg transition-transform hover:scale-105 cursor-pointer"
                       >
                         <RotateCcw className="w-3.5 h-3.5" />
-                        <span>Replay Interview</span>
+                        <span>{language === 'ne' ? 'भिडियो फेरि हेर्नुहोस्' : 'Replay Interview'}</span>
                       </button>
                     </div>
                   </div>
 
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold border border-emerald-500/30 mb-2">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Interview Complete</span>
+                    <span>{language === 'ne' ? 'भिडियो समाप्त' : 'Interview Complete'}</span>
                   </div>
 
                   <h3 className="text-base sm:text-lg font-serif font-bold text-amber-100 max-w-lg mb-1 truncate px-2">
                     {activeVideo.title}
                   </h3>
                   <p className="text-xs text-stone-400 max-w-md mb-4">
-                    Exclusive interview feature with Mrs. Shova Rai. Replay the interview below or explore her other initiatives.
+                    {language === 'ne' 
+                      ? 'श्रीमती शोभा राईसँगको विशेष अन्तर्वार्ता। तलबाट फेरि हेर्नुहोस् वा अन्य पहलहरू अन्वेषण गर्नुहोस्।'
+                      : 'Exclusive interview feature with Mrs. Shova Rai. Replay the interview below or explore her other initiatives.'}
                   </p>
 
                   <div className="flex items-center gap-3">
@@ -472,14 +567,14 @@ export const MediaPress: React.FC = () => {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-stone-950 font-bold text-xs hover:bg-amber-400 transition-colors cursor-pointer shadow-md"
                     >
                       <RotateCcw className="w-3.5 h-3.5" />
-                      <span>Watch Again</span>
+                      <span>{language === 'ne' ? 'फेरि हेर्नुहोस्' : 'Watch Again'}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setActiveVideo(null)}
                       className="px-4 py-2 rounded-xl bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-medium transition-colors cursor-pointer"
                     >
-                      Close Player
+                      {language === 'ne' ? 'बन्द गर्नुहोस्' : 'Close Player'}
                     </button>
                   </div>
                 </div>
@@ -490,7 +585,9 @@ export const MediaPress: React.FC = () => {
             <div className="px-5 py-2.5 bg-stone-950/90 border-t border-stone-800 flex flex-wrap items-center justify-between gap-3 text-[11px] text-stone-400">
               <span className="flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>Streaming official interview • Suggestions blocked</span>
+                <span>
+                  {language === 'ne' ? 'आधिकारिक अन्तर्वार्ता स्ट्रिमिङ • अनावश्यक सुझाव रोकिएको' : 'Streaming official interview • Suggestions blocked'}
+                </span>
               </span>
 
               <div className="flex items-center gap-3">
@@ -498,10 +595,10 @@ export const MediaPress: React.FC = () => {
                   type="button"
                   onClick={handleReplay}
                   className="text-amber-400 hover:text-amber-300 inline-flex items-center gap-1 text-[11px] font-medium transition-colors cursor-pointer"
-                  title="Restart video from beginning"
+                  title={language === 'ne' ? 'सुरुबाट भिडियो सुरु गर्नुहोस्' : 'Restart video from beginning'}
                 >
                   <RotateCcw className="w-3 h-3" />
-                  <span>Restart Video</span>
+                  <span>{language === 'ne' ? 'पुन: सुरु गर्नुहोस्' : 'Restart Video'}</span>
                 </button>
 
                 <span className="text-stone-700">•</span>
@@ -511,7 +608,9 @@ export const MediaPress: React.FC = () => {
                   onClick={() => setIsVideoEnded((prev) => !prev)}
                   className="text-stone-400 hover:text-stone-300 text-[11px] transition-colors cursor-pointer"
                 >
-                  {isVideoEnded ? 'Resume Video' : 'Finish & Replay'}
+                  {isVideoEnded 
+                    ? (language === 'ne' ? 'भिडियो जारी राख्नुहोस्' : 'Resume Video') 
+                    : (language === 'ne' ? 'समाप्त र रिप्ले' : 'Finish & Replay')}
                 </button>
 
                 <span className="text-stone-700">•</span>
@@ -522,7 +621,7 @@ export const MediaPress: React.FC = () => {
                   rel="noopener noreferrer"
                   className="text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1"
                 >
-                  <span>Open on {activeVideo.platformName}</span>
+                  <span>{language === 'ne' ? `${activeVideo.platformName} मा खोल्नुहोस्` : `Open on ${activeVideo.platformName}`}</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
               </div>

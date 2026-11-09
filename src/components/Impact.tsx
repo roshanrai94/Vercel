@@ -1,8 +1,10 @@
 import React from 'react';
 import { Sparkles, Heart, Users, ShieldCheck, Globe, Award, CheckCircle2 } from 'lucide-react';
-import { impactDomains, nationalAlignments } from '../data/portfolioData';
+import { useLanguage } from '../context/LanguageContext';
 
 export const Impact: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="impact" className="py-24 bg-stone-950 text-stone-100 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -11,14 +13,14 @@ export const Impact: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>COMMUNITY LEGACY</span>
+            <span>{t.impact.badge}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            Livelihood & Community Impact
+            {t.impact.heading}
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
           <p className="text-stone-300 text-sm sm:text-base leading-relaxed text-center">
-            Fostering sustainable livelihoods, empowering women, and preserving Himalayan artisanal heritage across Sikkim.
+            {t.impact.subheading}
           </p>
         </div>
 
@@ -29,10 +31,10 @@ export const Impact: React.FC = () => {
               <Globe className="w-5 h-5" />
             </div>
             <h3 className="text-2xl font-serif font-bold text-amber-100">
-              Community Vision
+              {t.impact.visionTitle}
             </h3>
             <p className="text-stone-300 text-sm sm:text-base leading-relaxed text-justify">
-              To transform local artisanal talents, organic food traditions, and beauty skills into sustainable, self-reliant micro-enterprises that generate economic dignity for women and youth across the Eastern Himalayas.
+              {t.impact.visionDesc}
             </p>
           </div>
 
@@ -41,10 +43,10 @@ export const Impact: React.FC = () => {
               <Heart className="w-5 h-5" />
             </div>
             <h3 className="text-2xl font-serif font-bold text-amber-100">
-              Empowerment Mission
+              {t.impact.missionTitle}
             </h3>
             <p className="text-stone-300 text-sm sm:text-base leading-relaxed text-justify">
-              Conducting hands-on vocational workshops in baking, hair styling, block printing, and food processing for Self-Help Groups (SHGs), rural women, and differently-abled individuals.
+              {t.impact.missionDesc}
             </p>
           </div>
         </div>
@@ -52,11 +54,11 @@ export const Impact: React.FC = () => {
         {/* Impact Domains Grid */}
         <div className="mb-20">
           <h3 className="text-2xl font-serif font-bold text-amber-100 text-center mb-10">
-            Core Livelihood Domains
+            {t.impact.domainsTitle}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {impactDomains.map((domain, idx) => (
+            {t.impact.domains.map((domain, idx) => (
               <div
                 key={idx}
                 className="bg-stone-900/60 p-6 rounded-2xl border border-stone-800 hover:border-amber-500/40 transition-all space-y-3"
@@ -80,18 +82,18 @@ export const Impact: React.FC = () => {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-2">
               <Award className="w-3.5 h-3.5" />
-              <span>NATIONAL ALIGNMENT</span>
+              <span>{t.impact.nationalTitle}</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100">
-              Aligned with National Development Goals
+              {t.impact.nationalTitle}
             </h3>
             <p className="text-stone-400 text-sm mt-2 text-center">
-              Every enterprise operated by Mrs. Shova Rai operates under formal regulatory certifications and national skill development frameworks.
+              {t.impact.nationalSub}
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {nationalAlignments.map((item, idx) => (
+            {t.impact.nationalAlignments.map((item, idx) => (
               <div key={idx} className="bg-stone-950 p-5 rounded-xl border border-stone-800 flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
                 <div>
