@@ -130,57 +130,69 @@ export const MentorshipForm: React.FC = () => {
   );
 
   return (
-    <section id="mentorship" className="py-16 sm:py-24 bg-[#12100e] border-b border-stone-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="mentorship" className="section-shell section-surface">
+      <div className="site-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Mentorship & Collaboration Narrative */}
           <div className="lg:col-span-5 space-y-5">
-            <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+            <p className="section-eyebrow">
               {language === 'ne' ? 'परामर्श र सहकार्य' : 'Mentorship & Collaborate With Me'}
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
               {language === 'ne'
                 ? 'सीप कार्यशाला, महिला समूह र व्यावसायिक सहकार्य'
                 : 'Workshops, SHG Training & Business Collaborations'}
             </h2>
-            <p className="text-base sm:text-lg text-stone-300 leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
               {language === 'ne'
                 ? 'शोभा राईले सिक्किमभरिका महिला स्वयं सहायता समूह (SHGs), युवा र संस्थाहरूका लागि बेकिङ, हेयर स्टाइलिङ, ब्लक प्रिन्टिङ र खाद्य प्रशोधन तालिम सञ्चालन गर्नुहुन्छ।'
                 : 'Shova Rai partners with women’s Self-Help Groups (SHGs), welfare organizations, colleges, and aspiring founders across Sikkim for practical skill workshops in salon trades, baking, FSSAI food preservation, and traditional block printing.'}
             </p>
-            <ul className="space-y-2.5 text-base text-stone-200 pt-2">
-              <li>
-                <span className="text-amber-400 font-semibold">·</span>{' '}
-                {language === 'ne'
-                  ? 'सैलुन र दुलही मेकअप अपोइन्टमेन्ट'
-                  : 'Salon bookings & bridal consultations in Gangtok'}
+            <ul className="space-y-3 text-base text-[var(--text)] pt-2">
+              <li className="flex items-start gap-2.5">
+                <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
+                  ·
+                </span>
+                <span>
+                  {language === 'ne'
+                    ? 'सैलुन र दुलही मेकअप अपोइन्टमेन्ट'
+                    : 'Salon bookings & bridal consultations in Gangtok'}
+                </span>
               </li>
-              <li>
-                <span className="text-amber-400 font-semibold">·</span>{' '}
-                {language === 'ne'
-                  ? 'जायल्स अर्गानिक अचार थोक वा खुद्रा अर्डर'
-                  : "Retail & bulk supply of Zayel's Organic Pickles"}
+              <li className="flex items-start gap-2.5">
+                <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
+                  ·
+                </span>
+                <span>
+                  {language === 'ne'
+                    ? 'जायल्स अर्गानिक अचार थोक वा खुद्रा अर्डर'
+                    : "Retail & bulk supply of Zayel's Organic Pickles"}
+                </span>
               </li>
-              <li>
-                <span className="text-amber-400 font-semibold">·</span>{' '}
-                {language === 'ne'
-                  ? 'अतिथि वक्ता र सामुदायिक तालिम सत्र'
-                  : 'Vocational workshops & speaking engagements'}
+              <li className="flex items-start gap-2.5">
+                <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
+                  ·
+                </span>
+                <span>
+                  {language === 'ne'
+                    ? 'अतिथि वक्ता र सामुदायिक तालिम सत्र'
+                    : 'Vocational workshops & speaking engagements'}
+                </span>
               </li>
             </ul>
           </div>
 
           {/* Right Column: Accessible Validated Enquiry Form */}
-          <div className="lg:col-span-7 bg-stone-950/90 border border-stone-800 rounded-2xl p-6 sm:p-8">
+          <div className="lg:col-span-7 card-static bg-[var(--bg)] p-6 sm:p-8">
             {status === 'success' ? (
-              <div className="space-y-4 py-6" role="status" aria-live="polite">
-                <div className="flex items-center gap-3 text-amber-300">
+              <div className="space-y-5 py-4" role="status" aria-live="polite">
+                <div className="flex items-center gap-3 text-[var(--success)]">
                   <CheckCircle2 className="w-7 h-7 shrink-0" aria-hidden="true" />
-                  <h3 className="font-serif text-2xl font-bold text-stone-50">
+                  <h3 className="font-serif text-2xl font-bold text-[var(--text)]">
                     {language === 'ne' ? 'धन्यवाद! सन्देश प्राप्त भयो' : 'Thank You — Enquiry Received'}
                   </h3>
                 </div>
-                <p className="text-base text-stone-300 leading-relaxed">
+                <p className="text-base text-[var(--text-muted)] leading-relaxed">
                   {serverNote ||
                     (language === 'ne'
                       ? 'तपाईंको सन्देश पठाइएको छ। शोभा राईले छिट्टै सम्पर्क गर्नुहुनेछ।'
@@ -198,9 +210,9 @@ export const MentorshipForm: React.FC = () => {
                         business: form.business,
                       })
                     }
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm transition-colors"
+                    className="btn-whatsapp"
                   >
-                    <MessageCircle className="w-4 h-4" aria-hidden="true" />
+                    <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>{language === 'ne' ? 'ह्वाट्सएपमा पठाउनुहोस्' : 'Send via WhatsApp'}</span>
                   </a>
                   <button
@@ -215,7 +227,7 @@ export const MentorshipForm: React.FC = () => {
                         honeypot: '',
                       });
                     }}
-                    className="px-4 py-3 rounded-lg border border-stone-700 text-stone-200 hover:text-amber-300 text-sm font-medium cursor-pointer"
+                    className="btn-secondary"
                   >
                     {language === 'ne' ? 'अर्को सन्देश पठाउनुहोस्' : 'Send Another Enquiry'}
                   </button>
@@ -241,7 +253,7 @@ export const MentorshipForm: React.FC = () => {
                   <div>
                     <label
                       htmlFor="enquiry-name"
-                      className="block text-sm font-medium text-stone-200 mb-1.5"
+                      className="block text-sm font-medium text-[var(--text)] mb-2"
                     >
                       {language === 'ne' ? 'पूरा नाम *' : 'Full Name *'}
                     </label>
@@ -258,11 +270,15 @@ export const MentorshipForm: React.FC = () => {
                         if (errors.name) setErrors({ ...errors, name: undefined });
                       }}
                       aria-invalid={Boolean(errors.name)}
-                      className="w-full px-4 py-3 rounded-lg bg-stone-900 border border-stone-700 text-base text-stone-100 placeholder:text-stone-500 focus:border-amber-400"
+                      className={`input-field ${errors.name ? '!border-[var(--error)]' : ''}`}
                     />
                     {errors.name && (
-                      <p className="mt-1.5 text-sm text-rose-400" role="alert">
-                        {errors.name}
+                      <p
+                        className="mt-2 text-sm text-[var(--error)] flex items-center gap-1.5"
+                        role="alert"
+                      >
+                        <AlertCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                        <span>{errors.name}</span>
                       </p>
                     )}
                   </div>
@@ -270,7 +286,7 @@ export const MentorshipForm: React.FC = () => {
                   <div>
                     <label
                       htmlFor="enquiry-phone"
-                      className="block text-sm font-medium text-stone-200 mb-1.5"
+                      className="block text-sm font-medium text-[var(--text)] mb-2"
                     >
                       {language === 'ne' ? 'फोन / ह्वाट्सएप नम्बर *' : 'Phone / WhatsApp *'}
                     </label>
@@ -287,11 +303,15 @@ export const MentorshipForm: React.FC = () => {
                         if (errors.phone) setErrors({ ...errors, phone: undefined });
                       }}
                       aria-invalid={Boolean(errors.phone)}
-                      className="w-full px-4 py-3 rounded-lg bg-stone-900 border border-stone-700 text-base text-stone-100 placeholder:text-stone-500 focus:border-amber-400"
+                      className={`input-field ${errors.phone ? '!border-[var(--error)]' : ''}`}
                     />
                     {errors.phone && (
-                      <p className="mt-1.5 text-sm text-rose-400" role="alert">
-                        {errors.phone}
+                      <p
+                        className="mt-2 text-sm text-[var(--error)] flex items-center gap-1.5"
+                        role="alert"
+                      >
+                        <AlertCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                        <span>{errors.phone}</span>
                       </p>
                     )}
                   </div>
@@ -300,7 +320,7 @@ export const MentorshipForm: React.FC = () => {
                 <div>
                   <label
                     htmlFor="enquiry-business"
-                    className="block text-sm font-medium text-stone-200 mb-1.5"
+                    className="block text-sm font-medium text-[var(--text)] mb-2"
                   >
                     {language === 'ne' ? 'सम्बन्धित व्यवसाय वा विषय *' : 'Business / Interest *'}
                   </label>
@@ -309,7 +329,7 @@ export const MentorshipForm: React.FC = () => {
                     name="business"
                     value={form.business}
                     onChange={(e) => setForm({ ...form, business: e.target.value })}
-                    className="w-full px-4 py-3 rounded-lg bg-stone-900 border border-stone-700 text-base text-stone-100 focus:border-amber-400"
+                    className="input-field"
                   >
                     <option value="Cutting Edge Hair & Beauty">
                       Cutting Edge Hair &amp; Beauty (Salon &amp; Bridal)
@@ -327,7 +347,7 @@ export const MentorshipForm: React.FC = () => {
                 <div>
                   <label
                     htmlFor="enquiry-message"
-                    className="block text-sm font-medium text-stone-200 mb-1.5"
+                    className="block text-sm font-medium text-[var(--text)] mb-2"
                   >
                     {language === 'ne' ? 'तपाईंको सन्देश *' : 'Message *'}
                   </label>
@@ -347,11 +367,15 @@ export const MentorshipForm: React.FC = () => {
                       if (errors.message) setErrors({ ...errors, message: undefined });
                     }}
                     aria-invalid={Boolean(errors.message)}
-                    className="w-full px-4 py-3 rounded-lg bg-stone-900 border border-stone-700 text-base text-stone-100 placeholder:text-stone-500 focus:border-amber-400"
+                    className={`input-field ${errors.message ? '!border-[var(--error)]' : ''}`}
                   />
                   {errors.message && (
-                    <p className="mt-1.5 text-sm text-rose-400" role="alert">
-                      {errors.message}
+                    <p
+                      className="mt-2 text-sm text-[var(--error)] flex items-center gap-1.5"
+                      role="alert"
+                    >
+                      <AlertCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
+                      <span>{errors.message}</span>
                     </p>
                   )}
                 </div>
@@ -359,20 +383,21 @@ export const MentorshipForm: React.FC = () => {
                 {status === 'error' && serverNote && (
                   <div
                     role="alert"
-                    className="p-3.5 rounded-lg bg-rose-950/60 border border-rose-500/40 text-sm text-rose-200 flex items-start gap-2"
+                    className="p-4 rounded-[12px] border border-[var(--error)] text-sm text-[var(--error)] flex items-start gap-2.5"
+                    style={{ backgroundColor: 'rgba(224, 122, 107, 0.1)' }}
                   >
                     <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
                     <span>{serverNote}</span>
                   </div>
                 )}
 
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-amber-400 hover:bg-amber-300 disabled:opacity-60 text-stone-950 font-semibold text-base transition-colors cursor-pointer min-h-[48px]"
+                    className="btn-primary"
                   >
-                    <Send className="w-4 h-4" aria-hidden="true" />
+                    <Send className="w-4 h-4 shrink-0" aria-hidden="true" />
                     <span>
                       {status === 'submitting'
                         ? language === 'ne'
@@ -384,7 +409,7 @@ export const MentorshipForm: React.FC = () => {
                     </span>
                   </button>
 
-                  <p className="text-xs text-stone-400">
+                  <p className="text-sm text-[var(--text-muted)]">
                     {language === 'ne'
                       ? 'प्रत्यक्ष जवाफको लागि ह्वाट्सएप वा फोन प्रयोग गर्नुहोस्।'
                       : `Or email ${SITE_CONFIG.email}`}

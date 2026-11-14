@@ -1,45 +1,311 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   Centralized Brand & Design Tokens (60-30-10 Dark Warm Luxury System)
+   ========================================================================== */
+:root {
+  /* Core Surfaces & Neutrals (60% / 30%) */
+  --bg: #0c0a09;
+  --surface: #171412;
+  --surface-2: #211c19;
+  --border: #2e2722;
+  --text: #f5efe6;
+  --text-muted: #b8ad9f;
+
+  /* Primary Gold Accent (10%) */
+  --gold: #d4a94f;
+  --gold-hover: #e6bf6a;
+  --gold-soft: rgba(212, 169, 79, 0.12);
+  --on-gold: #1a1408;
+
+  /* Semantic & Conversion Tokens */
+  --whatsapp: #25d366;
+  --whatsapp-hover: #2fe071;
+  --success: #6fbf8b;
+  --error: #e07a6b;
+
+  /* Business Accent Tokens (card top border, icon, small badge only) */
+  --salon: #d9a08f;
+  --salon-soft: rgba(217, 160, 143, 0.12);
+  --blush: #e8a5b5;
+  --blush-soft: rgba(232, 165, 181, 0.12);
+  --zayel: #d9822b;
+  --zayel-soft: rgba(217, 130, 43, 0.12);
+}
+
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     font-size: 16px;
     color-scheme: dark;
     scroll-behavior: smooth;
+    background-color: var(--bg);
+    color: var(--text);
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-soft) var(--border);
   }
 
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     font-size: 1rem;
     line-height: 1.65;
-    background-color: #0c0a09;
-    color: #f5f5f4;
+    background-color: var(--bg);
+    color: var(--text);
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-serif {
+  h1,
+  h2,
+  h3 {
     font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--text);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
-  .font-sans {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  h4 {
+    color: var(--text);
+    line-height: 1.3;
   }
 
-  /* High-visibility keyboard focus rings for accessibility */
+  /* Custom Selection Highlight */
+  ::selection {
+    background-color: var(--gold-soft);
+    color: var(--text);
+  }
+
+  /* Thin Styled Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gold-soft);
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 169, 79, 0.35);
+  }
+
+  /* High-Visibility Gold Focus Ring on Every Interactive Element */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
   select:focus-visible,
-  textarea:focus-visible {
-    outline: 2px solid #fbbf24;
-    outline-offset: 2px;
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
   }
 }
 
-/* Offset anchor targets beneath sticky header */
+/* ==========================================================================
+   Layout, Spacing (8px base) & Component Primitives
+   ========================================================================== */
+.site-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-inline: 32px;
+  }
+}
+
+.section-shell {
+  padding-block: 64px;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .section-shell {
+    padding-block: 96px;
+  }
+}
+
+.section-bg {
+  background-color: var(--bg);
+}
+
+.section-surface {
+  background-color: var(--surface);
+}
+
+.section-eyebrow {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Offset Anchor Targets Beneath Sticky Header */
 section[id] {
-  scroll-margin-top: 5.25rem;
+  scroll-margin-top: 4.5rem;
+}
+
+/* Cards: --surface (or --surface-2 inside surface sections), 1px --border, 16px radius, soft shadow & hover lift */
+.card-elevated {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.55);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.card-elevated--raised {
+  background-color: var(--surface-2);
+}
+
+.card-elevated:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 169, 79, 0.4);
+  box-shadow: 0 18px 40px -14px rgba(0, 0, 0, 0.7);
+}
+
+.card-static {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+}
+
+.card-static--raised {
+  background-color: var(--surface-2);
+}
+
+/* Buttons: 12px radius, minimum 48px tap height, clear hover/active/disabled states */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: var(--gold);
+  color: var(--on-gold);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 120ms ease, opacity 180ms ease;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--gold-hover);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 120ms ease;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--gold-soft);
+  color: var(--gold-hover);
+  border-color: var(--gold-hover);
+}
+
+.btn-secondary:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background-color: var(--whatsapp);
+  color: var(--on-gold);
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 120ms ease, opacity 180ms ease;
+}
+
+.btn-whatsapp:hover:not(:disabled) {
+  background-color: var(--whatsapp-hover);
+}
+
+.btn-whatsapp:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+/* Form Inputs */
+.input-field {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 1rem;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.input-field::placeholder {
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+.input-field:focus {
+  border-color: var(--gold);
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 /* Respect user reduced motion preferences */
@@ -54,5 +320,12 @@ section[id] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .card-elevated:hover,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .btn-whatsapp:active {
+    transform: none !important;
   }
 }

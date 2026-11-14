@@ -52,11 +52,11 @@ export default function App() {
 
   return (
     <LanguageProvider>
-      <div className="min-h-screen bg-[#0c0a09] text-stone-100 font-sans">
+      <div className="min-h-screen bg-[var(--bg)] text-[var(--text)] font-sans">
         {/* Skip-to-content accessibility link */}
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-lg focus:bg-amber-400 focus:text-stone-950 focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-3 focus:rounded-[12px] focus:bg-[var(--gold)] focus:text-[var(--on-gold)] focus:font-semibold"
         >
           Skip to main content
         </a>
@@ -64,7 +64,7 @@ export default function App() {
         {/* Sticky Navigation Header */}
         <Navbar />
 
-        {/* Single-Page Anchor Sections */}
+        {/* Single-Page Anchor Sections (Alternating --bg and --surface with 1px --border dividers) */}
         <main id="main-content">
           <Hero />
           <About />

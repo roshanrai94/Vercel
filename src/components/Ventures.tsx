@@ -1,26 +1,51 @@
 import React from 'react';
-import { MessageCircle, MapPin, Clock, Check } from 'lucide-react';
-import { BUSINESSES, buildWhatsAppUrl } from '../data/siteConfig';
+import { MessageCircle, MapPin, Clock, Check, Scissors, ShoppingBag, Flame } from 'lucide-react';
+import { BUSINESSES, buildWhatsAppUrl, BusinessItem } from '../data/siteConfig';
 import { OptimizedImage } from './OptimizedImage';
 import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
+
+const BUSINESS_STYLES: Record<
+  BusinessItem['id'],
+  {
+    accentVar: string;
+    softBgVar: string;
+    Icon: React.FC<{ className?: string; style?: React.CSSProperties }>;
+  }
+> = {
+  'cutting-edge': {
+    accentVar: 'var(--salon)',
+    softBgVar: 'var(--salon-soft)',
+    Icon: Scissors,
+  },
+  blush: {
+    accentVar: 'var(--blush)',
+    softBgVar: 'var(--blush-soft)',
+    Icon: ShoppingBag,
+  },
+  zayels: {
+    accentVar: 'var(--zayel)',
+    softBgVar: 'var(--zayel-soft)',
+    Icon: Flame,
+  },
+};
 
 export const Ventures: React.FC = () => {
   const { language } = useLanguage();
 
   return (
-    <section id="businesses" className="py-16 sm:py-24 bg-[#0c0a09] border-b border-stone-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-12">
-        <div className="max-w-2xl space-y-3">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+    <section id="businesses" className="section-shell section-bg">
+      <div className="site-container space-y-12">
+        <div className="max-w-2xl space-y-4">
+          <p className="section-eyebrow">
             {language === 'ne' ? 'प्रमुख व्यवसायहरू' : 'My Businesses'}
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-[1.18]">
             {language === 'ne'
               ? 'नामनाङ, गान्तोकमा अवस्थित तीन प्रमुख उद्यमहरू'
               : 'Three Local Enterprises in Namnang, Gangtok'}
           </h2>
-          <p className="text-base sm:text-lg text-stone-300">
+          <p className="text-base sm:text-lg text-[var(--text-muted)]">
             {language === 'ne'
               ? 'अपोइन्टमेन्ट, बुटिक जानकारी वा प्राङ्गारिक अचार अर्डरका लागि प्रत्येक व्यवसायमा सिधै ह्वाट्सएप वा नक्सा प्रयोग गर्नुहोस्।'
               : 'Book your salon visit, explore contemporary and ethnic styles, or order small-batch organic Sikkimese pickles directly via WhatsApp.'}
@@ -28,7 +53,7 @@ export const Ventures: React.FC = () => {
         </div>
 
         {/* 3 Business Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {BUSINESSES.map((biz) => {
             const name = language === 'ne' ? biz.nameNe : biz.name;
             const category = language === 'ne' ? biz.categoryNe : biz.category;
@@ -36,14 +61,17 @@ export const Ventures: React.FC = () => {
             const highlights = language === 'ne' ? biz.highlightsNe : biz.highlights;
             const hours = language === 'ne' ? biz.hoursNe : biz.hours;
             const whatsappUrl = buildWhatsAppUrl(biz.whatsappMessage);
+            const styleTokens = BUSINESS_STYLES[biz.id];
+            const BizIcon = styleTokens.Icon;
 
             return (
               <article
                 key={biz.id}
-                className="flex flex-col rounded-2xl bg-stone-900/70 border border-stone-800 overflow-hidden"
+                className="card-elevated flex flex-col overflow-hidden"
+                style={{ borderTop: `3px solid ${styleTokens.accentVar}` }}
               >
                 {/* Business Photo */}
-                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-950 border-b border-stone-800">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--bg)] border-b border-[var(--border)]">
                   <OptimizedImage
                     webpSrc={biz.imageWebp}
                     fallbackSrc={biz.imageFallback}
@@ -58,34 +86,58 @@ export const Ventures: React.FC = () => {
                 {/* Card Body */}
                 <div className="p-6 flex-1 flex flex-col justify-between gap-6">
                   <div className="space-y-4">
-                    <div className="space-y-1">
-                      <p className="text-xs font-medium text-amber-400">
-                        {category} <span aria-hidden="true">·</span> {biz.established}
-                      </p>
-                      <h3 className="font-serif text-2xl font-bold text-stone-50">{name}</h3>
+                    {/* Small business-accent badge + icon + established */}
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[8px] text-xs font-semibold"
+                        style={{
+                          backgroundColor: styleTokens.softBgVar,
+                          color: styleTokens.accentVar,
+                        }}
+                      >
+                        <BizIcon className="w-3.5 h-3.5 shrink-0" />
+                        <span>{category}</span>
+                      </span>
                     </div>
 
-                    <p className="text-base text-stone-300 leading-relaxed line-clamp-3">
+                    <div className="space-y-1">
+                      <h3 className="font-serif text-2xl font-bold text-[var(--text)]">{name}</h3>
+                      <p className="text-xs font-medium text-[var(--text-muted)]">
+                        {biz.established}
+                      </p>
+                    </div>
+
+                    <p className="text-base text-[var(--text)] leading-relaxed line-clamp-3">
                       {description}
                     </p>
 
                     <ul className="space-y-2 pt-1">
                       {highlights.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-stone-200">
-                          <Check className="w-4 h-4 text-amber-400 shrink-0 mt-1" aria-hidden="true" />
+                        <li
+                          key={item}
+                          className="flex items-start gap-2.5 text-sm sm:text-base text-[var(--text-muted)]"
+                        >
+                          <Check
+                            className="w-4 h-4 shrink-0 mt-1"
+                            style={{ color: styleTokens.accentVar }}
+                            aria-hidden="true"
+                          />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
 
-                    <p className="flex items-start gap-2 text-sm text-stone-400 pt-1">
-                      <Clock className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+                    <p className="flex items-start gap-2 text-sm text-[var(--text-muted)] pt-1">
+                      <Clock
+                        className="w-4 h-4 shrink-0 mt-0.5 text-[var(--gold)]"
+                        aria-hidden="true"
+                      />
                       <span>{hours}</span>
                     </p>
                   </div>
 
                   {/* Card Actions: WhatsApp + Directions */}
-                  <div className="grid grid-cols-2 gap-3 pt-4 border-t border-stone-800">
+                  <div className="grid grid-cols-2 gap-3 pt-4 border-t border-[var(--border)]">
                     <a
                       href={whatsappUrl}
                       target="_blank"
@@ -97,7 +149,7 @@ export const Ventures: React.FC = () => {
                           business: biz.id,
                         })
                       }
-                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm transition-colors min-h-[44px]"
+                      className="btn-whatsapp !px-3"
                     >
                       <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>WhatsApp</span>
@@ -114,9 +166,9 @@ export const Ventures: React.FC = () => {
                           business: biz.id,
                         })
                       }
-                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-stone-950 hover:bg-stone-800 text-stone-100 border border-stone-700 font-semibold text-sm transition-colors min-h-[44px]"
+                      className="btn-secondary !px-3"
                     >
-                      <MapPin className="w-4 h-4 text-amber-400 shrink-0" aria-hidden="true" />
+                      <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
                       <span>{language === 'ne' ? 'दिशा' : 'Directions'}</span>
                     </a>
                   </div>

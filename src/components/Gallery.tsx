@@ -42,18 +42,18 @@ export const Gallery: React.FC = () => {
   const activePhoto = lightboxIndex !== null ? filteredPhotos[lightboxIndex] : null;
 
   return (
-    <section id="gallery" className="py-16 sm:py-24 bg-[#0c0a09] border-b border-stone-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+    <section id="gallery" className="section-shell section-bg">
+      <div className="site-container space-y-10">
         <div className="max-w-2xl space-y-3">
-          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+          <p className="section-eyebrow">
             {language === 'ne' ? 'तस्बिर ग्यालरी' : 'Gallery'}
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
             {language === 'ne'
               ? 'कार्य, कला, उत्पादन र सम्मानका झलकहरू'
               : 'Inside the Salon, Boutique, Kitchen & Workshops'}
           </h2>
-          <p className="text-base sm:text-lg text-stone-300">
+          <p className="text-base sm:text-lg text-[var(--text-muted)]">
             {language === 'ne'
               ? 'कुनै पनि तस्बिरमा क्लिक गरी ठूलो आकारमा हेर्नुहोस्।'
               : 'Select any image to inspect full-size photography from Gangtok.'}
@@ -61,7 +61,7 @@ export const Gallery: React.FC = () => {
         </div>
 
         {/* Interactive Filter Tabs */}
-        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter gallery photos">
+        <div className="flex flex-wrap gap-3" role="tablist" aria-label="Filter gallery photos">
           {categories.map((cat) => {
             const active = selectedCategory === cat;
             return (
@@ -74,10 +74,10 @@ export const Gallery: React.FC = () => {
                   setSelectedCategory(cat);
                   setLightboxIndex(null);
                 }}
-                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer whitespace-nowrap min-h-[40px] ${
+                className={`px-5 py-3 rounded-[12px] text-sm font-semibold transition-colors cursor-pointer whitespace-nowrap min-h-[48px] ${
                   active
-                    ? 'bg-amber-400 text-stone-950 font-semibold'
-                    : 'bg-stone-900 text-stone-300 border border-stone-800 hover:text-amber-300'
+                    ? 'bg-[var(--gold)] text-[var(--on-gold)] border border-transparent'
+                    : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)] hover:text-[var(--gold)]'
                 }`}
               >
                 {cat === 'ALL' ? (language === 'ne' ? 'सबै' : 'All Photos') : cat}
@@ -87,7 +87,7 @@ export const Gallery: React.FC = () => {
         </div>
 
         {/* Responsive Image Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredPhotos.map((item, idx) => {
             const title = language === 'ne' ? item.titleNe : item.title;
             return (
@@ -96,9 +96,9 @@ export const Gallery: React.FC = () => {
                 type="button"
                 onClick={() => setLightboxIndex(idx)}
                 aria-label={`Open full-size image: ${title}`}
-                className="group text-left rounded-2xl bg-stone-900/70 border border-stone-800 hover:border-amber-400/60 overflow-hidden transition-colors cursor-pointer focus-visible:outline-2"
+                className="group card-elevated text-left overflow-hidden cursor-pointer"
               >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-950">
+                <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--bg)] border-b border-[var(--border)]">
                   <OptimizedImage
                     webpSrc={item.webp}
                     fallbackSrc={item.fallback}
@@ -109,9 +109,9 @@ export const Gallery: React.FC = () => {
                     fallbackTitle={title}
                   />
                 </div>
-                <div className="p-4 space-y-1">
-                  <p className="text-xs font-medium text-amber-400">{item.category}</p>
-                  <h3 className="font-serif text-lg font-bold text-stone-100 group-hover:text-amber-200 transition-colors">
+                <div className="p-5 space-y-1">
+                  <p className="text-xs font-semibold text-[var(--gold)]">{item.category}</p>
+                  <h3 className="font-serif text-lg font-bold text-[var(--text)] group-hover:text-[var(--gold)] transition-colors">
                     {title}
                   </h3>
                 </div>
@@ -127,17 +127,18 @@ export const Gallery: React.FC = () => {
           role="dialog"
           aria-modal="true"
           aria-label={language === 'ne' ? activePhoto.titleNe : activePhoto.title}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center p-4"
+          style={{ backgroundColor: 'rgba(12, 10, 9, 0.94)' }}
           onClick={() => setLightboxIndex(null)}
         >
           <div
-            className="relative max-w-4xl w-full bg-stone-950 border border-stone-800 rounded-2xl p-4 sm:p-6 space-y-4"
+            className="card-static relative max-w-4xl w-full p-4 sm:p-6 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between gap-4 border-b border-stone-800 pb-3">
+            <div className="flex items-center justify-between gap-4 border-b border-[var(--border)] pb-3">
               <div>
-                <p className="text-xs font-medium text-amber-400">{activePhoto.category}</p>
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-stone-100">
+                <p className="text-xs font-semibold text-[var(--gold)]">{activePhoto.category}</p>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[var(--text)]">
                   {language === 'ne' ? activePhoto.titleNe : activePhoto.title}
                 </h3>
               </div>
@@ -146,13 +147,13 @@ export const Gallery: React.FC = () => {
                 type="button"
                 onClick={() => setLightboxIndex(null)}
                 aria-label="Close lightbox"
-                className="w-11 h-11 rounded-lg bg-stone-900 border border-stone-700 text-stone-200 hover:text-amber-300 flex items-center justify-center cursor-pointer shrink-0"
+                className="w-12 h-12 rounded-[12px] bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] hover:text-[var(--gold)] hover:border-[var(--gold)] flex items-center justify-center cursor-pointer shrink-0 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="relative flex items-center justify-center bg-black rounded-xl overflow-hidden max-h-[70vh]">
+            <div className="relative flex items-center justify-center bg-[var(--bg)] border border-[var(--border)] rounded-[12px] overflow-hidden max-h-[70vh]">
               <OptimizedImage
                 webpSrc={activePhoto.webp}
                 fallbackSrc={activePhoto.fallback}
@@ -173,13 +174,13 @@ export const Gallery: React.FC = () => {
                   )
                 }
                 aria-label="Previous image"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 border border-stone-800 text-sm text-stone-200 hover:text-amber-300 cursor-pointer min-h-[44px]"
+                className="btn-secondary !px-4 !text-sm"
               >
                 <ChevronLeft className="w-4 h-4" />
                 <span>Previous</span>
               </button>
 
-              <span className="text-sm text-stone-400 tabular-nums">
+              <span className="text-sm text-[var(--text-muted)] tabular-nums">
                 {(lightboxIndex ?? 0) + 1} / {filteredPhotos.length}
               </span>
 
@@ -191,7 +192,7 @@ export const Gallery: React.FC = () => {
                   )
                 }
                 aria-label="Next image"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 border border-stone-800 text-sm text-stone-200 hover:text-amber-300 cursor-pointer min-h-[44px]"
+                className="btn-secondary !px-4 !text-sm"
               >
                 <span>Next</span>
                 <ChevronRight className="w-4 h-4" />

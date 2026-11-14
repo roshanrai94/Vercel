@@ -32,15 +32,15 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   if (hasError) {
     return (
       <div
-        className={`flex items-center justify-center bg-stone-900 border border-stone-800 text-center p-6 ${className}`}
+        className={`flex items-center justify-center bg-[var(--surface-2)] border border-[var(--border)] text-center p-6 ${className}`}
         role="img"
         aria-label={alt}
       >
         <div className="space-y-1">
-          <p className="font-serif text-lg font-semibold text-amber-300">
+          <p className="font-serif text-lg font-semibold text-[var(--gold)]">
             {fallbackTitle || 'Shova Rai · Gangtok'}
           </p>
-          <p className="text-sm text-stone-400">{alt}</p>
+          <p className="text-sm text-[var(--text-muted)]">{alt}</p>
         </div>
       </div>
     );

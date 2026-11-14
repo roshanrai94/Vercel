@@ -28,7 +28,7 @@ export const FloatingWhatsApp: React.FC = () => {
           business: 'general',
         })
       }
-      className="fixed bottom-4 right-4 z-40 inline-flex items-center gap-2 px-4 h-12 rounded-full bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm shadow-xl transition-colors"
+      className="btn-whatsapp fixed bottom-4 right-4 z-40 shadow-[0_14px_32px_-8px_rgba(0,0,0,0.75)]"
     >
       <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
       <span className="hidden sm:inline">WhatsApp</span>
@@ -58,30 +58,30 @@ export const CookieNotice: React.FC<{ onOpenPrivacy: () => void }> = ({ onOpenPr
   return (
     <aside
       aria-label="Cookie and analytics notice"
-      className="fixed bottom-4 left-4 right-20 sm:right-auto sm:max-w-md z-40 p-4 rounded-xl bg-stone-900/95 border border-stone-700 shadow-2xl text-sm text-stone-200 backdrop-blur-md"
+      className="card-static card-static--raised fixed bottom-4 left-4 right-20 sm:right-auto sm:max-w-md z-40 p-4 sm:p-5 text-sm text-[var(--text)] backdrop-blur-md"
     >
       <p className="leading-relaxed">
         We use basic privacy-friendly analytics to understand which buttons help visitors reach us.{' '}
         <button
           type="button"
           onClick={onOpenPrivacy}
-          className="text-amber-300 hover:text-amber-200 underline underline-offset-2 cursor-pointer"
+          className="text-[var(--gold)] hover:text-[var(--gold-hover)] underline underline-offset-2 cursor-pointer"
         >
           Privacy Notice
         </button>
       </p>
-      <div className="flex items-center gap-2.5 mt-3">
+      <div className="flex items-center gap-3 mt-3">
         <button
           type="button"
           onClick={() => handleChoice('accepted')}
-          className="px-3.5 py-1.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-xs cursor-pointer"
+          className="btn-primary !px-4 !text-sm"
         >
           Accept
         </button>
         <button
           type="button"
           onClick={() => handleChoice('declined')}
-          className="px-3.5 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-200 text-xs font-medium cursor-pointer"
+          className="btn-secondary !px-4 !text-sm"
         >
           Decline
         </button>
@@ -113,40 +113,41 @@ export const PrivacyModal: React.FC<{ open: boolean; onClose: () => void }> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="privacy-modal-title"
-      className="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center p-4"
+      style={{ backgroundColor: 'rgba(12, 10, 9, 0.88)' }}
       onClick={onClose}
     >
       <div
-        className="max-w-lg w-full rounded-2xl bg-stone-950 border border-stone-800 p-6 sm:p-8 space-y-4 text-base text-stone-300"
+        className="card-static max-w-lg w-full p-6 sm:p-8 space-y-4 text-base text-[var(--text-muted)]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between border-b border-stone-800 pb-3">
-          <h2 id="privacy-modal-title" className="font-serif text-2xl font-bold text-stone-100">
+        <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+          <h2 id="privacy-modal-title" className="font-serif text-2xl font-bold text-[var(--text)]">
             Privacy &amp; Cookie Notice
           </h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close privacy notice"
-            className="w-10 h-10 rounded-lg bg-stone-900 border border-stone-700 text-stone-200 hover:text-amber-300 flex items-center justify-center cursor-pointer"
+            className="w-12 h-12 rounded-[12px] bg-[var(--surface-2)] border border-[var(--border)] text-[var(--text)] hover:text-[var(--gold)] hover:border-[var(--gold)] flex items-center justify-center cursor-pointer transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         <p className="leading-relaxed">
-          <strong>Enquiry Form Data:</strong> When you submit the mentorship or contact form on
-          shovarai.in, your name, phone number, selected business, and message are used solely to
-          respond to your booking or collaboration request.
+          <strong className="text-[var(--text)]">Enquiry Form Data:</strong> When you submit the
+          mentorship or contact form on shovarai.in, your name, phone number, selected business, and
+          message are used solely to respond to your booking or collaboration request.
         </p>
 
         <p className="leading-relaxed">
-          <strong>Analytics &amp; Cookies:</strong> With your consent, this website uses Google
-          Analytics 4 (with IP anonymization) to measure clicks on WhatsApp, phone, and enquiry
-          buttons. You may decline analytics cookies at any time.
+          <strong className="text-[var(--text)]">Analytics &amp; Cookies:</strong> With your consent,
+          this website uses Google Analytics 4 (with IP anonymization) to measure clicks on WhatsApp,
+          phone, and enquiry buttons. You may decline analytics cookies at any time.
         </p>
 
-        <p className="text-sm text-stone-400">
+        <p className="text-sm text-[var(--text-muted)]">
           Contact: {SITE_CONFIG.email} · {SITE_CONFIG.phoneDisplay} · {SITE_CONFIG.addressFull}
         </p>
 
@@ -154,7 +155,7 @@ export const PrivacyModal: React.FC<{ open: boolean; onClose: () => void }> = ({
           <button
             type="button"
             onClick={onClose}
-            className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm cursor-pointer"
+            className="btn-primary !px-5 !text-sm"
           >
             Close
           </button>
@@ -169,15 +170,13 @@ export const PrivacyModal: React.FC<{ open: boolean; onClose: () => void }> = ({
  */
 export const NotFound: React.FC<{ onGoHome: () => void }> = ({ onGoHome }) => {
   return (
-    <main className="min-h-screen bg-[#0c0a09] text-stone-100 flex items-center justify-center p-6">
-      <div className="max-w-md w-full rounded-2xl bg-stone-900 border border-stone-800 p-8 text-center space-y-5">
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-amber-400">
-          404 · Page Not Found
-        </p>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-stone-50">
+    <main className="min-h-screen bg-[var(--bg)] text-[var(--text)] flex items-center justify-center p-6">
+      <div className="card-static max-w-md w-full p-8 text-center space-y-5">
+        <p className="section-eyebrow">404 · Page Not Found</p>
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-[var(--text)]">
           Page Not Found
         </h1>
-        <p className="text-base text-stone-300 leading-relaxed">
+        <p className="text-base text-[var(--text-muted)] leading-relaxed">
           The page you looked for is not available. Return to the main page to explore Cutting Edge
           Hair &amp; Beauty, Blush Fashion Store, and Zayel&apos;s Organic Pickles.
         </p>
@@ -185,7 +184,7 @@ export const NotFound: React.FC<{ onGoHome: () => void }> = ({ onGoHome }) => {
           <button
             type="button"
             onClick={onGoHome}
-            className="px-5 py-3 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm cursor-pointer"
+            className="btn-primary !text-sm"
           >
             Return to Home
           </button>
@@ -193,7 +192,7 @@ export const NotFound: React.FC<{ onGoHome: () => void }> = ({ onGoHome }) => {
             href={buildWhatsAppUrl('Hi Shova, I visited shovarai.in and would like to connect.')}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-3 rounded-lg border border-stone-700 hover:border-amber-400 text-stone-100 font-semibold text-sm"
+            className="btn-whatsapp !text-sm"
           >
             WhatsApp {SITE_CONFIG.phoneDisplay}
           </a>

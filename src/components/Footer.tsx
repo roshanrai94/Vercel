@@ -23,25 +23,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
   ];
 
   return (
-    <footer className="bg-[#0c0a09] text-stone-300 border-t border-stone-800 py-14">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+    <footer className="bg-[var(--bg)] text-[var(--text-muted)] py-16">
+      <div className="site-container space-y-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Brand Summary */}
           <div className="md:col-span-5 space-y-3">
-            <p className="font-serif text-2xl font-bold text-stone-100">
+            <p className="font-serif text-2xl font-bold text-[var(--text)]">
               {SITE_CONFIG.brandFullName}
             </p>
-            <p className="text-base text-stone-300 leading-relaxed max-w-sm">
+            <p className="text-base text-[var(--text-muted)] leading-relaxed max-w-sm">
               {language === 'ne'
                 ? 'नामनाङ, गान्तोक, सिक्किममा सौन्दर्य, फेसन, प्राङ्गारिक खाद्य उत्पादन र महिला सशक्तीकरणमा समर्पित।'
                 : 'Entrepreneur, master stylist, and community mentor in Namnang, Gangtok, Sikkim.'}
             </p>
-            <p className="text-sm text-stone-400">{SITE_CONFIG.addressFull}</p>
+            <p className="text-sm text-[var(--text-muted)]">{SITE_CONFIG.addressFull}</p>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-4 space-y-3">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+            <h3 className="section-eyebrow">
               {language === 'ne' ? 'द्रुत लिङ्कहरू' : 'Quick Links'}
             </h3>
             <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
@@ -49,7 +49,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-stone-300 hover:text-amber-300 transition-colors py-1"
+                  className="text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors py-1"
                 >
                   {link.label}
                 </a>
@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
 
           {/* Contact & Language */}
           <div className="md:col-span-3 space-y-3 text-sm">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+            <h3 className="section-eyebrow">
               {language === 'ne' ? 'सम्पर्क विवरण' : 'Contact Details'}
             </h3>
             <ul className="space-y-2">
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                       business: 'general',
                     })
                   }
-                  className="text-stone-200 hover:text-amber-300 transition-colors tabular-nums"
+                  className="text-[var(--text)] hover:text-[var(--gold)] transition-colors tabular-nums"
                 >
                   {SITE_CONFIG.phoneDisplay}
                 </a>
@@ -81,7 +81,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               <li>
                 <a
                   href={`mailto:${SITE_CONFIG.email}`}
-                  className="text-stone-200 hover:text-amber-300 transition-colors break-all"
+                  className="text-[var(--text)] hover:text-[var(--gold)] transition-colors break-all"
                 >
                   {SITE_CONFIG.email}
                 </a>
@@ -92,10 +92,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
+                className={`px-4 py-2 rounded-[12px] min-h-[48px] text-xs font-semibold cursor-pointer transition-colors ${
                   language === 'en'
-                    ? 'bg-amber-400 text-stone-950'
-                    : 'bg-stone-900 text-stone-300 border border-stone-800'
+                    ? 'bg-[var(--gold)] text-[var(--on-gold)] border border-transparent'
+                    : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
                 }`}
               >
                 English
@@ -103,10 +103,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               <button
                 type="button"
                 onClick={() => setLanguage('ne')}
-                className={`px-2.5 py-1 rounded text-xs font-semibold cursor-pointer ${
+                className={`px-4 py-2 rounded-[12px] min-h-[48px] text-xs font-semibold cursor-pointer transition-colors ${
                   language === 'ne'
-                    ? 'bg-amber-400 text-stone-950'
-                    : 'bg-stone-900 text-stone-300 border border-stone-800'
+                    ? 'bg-[var(--gold)] text-[var(--on-gold)] border border-transparent'
+                    : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
                 }`}
               >
                 नेपाली
@@ -116,7 +116,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
         </div>
 
         {/* Bottom Copyright & Privacy Notice */}
-        <div className="pt-6 border-t border-stone-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stone-400">
+        <div className="pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--text-muted)]">
           <p>
             © {new Date().getFullYear()} {SITE_CONFIG.brandFullName}. All rights reserved. Namnang,
             Gangtok, Sikkim.
@@ -124,7 +124,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
           <button
             type="button"
             onClick={onOpenPrivacy}
-            className="text-stone-300 hover:text-amber-300 underline underline-offset-4 cursor-pointer"
+            className="min-h-[48px] px-2 text-[var(--text)] hover:text-[var(--gold)] underline underline-offset-4 cursor-pointer transition-colors"
           >
             {language === 'ne' ? 'गोपनीयता र कुकी सूचना' : 'Privacy & Cookie Notice'}
           </button>

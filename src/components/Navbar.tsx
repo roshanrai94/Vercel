@@ -27,6 +27,7 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -49,18 +50,18 @@ export const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full transition-colors duration-200 ${
-        scrolled
-          ? 'bg-[#0c0a09]/95 border-b border-stone-800 backdrop-blur-md'
-          : 'bg-[#0c0a09]/90 border-b border-stone-900 backdrop-blur-sm'
-      }`}
+      className="sticky top-0 z-40 w-full backdrop-blur-md transition-colors duration-200"
+      style={{
+        backgroundColor: scrolled ? 'rgba(12, 10, 9, 0.92)' : 'rgba(12, 10, 9, 0.72)',
+        borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+      }}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4 sm:gap-8">
+      <div className="site-container h-[72px] flex items-center justify-between gap-4 sm:gap-8">
         {/* Zone 1: Single-line Brand Wordmark */}
         <a
           href="#home"
           onClick={(e) => handleLinkClick(e, '#home')}
-          className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-amber-100 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0"
+          className="font-serif text-2xl font-bold tracking-tight text-[var(--text)] hover:text-[var(--gold)] transition-colors whitespace-nowrap shrink-0"
         >
           {SITE_CONFIG.brandName}
         </a>
@@ -72,20 +73,20 @@ export const Navbar: React.FC = () => {
               key={link.href}
               href={link.href}
               onClick={(e) => handleLinkClick(e, link.href)}
-              className="text-sm font-medium text-stone-300 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0"
+              className="text-sm font-medium text-[var(--text-muted)] hover:text-[var(--gold)] transition-colors whitespace-nowrap shrink-0 py-2"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Zone 3: Visible Primary CTA ("Book Now") + Mobile Menu Button */}
-        <div className="flex items-center gap-2.5 shrink-0">
+        {/* Zone 3: Primary Gold "Book Now" CTA + Mobile Menu Button */}
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <button
             type="button"
             onClick={() => setLanguage(language === 'en' ? 'ne' : 'en')}
             aria-label={language === 'en' ? 'Switch language to Nepali' : 'Switch language to English'}
-            className="hidden sm:inline-flex items-center justify-center px-2.5 py-2 rounded-lg text-xs font-semibold text-stone-300 hover:text-amber-300 border border-stone-800 hover:border-stone-700 transition-colors cursor-pointer whitespace-nowrap"
+            className="hidden sm:inline-flex items-center justify-center min-h-[48px] px-3 rounded-[12px] text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--gold)] border border-[var(--border)] hover:border-[var(--gold)] bg-[var(--surface)] transition-colors cursor-pointer whitespace-nowrap"
           >
             {language === 'en' ? 'नेपाली' : 'EN'}
           </button>
@@ -101,7 +102,7 @@ export const Navbar: React.FC = () => {
                 business: 'general',
               })
             }
-            className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-amber-400 hover:bg-amber-300 text-stone-950 font-semibold text-sm transition-colors whitespace-nowrap shrink-0"
+            className="btn-primary !px-4 sm:!px-5 whitespace-nowrap shrink-0"
           >
             {language === 'ne' ? 'अहिले बुक गर्नुहोस्' : 'Book Now'}
           </a>
@@ -109,7 +110,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
-            className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg border border-stone-800 bg-stone-900 text-stone-200 hover:text-amber-300 transition-colors cursor-pointer"
+            className="lg:hidden inline-flex items-center justify-center w-12 h-12 rounded-[12px] border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors cursor-pointer shrink-0"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation-drawer"
@@ -124,7 +125,7 @@ export const Navbar: React.FC = () => {
         <nav
           id="mobile-navigation-drawer"
           aria-label="Mobile navigation"
-          className="lg:hidden border-t border-stone-800 bg-[#0c0a09] px-4 py-4 space-y-3"
+          className="lg:hidden border-t border-[var(--border)] bg-[var(--surface)] px-4 py-4 space-y-4"
         >
           <div className="grid grid-cols-2 gap-2">
             {allMobileLinks.map((link) => (
@@ -132,25 +133,25 @@ export const Navbar: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleLinkClick(e, link.href)}
-                className="px-3 py-2.5 rounded-lg bg-stone-900/90 border border-stone-800 text-sm font-medium text-stone-200 hover:text-amber-300 hover:border-amber-500/40 transition-colors"
+                className="min-h-[48px] flex items-center px-4 py-2 rounded-[12px] bg-[var(--surface-2)] border border-[var(--border)] text-sm font-medium text-[var(--text)] hover:text-[var(--gold)] hover:border-[var(--gold)] transition-colors"
               >
                 {link.label}
               </a>
             ))}
           </div>
 
-          <div className="flex items-center justify-between pt-2 border-t border-stone-800">
-            <span className="text-sm text-stone-400">
+          <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
+            <span className="text-sm text-[var(--text-muted)]">
               {language === 'ne' ? 'भाषा छान्नुहोस्:' : 'Language:'}
             </span>
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer ${
+                className={`min-h-[48px] px-4 rounded-[12px] text-xs font-semibold cursor-pointer transition-colors ${
                   language === 'en'
-                    ? 'bg-amber-400 text-stone-950'
-                    : 'bg-stone-900 text-stone-300 border border-stone-800'
+                    ? 'bg-[var(--gold)] text-[var(--on-gold)]'
+                    : 'bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
                 }`}
               >
                 English
@@ -158,10 +159,10 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setLanguage('ne')}
-                className={`px-3 py-1.5 rounded-md text-xs font-semibold cursor-pointer ${
+                className={`min-h-[48px] px-4 rounded-[12px] text-xs font-semibold cursor-pointer transition-colors ${
                   language === 'ne'
-                    ? 'bg-amber-400 text-stone-950'
-                    : 'bg-stone-900 text-stone-300 border border-stone-800'
+                    ? 'bg-[var(--gold)] text-[var(--on-gold)]'
+                    : 'bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
                 }`}
               >
                 नेपाली
