@@ -2,7 +2,6 @@ import React from 'react';
 import { MessageCircle, MapPin, Clock, Check, Scissors, ShoppingBag, Flame } from 'lucide-react';
 import { BUSINESSES, buildWhatsAppUrl, BusinessItem } from '../data/siteConfig';
 import { OptimizedImage } from './OptimizedImage';
-import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
 
 const BUSINESS_STYLES: Record<
@@ -31,35 +30,23 @@ const BUSINESS_STYLES: Record<
 };
 
 export const Ventures: React.FC = () => {
-  const { language } = useLanguage();
-
   return (
     <section id="businesses" className="section-shell section-bg">
       <div className="site-container space-y-12">
         <div className="max-w-2xl space-y-4">
-          <p className="section-eyebrow">
-            {language === 'ne' ? 'प्रमुख व्यवसायहरू' : 'My Businesses'}
-          </p>
+          <p className="section-eyebrow">My Businesses</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)] leading-[1.18]">
-            {language === 'ne'
-              ? 'नामनाङ, गान्तोकमा अवस्थित तीन प्रमुख उद्यमहरू'
-              : 'Three Local Enterprises in Namnang, Gangtok'}
+            Three Local Enterprises in Namnang, Gangtok
           </h2>
           <p className="text-base sm:text-lg text-[var(--text-muted)]">
-            {language === 'ne'
-              ? 'अपोइन्टमेन्ट, बुटिक जानकारी वा प्राङ्गारिक अचार अर्डरका लागि प्रत्येक व्यवसायमा सिधै ह्वाट्सएप वा नक्सा प्रयोग गर्नुहोस्।'
-              : 'Book your salon visit, explore contemporary and ethnic styles, or order small-batch organic Sikkimese pickles directly via WhatsApp.'}
+            Book your salon visit, explore contemporary and ethnic styles, or order small-batch
+            organic Sikkimese pickles directly via WhatsApp.
           </p>
         </div>
 
         {/* 3 Business Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
           {BUSINESSES.map((biz) => {
-            const name = language === 'ne' ? biz.nameNe : biz.name;
-            const category = language === 'ne' ? biz.categoryNe : biz.category;
-            const description = language === 'ne' ? biz.descriptionNe : biz.description;
-            const highlights = language === 'ne' ? biz.highlightsNe : biz.highlights;
-            const hours = language === 'ne' ? biz.hoursNe : biz.hours;
             const whatsappUrl = buildWhatsAppUrl(biz.whatsappMessage);
             const styleTokens = BUSINESS_STYLES[biz.id];
             const BizIcon = styleTokens.Icon;
@@ -79,7 +66,7 @@ export const Ventures: React.FC = () => {
                     width={biz.width}
                     height={biz.height}
                     imgClassName="w-full h-full object-cover"
-                    fallbackTitle={name}
+                    fallbackTitle={biz.name}
                   />
                 </div>
 
@@ -96,23 +83,25 @@ export const Ventures: React.FC = () => {
                         }}
                       >
                         <BizIcon className="w-3.5 h-3.5 shrink-0" />
-                        <span>{category}</span>
+                        <span>{biz.category}</span>
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      <h3 className="font-serif text-2xl font-bold text-[var(--text)]">{name}</h3>
+                      <h3 className="font-serif text-2xl font-bold text-[var(--text)]">
+                        {biz.name}
+                      </h3>
                       <p className="text-xs font-medium text-[var(--text-muted)]">
                         {biz.established}
                       </p>
                     </div>
 
                     <p className="text-base text-[var(--text)] leading-relaxed line-clamp-3">
-                      {description}
+                      {biz.description}
                     </p>
 
                     <ul className="space-y-2 pt-1">
-                      {highlights.map((item) => (
+                      {biz.highlights.map((item) => (
                         <li
                           key={item}
                           className="flex items-start gap-2.5 text-sm sm:text-base text-[var(--text-muted)]"
@@ -132,7 +121,7 @@ export const Ventures: React.FC = () => {
                         className="w-4 h-4 shrink-0 mt-0.5 text-[var(--gold)]"
                         aria-hidden="true"
                       />
-                      <span>{hours}</span>
+                      <span>{biz.hours}</span>
                     </p>
                   </div>
 
@@ -169,7 +158,7 @@ export const Ventures: React.FC = () => {
                       className="btn-secondary !px-3"
                     >
                       <MapPin className="w-4 h-4 shrink-0" aria-hidden="true" />
-                      <span>{language === 'ne' ? 'दिशा' : 'Directions'}</span>
+                      <span>Directions</span>
                     </a>
                   </div>
                 </div>

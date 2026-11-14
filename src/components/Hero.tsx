@@ -2,30 +2,19 @@ import React from 'react';
 import { PhoneCall, MessageCircle, MapPin } from 'lucide-react';
 import { OptimizedImage } from './OptimizedImage';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
 
 export const Hero: React.FC = () => {
-  const { language } = useLanguage();
-
   const heroWhatsAppUrl = buildWhatsAppUrl(
     'Hi Shova, I would like to book an appointment or inquire about your businesses in Gangtok.'
   );
 
-  const metrics =
-    language === 'ne'
-      ? [
-          { value: '२०+', label: 'वर्षको अनुभव' },
-          { value: '३', label: 'प्रमुख उद्यम (नामनाङ)' },
-          { value: '५०+', label: 'सीपमूलक कार्यशाला' },
-          { value: 'NCW', label: 'राष्ट्रिय महिला आयोग सम्मान' },
-        ]
-      : [
-          { value: '20+', label: 'Years in Business' },
-          { value: '3', label: 'Gangtok Enterprises' },
-          { value: '50+', label: 'Skill Workshops' },
-          { value: 'NCW', label: 'National Recognition' },
-        ];
+  const metrics = [
+    { value: '20+', label: 'Years in Business' },
+    { value: '3', label: 'Gangtok Enterprises' },
+    { value: '50+', label: 'Skill Workshops' },
+    { value: 'NCW', label: 'National Recognition' },
+  ];
 
   return (
     <section id="home" className="section-shell section-bg relative overflow-hidden">
@@ -36,23 +25,17 @@ export const Hero: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <p className="section-eyebrow inline-flex items-center gap-2">
               <MapPin className="w-4 h-4 shrink-0 text-[var(--gold)]" aria-hidden="true" />
-              <span>
-                {language === 'ne'
-                  ? 'नामनाङ, गान्तोक, सिक्किम · उद्यमी र परामर्शदाता'
-                  : 'Namnang, Gangtok, Sikkim · Entrepreneur & Mentor'}
-              </span>
+              <span>Namnang, Gangtok, Sikkim · Entrepreneur &amp; Mentor</span>
             </p>
 
             <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--text)] leading-[1.12] tracking-[-0.015em]">
-              {language === 'ne'
-                ? 'श्रीमती शोभा राई — गान्तोककी उद्यमी, मास्टर स्टाइलिस्ट र परामर्शदाता'
-                : 'Shova Rai — Master Stylist, Artisan & Sikkim Women Entrepreneur'}
+              Shova Rai — Master Stylist, Artisan &amp; Sikkim Women Entrepreneur
             </h1>
 
             <p className="text-lg sm:text-xl text-[var(--text-muted)] leading-relaxed max-w-2xl">
-              {language === 'ne'
-                ? 'कटिङ एज हेयर एन्ड ब्युटी, ब्लश फेसन स्टोर र जायल्स अर्गानिक अचारकी संस्थापक — बीस वर्षभन्दा बढीको अनुभवसहित गान्तोकमा सेवा र महिला सशक्तीकरणमा समर्पित।'
-                : 'Founder of Cutting Edge Hair & Beauty, Blush Fashion Store, and Zayel’s Organic Pickles—bringing beauty, fashion, and organic Himalayan flavours to Gangtok for over 20 years.'}
+              Founder of Cutting Edge Hair &amp; Beauty, Blush Fashion Store, and Zayel’s Organic
+              Pickles—bringing beauty, fashion, and organic Himalayan flavours to Gangtok for over
+              20 years.
             </p>
 
             {/* Primary Conversion Buttons with subtle gold glow behind CTA */}
@@ -81,7 +64,7 @@ export const Hero: React.FC = () => {
                   className="btn-whatsapp"
                 >
                   <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>{language === 'ne' ? 'ह्वाट्सएपमा बुक गर्नुहोस्' : 'Book on WhatsApp'}</span>
+                  <span>Book on WhatsApp</span>
                 </a>
 
                 <a
@@ -96,11 +79,7 @@ export const Hero: React.FC = () => {
                   className="btn-secondary"
                 >
                   <PhoneCall className="w-5 h-5 shrink-0" aria-hidden="true" />
-                  <span>
-                    {language === 'ne'
-                      ? `कल गर्नुहोस् · ${SITE_CONFIG.phoneDisplay}`
-                      : `Call Now · ${SITE_CONFIG.phoneDisplay}`}
-                  </span>
+                  <span>Call Now · {SITE_CONFIG.phoneDisplay}</span>
                 </a>
               </div>
             </div>

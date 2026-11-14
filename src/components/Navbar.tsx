@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
 
 export const Navbar: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const navLinks = [
-    { label: language === 'ne' ? 'परिचय' : 'About', href: '#about' },
-    { label: language === 'ne' ? 'व्यवसाय' : 'Businesses', href: '#businesses' },
-    { label: language === 'ne' ? 'सेवा र मूल्य' : 'Services', href: '#services' },
-    { label: language === 'ne' ? 'अचार' : 'Pickles', href: '#products' },
-    { label: language === 'ne' ? 'ग्यालरी' : 'Gallery', href: '#gallery' },
-    { label: language === 'ne' ? 'सम्पर्क' : 'Contact', href: '#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Businesses', href: '#businesses' },
+    { label: 'Services', href: '#services' },
+    { label: 'Pickles', href: '#products' },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   const allMobileLinks = [
     ...navLinks,
-    { label: language === 'ne' ? 'सम्मान र प्रेस' : 'Awards & Press', href: '#awards' },
-    { label: language === 'ne' ? 'परामर्श' : 'Mentorship', href: '#mentorship' },
-    { label: language === 'ne' ? 'प्रश्नोत्तर' : 'FAQ', href: '#faq' },
+    { label: 'Awards & Press', href: '#awards' },
+    { label: 'Mentorship', href: '#mentorship' },
+    { label: 'FAQ', href: '#faq' },
   ];
 
   useEffect(() => {
@@ -82,15 +80,6 @@ export const Navbar: React.FC = () => {
 
         {/* Zone 3: Primary Gold "Book Now" CTA + Mobile Menu Button */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-          <button
-            type="button"
-            onClick={() => setLanguage(language === 'en' ? 'ne' : 'en')}
-            aria-label={language === 'en' ? 'Switch language to Nepali' : 'Switch language to English'}
-            className="hidden sm:inline-flex items-center justify-center min-h-[48px] px-3 rounded-[12px] text-xs font-semibold text-[var(--text-muted)] hover:text-[var(--gold)] border border-[var(--border)] hover:border-[var(--gold)] bg-[var(--surface)] transition-colors cursor-pointer whitespace-nowrap"
-          >
-            {language === 'en' ? 'नेपाली' : 'EN'}
-          </button>
-
           <a
             href={bookUrl}
             target="_blank"
@@ -104,7 +93,7 @@ export const Navbar: React.FC = () => {
             }
             className="btn-primary !px-4 sm:!px-5 whitespace-nowrap shrink-0"
           >
-            {language === 'ne' ? 'अहिले बुक गर्नुहोस्' : 'Book Now'}
+            Book Now
           </a>
 
           <button
@@ -125,7 +114,7 @@ export const Navbar: React.FC = () => {
         <nav
           id="mobile-navigation-drawer"
           aria-label="Mobile navigation"
-          className="lg:hidden border-t border-[var(--border)] bg-[var(--surface)] px-4 py-4 space-y-4"
+          className="lg:hidden border-t border-[var(--border)] bg-[var(--surface)] px-4 py-4"
         >
           <div className="grid grid-cols-2 gap-2">
             {allMobileLinks.map((link) => (
@@ -138,36 +127,6 @@ export const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-          </div>
-
-          <div className="flex items-center justify-between pt-3 border-t border-[var(--border)]">
-            <span className="text-sm text-[var(--text-muted)]">
-              {language === 'ne' ? 'भाषा छान्नुहोस्:' : 'Language:'}
-            </span>
-            <div className="flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setLanguage('en')}
-                className={`min-h-[48px] px-4 rounded-[12px] text-xs font-semibold cursor-pointer transition-colors ${
-                  language === 'en'
-                    ? 'bg-[var(--gold)] text-[var(--on-gold)]'
-                    : 'bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
-                }`}
-              >
-                English
-              </button>
-              <button
-                type="button"
-                onClick={() => setLanguage('ne')}
-                className={`min-h-[48px] px-4 rounded-[12px] text-xs font-semibold cursor-pointer transition-colors ${
-                  language === 'ne'
-                    ? 'bg-[var(--gold)] text-[var(--on-gold)]'
-                    : 'bg-[var(--surface-2)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
-                }`}
-              >
-                नेपाली
-              </button>
-            </div>
           </div>
         </nav>
       )}

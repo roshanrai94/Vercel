@@ -1,6 +1,5 @@
 import React from 'react';
 import { TESTIMONIALS_DATA } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 
 /**
  * Customer Testimonials Section
@@ -8,8 +7,6 @@ import { useLanguage } from '../context/LanguageContext';
  * Add 3 real customer reviews with first names to display this section.
  */
 export const Testimonials: React.FC = () => {
-  const { language } = useLanguage();
-
   if (!TESTIMONIALS_DATA || TESTIMONIALS_DATA.length === 0) {
     return null;
   }
@@ -18,11 +15,9 @@ export const Testimonials: React.FC = () => {
     <section id="testimonials" className="section-shell section-bg">
       <div className="site-container space-y-10">
         <div className="max-w-2xl space-y-3">
-          <p className="section-eyebrow">
-            {language === 'ne' ? 'ग्राहकका अनुभवहरू' : 'Testimonials'}
-          </p>
+          <p className="section-eyebrow">Testimonials</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
-            {language === 'ne' ? 'गान्तोकका ग्राहकहरूको विश्वास' : 'What Clients Say'}
+            What Clients Say
           </h2>
         </div>
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { CheckCircle2, AlertCircle, MessageCircle, Send } from 'lucide-react';
 import { SITE_CONFIG, buildWhatsAppUrl } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
 
 interface FormState {
@@ -13,7 +12,6 @@ interface FormState {
 }
 
 export const MentorshipForm: React.FC = () => {
-  const { language } = useLanguage();
   const [form, setForm] = useState<FormState>({
     name: '',
     phone: '',
@@ -31,23 +29,16 @@ export const MentorshipForm: React.FC = () => {
     const nextErrors: Partial<Record<keyof FormState, string>> = {};
 
     if (!form.name.trim() || form.name.trim().length < 2) {
-      nextErrors.name =
-        language === 'ne' ? 'कृपया आफ्नो पूरा नाम लेख्नुहोस्।' : 'Please enter your full name.';
+      nextErrors.name = 'Please enter your full name.';
     }
 
     const digits = form.phone.replace(/\D/g, '');
     if (digits.length < 10) {
-      nextErrors.phone =
-        language === 'ne'
-          ? 'कृपया कम्तीमा १० अंकको मान्य फोन वा ह्वाट्सएप नम्बर लेख्नुहोस्।'
-          : 'Please enter a valid 10-digit phone or WhatsApp number.';
+      nextErrors.phone = 'Please enter a valid 10-digit phone or WhatsApp number.';
     }
 
     if (!form.message.trim() || form.message.trim().length < 10) {
-      nextErrors.message =
-        language === 'ne'
-          ? 'कृपया कम्तीमा १० अक्षरको सन्देश लेख्नुहोस्।'
-          : 'Please enter a brief message (at least 10 characters).';
+      nextErrors.message = 'Please enter a brief message (at least 10 characters).';
     }
 
     setErrors(nextErrors);
@@ -78,9 +69,7 @@ export const MentorshipForm: React.FC = () => {
     if (isPlaceholderFormspree) {
       setStatus('success');
       setServerNote(
-        language === 'ne'
-          ? 'सन्देश तयार भयो। छिटो जवाफको लागि तलको ह्वाट्सएप बटन वा इमेल प्रयोग गर्न सक्नुहुन्छ।'
-          : 'Your enquiry is ready. For fastest response before Formspree is connected, tap Send via WhatsApp below.'
+        'Your enquiry is ready. For fastest response before Formspree is connected, tap Send via WhatsApp below.'
       );
       return;
     }
@@ -116,9 +105,7 @@ export const MentorshipForm: React.FC = () => {
     } catch {
       setStatus('error');
       setServerNote(
-        language === 'ne'
-          ? 'फारम पठाउन समस्या भयो। कृपया ह्वाट्सएप वा फोनमार्फत सिधै सम्पर्क गर्नुहोस्।'
-          : 'Could not send form automatically. Please reach out directly via WhatsApp or phone.'
+        'Could not send form automatically. Please reach out directly via WhatsApp or phone.'
       );
     }
   };
@@ -135,49 +122,33 @@ export const MentorshipForm: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           {/* Left Column: Mentorship & Collaboration Narrative */}
           <div className="lg:col-span-5 space-y-5">
-            <p className="section-eyebrow">
-              {language === 'ne' ? 'परामर्श र सहकार्य' : 'Mentorship & Collaborate With Me'}
-            </p>
+            <p className="section-eyebrow">Mentorship &amp; Collaborate With Me</p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
-              {language === 'ne'
-                ? 'सीप कार्यशाला, महिला समूह र व्यावसायिक सहकार्य'
-                : 'Workshops, SHG Training & Business Collaborations'}
+              Workshops, SHG Training &amp; Business Collaborations
             </h2>
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
-              {language === 'ne'
-                ? 'शोभा राईले सिक्किमभरिका महिला स्वयं सहायता समूह (SHGs), युवा र संस्थाहरूका लागि बेकिङ, हेयर स्टाइलिङ, ब्लक प्रिन्टिङ र खाद्य प्रशोधन तालिम सञ्चालन गर्नुहुन्छ।'
-                : 'Shova Rai partners with women’s Self-Help Groups (SHGs), welfare organizations, colleges, and aspiring founders across Sikkim for practical skill workshops in salon trades, baking, FSSAI food preservation, and traditional block printing.'}
+              Shova Rai partners with women’s Self-Help Groups (SHGs), welfare organizations,
+              colleges, and aspiring founders across Sikkim for practical skill workshops in salon
+              trades, baking, FSSAI food preservation, and traditional block printing.
             </p>
             <ul className="space-y-3 text-base text-[var(--text)] pt-2">
               <li className="flex items-start gap-2.5">
                 <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
                   ·
                 </span>
-                <span>
-                  {language === 'ne'
-                    ? 'सैलुन र दुलही मेकअप अपोइन्टमेन्ट'
-                    : 'Salon bookings & bridal consultations in Gangtok'}
-                </span>
+                <span>Salon bookings &amp; bridal consultations in Gangtok</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
                   ·
                 </span>
-                <span>
-                  {language === 'ne'
-                    ? 'जायल्स अर्गानिक अचार थोक वा खुद्रा अर्डर'
-                    : "Retail & bulk supply of Zayel's Organic Pickles"}
-                </span>
+                <span>Retail &amp; bulk supply of Zayel&apos;s Organic Pickles</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-[var(--gold)] font-semibold" aria-hidden="true">
                   ·
                 </span>
-                <span>
-                  {language === 'ne'
-                    ? 'अतिथि वक्ता र सामुदायिक तालिम सत्र'
-                    : 'Vocational workshops & speaking engagements'}
-                </span>
+                <span>Vocational workshops &amp; speaking engagements</span>
               </li>
             </ul>
           </div>
@@ -189,14 +160,12 @@ export const MentorshipForm: React.FC = () => {
                 <div className="flex items-center gap-3 text-[var(--success)]">
                   <CheckCircle2 className="w-7 h-7 shrink-0" aria-hidden="true" />
                   <h3 className="font-serif text-2xl font-bold text-[var(--text)]">
-                    {language === 'ne' ? 'धन्यवाद! सन्देश प्राप्त भयो' : 'Thank You — Enquiry Received'}
+                    Thank You — Enquiry Received
                   </h3>
                 </div>
                 <p className="text-base text-[var(--text-muted)] leading-relaxed">
                   {serverNote ||
-                    (language === 'ne'
-                      ? 'तपाईंको सन्देश पठाइएको छ। शोभा राईले छिट्टै सम्पर्क गर्नुहुनेछ।'
-                      : 'Thank you for reaching out. Shova Rai will respond to your enquiry shortly.')}
+                    'Thank you for reaching out. Shova Rai will respond to your enquiry shortly.'}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   <a
@@ -213,7 +182,7 @@ export const MentorshipForm: React.FC = () => {
                     className="btn-whatsapp"
                   >
                     <MessageCircle className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <span>{language === 'ne' ? 'ह्वाट्सएपमा पठाउनुहोस्' : 'Send via WhatsApp'}</span>
+                    <span>Send via WhatsApp</span>
                   </a>
                   <button
                     type="button"
@@ -229,7 +198,7 @@ export const MentorshipForm: React.FC = () => {
                     }}
                     className="btn-secondary"
                   >
-                    {language === 'ne' ? 'अर्को सन्देश पठाउनुहोस्' : 'Send Another Enquiry'}
+                    Send Another Enquiry
                   </button>
                 </div>
               </div>
@@ -255,7 +224,7 @@ export const MentorshipForm: React.FC = () => {
                       htmlFor="enquiry-name"
                       className="block text-sm font-medium text-[var(--text)] mb-2"
                     >
-                      {language === 'ne' ? 'पूरा नाम *' : 'Full Name *'}
+                      Full Name *
                     </label>
                     <input
                       id="enquiry-name"
@@ -263,7 +232,7 @@ export const MentorshipForm: React.FC = () => {
                       type="text"
                       required
                       autoComplete="name"
-                      placeholder={language === 'ne' ? 'तपाईंको नाम' : 'Enter your name'}
+                      placeholder="Enter your name"
                       value={form.name}
                       onChange={(e) => {
                         setForm({ ...form, name: e.target.value });
@@ -288,7 +257,7 @@ export const MentorshipForm: React.FC = () => {
                       htmlFor="enquiry-phone"
                       className="block text-sm font-medium text-[var(--text)] mb-2"
                     >
-                      {language === 'ne' ? 'फोन / ह्वाट्सएप नम्बर *' : 'Phone / WhatsApp *'}
+                      Phone / WhatsApp *
                     </label>
                     <input
                       id="enquiry-phone"
@@ -322,7 +291,7 @@ export const MentorshipForm: React.FC = () => {
                     htmlFor="enquiry-business"
                     className="block text-sm font-medium text-[var(--text)] mb-2"
                   >
-                    {language === 'ne' ? 'सम्बन्धित व्यवसाय वा विषय *' : 'Business / Interest *'}
+                    Business / Interest *
                   </label>
                   <select
                     id="enquiry-business"
@@ -349,18 +318,14 @@ export const MentorshipForm: React.FC = () => {
                     htmlFor="enquiry-message"
                     className="block text-sm font-medium text-[var(--text)] mb-2"
                   >
-                    {language === 'ne' ? 'तपाईंको सन्देश *' : 'Message *'}
+                    Message *
                   </label>
                   <textarea
                     id="enquiry-message"
                     name="message"
                     rows={4}
                     required
-                    placeholder={
-                      language === 'ne'
-                        ? 'मिति, सेवा वा सहकार्यबारे जानकारी लेख्नुहोस्...'
-                        : 'Share your preferred date, service, pickle order, or collaboration idea...'
-                    }
+                    placeholder="Share your preferred date, service, pickle order, or collaboration idea..."
                     value={form.message}
                     onChange={(e) => {
                       setForm({ ...form, message: e.target.value });
@@ -398,21 +363,11 @@ export const MentorshipForm: React.FC = () => {
                     className="btn-primary"
                   >
                     <Send className="w-4 h-4 shrink-0" aria-hidden="true" />
-                    <span>
-                      {status === 'submitting'
-                        ? language === 'ne'
-                          ? 'पठाइँदैछ...'
-                          : 'Sending...'
-                        : language === 'ne'
-                        ? 'सन्देश पठाउनुहोस्'
-                        : 'Send Enquiry'}
-                    </span>
+                    <span>{status === 'submitting' ? 'Sending...' : 'Send Enquiry'}</span>
                   </button>
 
                   <p className="text-sm text-[var(--text-muted)]">
-                    {language === 'ne'
-                      ? 'प्रत्यक्ष जवाफको लागि ह्वाट्सएप वा फोन प्रयोग गर्नुहोस्।'
-                      : `Or email ${SITE_CONFIG.email}`}
+                    Or email {SITE_CONFIG.email}
                   </p>
                 </div>
               </form>

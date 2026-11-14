@@ -1,25 +1,18 @@
 import React from 'react';
 import { SITE_CONFIG } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 import { trackEvent } from '../utils/analytics';
 
-interface FooterProps {
-  onOpenPrivacy: () => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
-  const { language, setLanguage } = useLanguage();
-
+export const Footer: React.FC = () => {
   const quickLinks = [
-    { label: language === 'ne' ? 'परिचय' : 'About', href: '#about' },
-    { label: language === 'ne' ? 'व्यवसायहरू' : 'Businesses', href: '#businesses' },
-    { label: language === 'ne' ? 'सैलुन सेवा' : 'Services & Prices', href: '#services' },
-    { label: language === 'ne' ? 'जायल्स अचार' : "Zayel's Pickles", href: '#products' },
-    { label: language === 'ne' ? 'सम्मान र प्रेस' : 'Awards & Press', href: '#awards' },
-    { label: language === 'ne' ? 'ग्यालरी' : 'Gallery', href: '#gallery' },
-    { label: language === 'ne' ? 'परामर्श' : 'Mentorship', href: '#mentorship' },
-    { label: language === 'ne' ? 'प्रश्नोत्तर' : 'FAQ', href: '#faq' },
-    { label: language === 'ne' ? 'सम्पर्क' : 'Contact', href: '#contact' },
+    { label: 'About', href: '#about' },
+    { label: 'Businesses', href: '#businesses' },
+    { label: 'Services & Prices', href: '#services' },
+    { label: "Zayel's Pickles", href: '#products' },
+    { label: 'Awards & Press', href: '#awards' },
+    { label: 'Gallery', href: '#gallery' },
+    { label: 'Mentorship', href: '#mentorship' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#contact' },
   ];
 
   return (
@@ -32,18 +25,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
               {SITE_CONFIG.brandFullName}
             </p>
             <p className="text-base text-[var(--text-muted)] leading-relaxed max-w-sm">
-              {language === 'ne'
-                ? 'नामनाङ, गान्तोक, सिक्किममा सौन्दर्य, फेसन, प्राङ्गारिक खाद्य उत्पादन र महिला सशक्तीकरणमा समर्पित।'
-                : 'Entrepreneur, master stylist, and community mentor in Namnang, Gangtok, Sikkim.'}
+              Entrepreneur, master stylist, and community mentor in Namnang, Gangtok, Sikkim.
             </p>
             <p className="text-sm text-[var(--text-muted)]">{SITE_CONFIG.addressFull}</p>
           </div>
 
           {/* Quick Links */}
           <div className="md:col-span-4 space-y-3">
-            <h3 className="section-eyebrow">
-              {language === 'ne' ? 'द्रुत लिङ्कहरू' : 'Quick Links'}
-            </h3>
+            <h3 className="section-eyebrow">Quick Links</h3>
             <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
               {quickLinks.map((link) => (
                 <a
@@ -57,11 +46,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
             </nav>
           </div>
 
-          {/* Contact & Language */}
+          {/* Contact */}
           <div className="md:col-span-3 space-y-3 text-sm">
-            <h3 className="section-eyebrow">
-              {language === 'ne' ? 'सम्पर्क विवरण' : 'Contact Details'}
-            </h3>
+            <h3 className="section-eyebrow">Contact Details</h3>
             <ul className="space-y-2">
               <li>
                 <a
@@ -87,47 +74,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy }) => {
                 </a>
               </li>
             </ul>
-
-            <div className="pt-2 flex items-center gap-2">
-              <button
-                type="button"
-                onClick={() => setLanguage('en')}
-                className={`px-4 py-2 rounded-[12px] min-h-[48px] text-xs font-semibold cursor-pointer transition-colors ${
-                  language === 'en'
-                    ? 'bg-[var(--gold)] text-[var(--on-gold)] border border-transparent'
-                    : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
-                }`}
-              >
-                English
-              </button>
-              <button
-                type="button"
-                onClick={() => setLanguage('ne')}
-                className={`px-4 py-2 rounded-[12px] min-h-[48px] text-xs font-semibold cursor-pointer transition-colors ${
-                  language === 'ne'
-                    ? 'bg-[var(--gold)] text-[var(--on-gold)] border border-transparent'
-                    : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)]'
-                }`}
-              >
-                नेपाली
-              </button>
-            </div>
           </div>
         </div>
 
-        {/* Bottom Copyright & Privacy Notice */}
+        {/* Bottom Copyright */}
         <div className="pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--text-muted)]">
           <p>
             © {new Date().getFullYear()} {SITE_CONFIG.brandFullName}. All rights reserved. Namnang,
             Gangtok, Sikkim.
           </p>
-          <button
-            type="button"
-            onClick={onOpenPrivacy}
-            className="min-h-[48px] px-2 text-[var(--text)] hover:text-[var(--gold)] underline underline-offset-4 cursor-pointer transition-colors"
-          >
-            {language === 'ne' ? 'गोपनीयता र कुकी सूचना' : 'Privacy & Cookie Notice'}
-          </button>
+          <p>{SITE_CONFIG.locationShort}</p>
         </div>
       </div>
     </footer>

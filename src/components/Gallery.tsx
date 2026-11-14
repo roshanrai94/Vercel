@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { GALLERY_PHOTOS, GalleryPhotoItem } from '../data/siteConfig';
 import { OptimizedImage } from './OptimizedImage';
-import { useLanguage } from '../context/LanguageContext';
 
 export const Gallery: React.FC = () => {
-  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -45,18 +43,12 @@ export const Gallery: React.FC = () => {
     <section id="gallery" className="section-shell section-bg">
       <div className="site-container space-y-10">
         <div className="max-w-2xl space-y-3">
-          <p className="section-eyebrow">
-            {language === 'ne' ? 'तस्बिर ग्यालरी' : 'Gallery'}
-          </p>
+          <p className="section-eyebrow">Gallery</p>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
-            {language === 'ne'
-              ? 'कार्य, कला, उत्पादन र सम्मानका झलकहरू'
-              : 'Inside the Salon, Boutique, Kitchen & Workshops'}
+            Inside the Salon, Boutique, Kitchen &amp; Workshops
           </h2>
           <p className="text-base sm:text-lg text-[var(--text-muted)]">
-            {language === 'ne'
-              ? 'कुनै पनि तस्बिरमा क्लिक गरी ठूलो आकारमा हेर्नुहोस्।'
-              : 'Select any image to inspect full-size photography from Gangtok.'}
+            Select any image to inspect full-size photography from Gangtok.
           </p>
         </div>
 
@@ -80,7 +72,7 @@ export const Gallery: React.FC = () => {
                     : 'bg-[var(--surface)] text-[var(--text)] border border-[var(--border)] hover:border-[var(--gold)] hover:text-[var(--gold)]'
                 }`}
               >
-                {cat === 'ALL' ? (language === 'ne' ? 'सबै' : 'All Photos') : cat}
+                {cat === 'ALL' ? 'All Photos' : cat}
               </button>
             );
           })}
@@ -88,36 +80,33 @@ export const Gallery: React.FC = () => {
 
         {/* Responsive Image Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {filteredPhotos.map((item, idx) => {
-            const title = language === 'ne' ? item.titleNe : item.title;
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setLightboxIndex(idx)}
-                aria-label={`Open full-size image: ${title}`}
-                className="group card-elevated text-left overflow-hidden cursor-pointer"
-              >
-                <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--bg)] border-b border-[var(--border)]">
-                  <OptimizedImage
-                    webpSrc={item.webp}
-                    fallbackSrc={item.fallback}
-                    alt={item.alt}
-                    width={item.width}
-                    height={item.height}
-                    imgClassName="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                    fallbackTitle={title}
-                  />
-                </div>
-                <div className="p-5 space-y-1">
-                  <p className="text-xs font-semibold text-[var(--gold)]">{item.category}</p>
-                  <h3 className="font-serif text-lg font-bold text-[var(--text)] group-hover:text-[var(--gold)] transition-colors">
-                    {title}
-                  </h3>
-                </div>
-              </button>
-            );
-          })}
+          {filteredPhotos.map((item, idx) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setLightboxIndex(idx)}
+              aria-label={`Open full-size image: ${item.title}`}
+              className="group card-elevated text-left overflow-hidden cursor-pointer"
+            >
+              <div className="aspect-[4/3] w-full overflow-hidden bg-[var(--bg)] border-b border-[var(--border)]">
+                <OptimizedImage
+                  webpSrc={item.webp}
+                  fallbackSrc={item.fallback}
+                  alt={item.alt}
+                  width={item.width}
+                  height={item.height}
+                  imgClassName="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  fallbackTitle={item.title}
+                />
+              </div>
+              <div className="p-5 space-y-1">
+                <p className="text-xs font-semibold text-[var(--gold)]">{item.category}</p>
+                <h3 className="font-serif text-lg font-bold text-[var(--text)] group-hover:text-[var(--gold)] transition-colors">
+                  {item.title}
+                </h3>
+              </div>
+            </button>
+          ))}
         </div>
       </div>
 
@@ -126,7 +115,7 @@ export const Gallery: React.FC = () => {
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={language === 'ne' ? activePhoto.titleNe : activePhoto.title}
+          aria-label={activePhoto.title}
           className="fixed inset-0 z-50 backdrop-blur-sm flex items-center justify-center p-4"
           style={{ backgroundColor: 'rgba(12, 10, 9, 0.94)' }}
           onClick={() => setLightboxIndex(null)}
@@ -139,7 +128,7 @@ export const Gallery: React.FC = () => {
               <div>
                 <p className="text-xs font-semibold text-[var(--gold)]">{activePhoto.category}</p>
                 <h3 className="font-serif text-xl sm:text-2xl font-bold text-[var(--text)]">
-                  {language === 'ne' ? activePhoto.titleNe : activePhoto.title}
+                  {activePhoto.title}
                 </h3>
               </div>
 

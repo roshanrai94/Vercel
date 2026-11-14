@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { FAQ_ITEMS } from '../data/siteConfig';
-import { useLanguage } from '../context/LanguageContext';
 
 export const FAQ: React.FC = () => {
-  const { language } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -12,21 +10,15 @@ export const FAQ: React.FC = () => {
       <div className="site-container">
         <div className="max-w-4xl space-y-10">
           <div className="space-y-3">
-            <p className="section-eyebrow">
-              {language === 'ne' ? 'सामान्य प्रश्नहरू' : 'Frequently Asked Questions'}
-            </p>
+            <p className="section-eyebrow">Frequently Asked Questions</p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text)]">
-              {language === 'ne'
-                ? 'गान्तोक सैलुन, बुटिक र अचारसम्बन्धी प्रश्नोत्तर'
-                : 'Helpful Answers Before You Visit or Order'}
+              Helpful Answers Before You Visit or Order
             </h2>
           </div>
 
           <div className="divide-y divide-[var(--border)] border-y border-[var(--border)]">
             {FAQ_ITEMS.map((item, idx) => {
               const isOpen = openIndex === idx;
-              const question = language === 'ne' ? item.questionNe : item.question;
-              const answer = language === 'ne' ? item.answerNe : item.answer;
               const panelId = `faq-panel-${idx}`;
               const buttonId = `faq-button-${idx}`;
 
@@ -42,7 +34,7 @@ export const FAQ: React.FC = () => {
                       className="w-full py-5 flex items-center justify-between gap-4 text-left cursor-pointer group min-h-[56px]"
                     >
                       <span className="font-serif text-xl sm:text-2xl font-bold text-[var(--text)] group-hover:text-[var(--gold)] transition-colors">
-                        {question}
+                        {item.question}
                       </span>
                       <ChevronDown
                         className={`w-5 h-5 text-[var(--gold)] shrink-0 transition-transform duration-200 ${
@@ -59,7 +51,7 @@ export const FAQ: React.FC = () => {
                     hidden={!isOpen}
                     className="pb-6 pr-8 text-base text-[var(--text-muted)] leading-relaxed"
                   >
-                    <p>{answer}</p>
+                    <p>{item.answer}</p>
                   </div>
                 </div>
               );
