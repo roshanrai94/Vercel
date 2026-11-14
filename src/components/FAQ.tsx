@@ -1,82 +1,69 @@
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
+import { FAQ_ITEMS } from '../data/siteConfig';
 import { useLanguage } from '../context/LanguageContext';
 
 export const FAQ: React.FC = () => {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section id="faq" className="py-20 bg-stone-950 text-stone-100 relative overflow-hidden border-t border-stone-800/60">
-      {/* Ambient background glows */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-amber-600/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-widest uppercase mb-4 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-            <span>{t.faq.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-amber-100">
-            {t.faq.heading}
-          </h2>
-          <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
-          <p className="text-stone-300 text-sm sm:text-base max-w-2xl mx-auto">
-            {t.about.subheading}
+    <section id="faq" className="py-16 sm:py-24 bg-[#0c0a09] border-b border-stone-900">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-10">
+        <div className="space-y-3">
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+            {language === 'ne' ? 'सामान्य प्रश्नहरू' : 'Frequently Asked Questions'}
           </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+            {language === 'ne'
+              ? 'गान्तोक सैलुन, बुटिक र अचारसम्बन्धी प्रश्नोत्तर'
+              : 'Helpful Answers Before You Visit or Order'}
+          </h2>
         </div>
 
-        {/* Accordion list */}
-        <div className="space-y-3.5">
-          {t.faq.items.map((faq, idx) => {
+        <div className="divide-y divide-stone-800 border-y border-stone-800">
+          {FAQ_ITEMS.map((item, idx) => {
             const isOpen = openIndex === idx;
-            return (
-              <div
-                key={idx}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                  isOpen
-                    ? 'bg-stone-900/90 border-amber-500/40 shadow-[0_4px_20px_rgba(245,158,11,0.12)]'
-                    : 'bg-stone-900/40 border-stone-800/80 hover:border-amber-500/20 hover:bg-stone-900/60'
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => toggleFAQ(idx)}
-                  className="w-full py-4 sm:py-5 px-5 sm:px-6 flex items-center justify-between text-left gap-4 cursor-pointer focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-serif font-semibold text-base sm:text-lg text-amber-100 tracking-wide flex items-center gap-2.5">
-                    <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
-                    {faq.question}
-                  </span>
-                  <div
-                    className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isOpen
-                        ? 'bg-amber-500 text-stone-950 rotate-180'
-                        : 'bg-stone-800 text-stone-300'
-                    }`}
-                  >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+            const question = language === 'ne' ? item.questionNe : item.question;
+            const answer = language === 'ne' ? item.answerNe : item.answer;
+            const panelId = `faq-panel-${idx}`;
+            const buttonId = `faq-button-${idx}`;
 
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-stone-300 text-sm sm:text-base leading-relaxed border-t border-amber-500/10">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
+            return (
+              <div key={item.question}>
+                <h3>
+                  <button
+                    id={buttonId}
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(isOpen ? null : idx)}
+                    className="w-full py-5 flex items-center justify-between gap-4 text-left cursor-pointer group min-h-[56px]"
+                  >
+                    <span className="font-serif text-xl sm:text-2xl font-bold text-stone-100 group-hover:text-amber-300 transition-colors">
+                      {question}
+                    </span>
+                    <ChevronDown
+                      className={`w-5 h-5 text-amber-400 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180' : ''
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                </h3>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  hidden={!isOpen}
+                  className="pb-5 pr-8 text-base text-stone-300 leading-relaxed"
+                >
+                  <p>{answer}</p>
+                </div>
               </div>
             );
           })}
         </div>
-
       </div>
     </section>
   );

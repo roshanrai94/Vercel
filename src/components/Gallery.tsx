@@ -1,225 +1,201 @@
 import React, { useState, useEffect } from 'react';
-import { Sparkles, Filter, Maximize2, X } from 'lucide-react';
-import { PhotoPlaceholder } from './PhotoPlaceholder';
-import { usePhotos } from '../context/PhotoContext';
-import { editorialGalleryData } from '../data/portfolioData';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { GALLERY_PHOTOS, GalleryPhotoItem } from '../data/siteConfig';
+import { OptimizedImage } from './OptimizedImage';
 import { useLanguage } from '../context/LanguageContext';
 
 export const Gallery: React.FC = () => {
-  const { photoMapping } = usePhotos();
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
-  const [activeLightbox, setActiveLightbox] = useState<{ key: string; title: string; category: string } | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const categories = ['ALL', ...Array.from(new Set(GALLERY_PHOTOS.map((p) => p.category)))];
+
+  const filteredPhotos: GalleryPhotoItem[] =
+    selectedCategory === 'ALL'
+      ? GALLERY_PHOTOS
+      : GALLERY_PHOTOS.filter((p) => p.category === selectedCategory);
 
   useEffect(() => {
+    if (lightboxIndex === null) return;
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setActiveLightbox(null);
+        setLightboxIndex(null);
+      } else if (e.key === 'ArrowRight') {
+        setLightboxIndex((prev) => (prev === null ? null : (prev + 1) % filteredPhotos.length));
+      } else if (e.key === 'ArrowLeft') {
+        setLightboxIndex((prev) =>
+          prev === null ? null : (prev - 1 + filteredPhotos.length) % filteredPhotos.length
+        );
       }
     };
-    if (activeLightbox) {
-      window.addEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+
+    window.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [activeLightbox]);
+  }, [lightboxIndex, filteredPhotos.length]);
 
-  const categories = [
-    'ALL',
-    ...Array.from(new Set(editorialGalleryData.map((item) => item.category)))
-  ];
-
-  const getCategoryLabel = (cat: string) => {
-    if (cat === 'ALL') return t.gallery.filterAll;
-    if (cat === 'Beauty & Salon') return t.gallery.filterBeauty;
-    if (cat === 'Baking with Love') return t.gallery.filterBaking;
-    if (cat === 'Art & Painting') return t.gallery.filterArt;
-    if (cat === 'Community Impact') return t.gallery.filterImpact;
-    if (cat === 'Fashion & Style') return t.gallery.filterFashion;
-    if (cat === 'Awards & Recognition') return t.gallery.filterAwards;
-    if (cat === 'Culinary Arts & Baking') return language === 'ne' ? 'बेकिङ तथा परिकार' : 'Culinary Arts & Baking';
-    if (cat === 'Creative Visual Showcase') return language === 'ne' ? 'सिर्जनात्मक भिडियो' : 'Creative Visual Showcase';
-    if (cat === 'Traditional Craft') return language === 'ne' ? 'परम्परागत शिल्प' : 'Traditional Craft';
-    return cat;
-  };
-
-  const nepaliGalleryTitles: Record<string, string> = {
-    g1: 'मास्टर हेयर स्टाइलिङ प्रदर्शन',
-    g3: 'बेकिङ कला र मिठास',
-    g4: 'चित्रकलाप्रतिको गहिरो लगाव',
-    g5: 'महिला जीविकोपार्जन सीप कार्यशाला',
-    g6: 'ब्लश फेसन स्टोरमा पहिरन डिजाइनिङ',
-    g7: 'व्यावसायिक बेकिङ कक्षा',
-    g8: 'सामुदायिक सशक्तीकरण र जीविकोपार्जन',
-    g13: 'सिर्जनात्मक उद्यम भिडियो झलक',
-    g14: 'सिक्किम प्रिमियर लिगमा सम्मान',
-    g15: 'परम्परागत कला र चित्रकला'
-  };
-
-  const filteredItems = selectedCategory === 'ALL'
-    ? editorialGalleryData
-    : editorialGalleryData.filter(item => item.category === selectedCategory);
-
-  const lightboxData = activeLightbox ? photoMapping[activeLightbox.key] : null;
-  const lightboxSrc = lightboxData?.dataUrl || lightboxData?.path;
-  const isLightboxVideo = Boolean(
-    lightboxSrc && (lightboxSrc.match(/\.(mp4|webm|mov|ogg)(\?.*)?$/i) || lightboxSrc.startsWith('data:video/'))
-  );
+  const activePhoto = lightboxIndex !== null ? filteredPhotos[lightboxIndex] : null;
 
   return (
-    <section id="gallery" className="py-24 bg-stone-950 text-stone-100 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.gallery.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            {t.gallery.heading}
+    <section id="gallery" className="py-16 sm:py-24 bg-[#0c0a09] border-b border-stone-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-10">
+        <div className="max-w-2xl space-y-3">
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+            {language === 'ne' ? 'तस्बिर ग्यालरी' : 'Gallery'}
+          </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+            {language === 'ne'
+              ? 'कार्य, कला, उत्पादन र सम्मानका झलकहरू'
+              : 'Inside the Salon, Boutique, Kitchen & Workshops'}
           </h2>
-          <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed text-center">
-            {t.gallery.subheading}
+          <p className="text-base sm:text-lg text-stone-300">
+            {language === 'ne'
+              ? 'कुनै पनि तस्बिरमा क्लिक गरी ठूलो आकारमा हेर्नुहोस्।'
+              : 'Select any image to inspect full-size photography from Gangtok.'}
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12 pb-6 border-b border-stone-800/80">
-          <div className="flex flex-wrap items-center gap-2 justify-center">
-            <span className="text-xs font-bold text-amber-400 uppercase tracking-widest mr-2 flex items-center gap-1 font-display">
-              <Filter className="w-3.5 h-3.5" />
-              <span>{language === 'ne' ? 'फिल्टर:' : 'FILTER:'}</span>
-            </span>
-            {categories.map((cat) => (
+        {/* Interactive Filter Tabs */}
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter gallery photos">
+          {categories.map((cat) => {
+            const active = selectedCategory === cat;
+            return (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 tracking-wider ${
-                  selectedCategory === cat
-                    ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-stone-950 shadow-[0_4px_15px_rgba(245,158,11,0.35)] scale-105'
-                    : 'bg-stone-900/90 text-stone-300 hover:bg-stone-800 border border-stone-800 hover:text-amber-200'
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setLightboxIndex(null);
+                }}
+                className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-colors cursor-pointer whitespace-nowrap min-h-[40px] ${
+                  active
+                    ? 'bg-amber-400 text-stone-950 font-semibold'
+                    : 'bg-stone-900 text-stone-300 border border-stone-800 hover:text-amber-300'
                 }`}
               >
-                {getCategoryLabel(cat)}
+                {cat === 'ALL' ? (language === 'ne' ? 'सबै' : 'All Photos') : cat}
               </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => {
-            const itemTitle = (language === 'ne' && nepaliGalleryTitles[item.id]) 
-              ? nepaliGalleryTitles[item.id] 
-              : item.title;
-            const categoryLabel = getCategoryLabel(item.category);
-
-            return (
-              <div
-                key={item.id}
-                className="bg-stone-900/80 p-4 rounded-[2rem] border border-stone-800 hover:border-amber-500/40 transition-all shadow-xl group flex flex-col justify-between"
-              >
-                {/* Photo Container with Curved Border Frame */}
-                <div
-                  onClick={() => setActiveLightbox({ key: item.photoKey, title: itemTitle, category: categoryLabel })}
-                  className="relative group/frame cursor-pointer p-1.5 sm:p-2 rounded-[1.75rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-950/90 shadow-[0_8px_30px_rgba(217,119,6,0.2)] hover:shadow-[0_12px_40px_rgba(245,158,11,0.35)] transition-all duration-300 mb-3"
-                >
-                  <div className="w-full rounded-[1.25rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30 relative">
-                    <PhotoPlaceholder
-                      slotKey={item.photoKey}
-                      aspectRatio="landscape"
-                      className="w-full aspect-[4/3]"
-                      label={itemTitle}
-                      imageClassName="w-full h-full object-contain p-1 transition-transform duration-500 group-hover/frame:scale-[1.02]"
-                    />
-                    <div className="absolute top-2 right-2 opacity-0 group-hover/frame:opacity-100 transition-opacity bg-stone-950/80 text-amber-300 p-1.5 rounded-lg border border-amber-500/40 backdrop-blur-sm pointer-events-none">
-                      <Maximize2 className="w-3.5 h-3.5" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-1.5 px-1 pb-1">
-                  <span className="inline-block px-2.5 py-0.5 rounded-md bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider border border-amber-500/30 font-display">
-                    {categoryLabel}
-                  </span>
-                  <h3 className="text-base font-serif font-bold text-amber-100 group-hover:text-amber-300 transition-colors">
-                    {itemTitle}
-                  </h3>
-                </div>
-              </div>
             );
           })}
         </div>
 
+        {/* Responsive Image Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredPhotos.map((item, idx) => {
+            const title = language === 'ne' ? item.titleNe : item.title;
+            return (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => setLightboxIndex(idx)}
+                aria-label={`Open full-size image: ${title}`}
+                className="group text-left rounded-2xl bg-stone-900/70 border border-stone-800 hover:border-amber-400/60 overflow-hidden transition-colors cursor-pointer focus-visible:outline-2"
+              >
+                <div className="aspect-[4/3] w-full overflow-hidden bg-stone-950">
+                  <OptimizedImage
+                    webpSrc={item.webp}
+                    fallbackSrc={item.fallback}
+                    alt={item.alt}
+                    width={item.width}
+                    height={item.height}
+                    imgClassName="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                    fallbackTitle={title}
+                  />
+                </div>
+                <div className="p-4 space-y-1">
+                  <p className="text-xs font-medium text-amber-400">{item.category}</p>
+                  <h3 className="font-serif text-lg font-bold text-stone-100 group-hover:text-amber-200 transition-colors">
+                    {title}
+                  </h3>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {activeLightbox && (
+      {/* Accessible Lightbox Modal */}
+      {activePhoto && (
         <div
-          className="fixed inset-0 z-50 bg-stone-950/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6"
-          onClick={() => setActiveLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={language === 'ne' ? activePhoto.titleNe : activePhoto.title}
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+          onClick={() => setLightboxIndex(null)}
         >
           <div
-            className="relative max-w-5xl w-full bg-stone-900/95 border border-amber-500/40 rounded-[2rem] p-4 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.8)] flex flex-col items-center gap-4 overflow-hidden"
+            className="relative max-w-4xl w-full bg-stone-950 border border-stone-800 rounded-2xl p-4 sm:p-6 space-y-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setActiveLightbox(null)}
-              className="absolute top-4 right-4 p-2.5 bg-stone-950 text-stone-300 hover:text-amber-400 rounded-full border border-stone-700 transition-all hover:scale-110 z-10 shadow-lg"
-              aria-label="Close dialog"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center justify-between gap-4 border-b border-stone-800 pb-3">
+              <div>
+                <p className="text-xs font-medium text-amber-400">{activePhoto.category}</p>
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-stone-100">
+                  {language === 'ne' ? activePhoto.titleNe : activePhoto.title}
+                </h3>
+              </div>
 
-            <div className="text-center space-y-1 w-full border-b border-stone-800 pb-3 pr-12">
-              <span className="text-[10px] uppercase font-bold text-amber-400 tracking-widest px-2.5 py-0.5 rounded-md bg-amber-500/20 border border-amber-500/30">
-                {activeLightbox.category}
+              <button
+                type="button"
+                onClick={() => setLightboxIndex(null)}
+                aria-label="Close lightbox"
+                className="w-11 h-11 rounded-lg bg-stone-900 border border-stone-700 text-stone-200 hover:text-amber-300 flex items-center justify-center cursor-pointer shrink-0"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative flex items-center justify-center bg-black rounded-xl overflow-hidden max-h-[70vh]">
+              <OptimizedImage
+                webpSrc={activePhoto.webp}
+                fallbackSrc={activePhoto.fallback}
+                alt={activePhoto.alt}
+                width={activePhoto.width}
+                height={activePhoto.height}
+                priority={true}
+                imgClassName="max-h-[70vh] w-auto max-w-full object-contain"
+              />
+            </div>
+
+            <div className="flex items-center justify-between gap-4 pt-1">
+              <button
+                type="button"
+                onClick={() =>
+                  setLightboxIndex((prev) =>
+                    prev === null ? null : (prev - 1 + filteredPhotos.length) % filteredPhotos.length
+                  )
+                }
+                aria-label="Previous image"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 border border-stone-800 text-sm text-stone-200 hover:text-amber-300 cursor-pointer min-h-[44px]"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Previous</span>
+              </button>
+
+              <span className="text-sm text-stone-400 tabular-nums">
+                {(lightboxIndex ?? 0) + 1} / {filteredPhotos.length}
               </span>
-              <h3 className="text-lg sm:text-2xl font-serif font-bold text-amber-100">
-                {activeLightbox.title}
-              </h3>
-            </div>
 
-            <div className="w-full max-h-[75vh] flex items-center justify-center bg-stone-950 rounded-[1.5rem] border border-stone-800 p-2 overflow-hidden shadow-inner">
-              {lightboxSrc ? (
-                isLightboxVideo ? (
-                  <video 
-                    src={lightboxSrc} 
-                    controls 
-                    autoPlay 
-                    onPlay={(e) => {
-                      const allVideos = document.querySelectorAll('video');
-                      allVideos.forEach((vid) => {
-                        if (vid !== e.currentTarget && !vid.paused) {
-                          vid.pause();
-                        }
-                      });
-                    }}
-                    className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" 
-                  />
-                ) : (
-                  <img src={lightboxSrc} alt={activeLightbox.title} className="max-h-[70vh] w-auto max-w-full rounded-xl object-contain" />
-                )
-              ) : (
-                <div className="p-8 text-center text-stone-400 text-sm">
-                  {language === 'ne' ? 'यस स्लटमा तस्बिर उपलब्ध छैन' : 'No image available in this slot'}
-                </div>
-              )}
-            </div>
-
-            <div className="text-[11px] text-stone-400 tracking-wider">
-              {language === 'ne' ? (
-                <span>बन्द गर्न <kbd className="px-1.5 py-0.5 bg-stone-800 rounded border border-stone-700 text-amber-300">Esc</kbd> थिच्नुहोस् वा बाहिर क्लिक गर्नुहोस्</span>
-              ) : (
-                <span>Press <kbd className="px-1.5 py-0.5 bg-stone-800 rounded border border-stone-700 text-amber-300">Esc</kbd> or click outside to close</span>
-              )}
+              <button
+                type="button"
+                onClick={() =>
+                  setLightboxIndex((prev) =>
+                    prev === null ? null : (prev + 1) % filteredPhotos.length
+                  )
+                }
+                aria-label="Next image"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-stone-900 border border-stone-800 text-sm text-stone-200 hover:text-amber-300 cursor-pointer min-h-[44px]"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           </div>
         </div>
@@ -227,5 +203,3 @@ export const Gallery: React.FC = () => {
     </section>
   );
 };
-
-

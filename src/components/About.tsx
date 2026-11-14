@@ -1,156 +1,169 @@
 import React from 'react';
-import { Award, BookOpen, Heart, Sparkles, ShieldCheck, GraduationCap, ExternalLink } from 'lucide-react';
-import { PhotoPlaceholder } from './PhotoPlaceholder';
-import { statsData } from '../data/portfolioData';
+import { GraduationCap, HeartHandshake, ExternalLink } from 'lucide-react';
+import { OptimizedImage } from './OptimizedImage';
 import { useLanguage } from '../context/LanguageContext';
 
 export const About: React.FC = () => {
-  const { t, language } = useLanguage();
+  const { language } = useLanguage();
+
+  const milestones =
+    language === 'ne'
+      ? [
+          {
+            period: 'प्रारम्भिक यात्रा',
+            title: 'स्वावलम्बन र सीपको जग',
+            detail:
+              'गान्तोकमा बेकिङ, हेयर स्टाइलिङ, चित्रकला र परम्परागत शिल्पमा आत्मनिर्भर सिकाइ र निरन्तर साधनाबाट उद्यमशील यात्राको सुरुवात।',
+          },
+          {
+            period: 'व्यावसायिक तालिम',
+            title: 'मुम्बई र दिल्लीमा उच्च प्रशिक्षण',
+            detail:
+              'नालिनी एन्ड यास्मिन हेयर एकेडेमी (मुम्बई) बाट उन्नत हेयर स्टाइलिङ र ट्रफल नेसन (दिल्ली) बाट व्यावसायिक बेकिङ प्रशिक्षण।',
+          },
+          {
+            period: '२००७ देखि हालसम्म',
+            title: 'गान्तोकमा बहु-क्षेत्रीय उद्यम र नेतृत्व',
+            detail:
+              'नामनाङमा कटिङ एज हेयर एन्ड ब्युटी (२००७), ब्लश फेसन स्टोर र FSSAI-प्रमाणित जायल्स अर्गानिक अचारको स्थापना।',
+          },
+          {
+            period: 'सामुदायिक सेवा',
+            title: 'महिला समूह र युवा परामर्श',
+            detail:
+              'सिक्किम विश्वविद्यालय, महिला स्वयं सहायता समूह (SHG) र फरक क्षमता भएका युवाहरूका लागि ५०+ सीप कार्यशाला र परामर्श।',
+          },
+        ]
+      : [
+          {
+            period: 'Early Roots',
+            title: 'Self-Reliant Craft & Curiosity',
+            detail:
+              'Built an artistic and culinary foundation in Gangtok through independent dedication to baking, beauty styling, painting, and traditional Himalayan textile crafts.',
+          },
+          {
+            period: 'Specialist Training',
+            title: 'Mumbai & Delhi Academies',
+            detail:
+              'Trained at Nalini & Yasmin Hair Academy (Mumbai) for advanced cutting, chemical treatments, and salon operations, and Truffle Nation Baking School (Delhi).',
+          },
+          {
+            period: '2007 – Present',
+            title: 'Building Ventures in Namnang, Gangtok',
+            detail:
+              'Founded Cutting Edge Hair & Beauty in 2007, expanded into Blush Fashion Store, and launched FSSAI & UDYAM-registered Zayel’s Organic Pickles.',
+          },
+          {
+            period: 'Community Work',
+            title: 'Women SHGs & Youth Mentorship',
+            detail:
+              'Conducted 50+ vocational workshops across Sikkim—including resource sessions at Sikkim University and inclusive training for women SHGs and differently-abled youth.',
+          },
+        ];
 
   return (
-    <section id="about" className="py-24 bg-stone-900 text-stone-100 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>{t.about.badge}</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-amber-100 leading-tight">
-            {t.about.heading}
-          </h2>
-          <div className="w-16 h-1 bg-amber-500 mx-auto my-4 rounded-full" />
-          <p className="text-stone-300 text-base sm:text-lg leading-relaxed text-center">
-            {t.about.subheading}
+    <section id="about" className="py-16 sm:py-24 bg-[#12100e] border-b border-stone-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-14">
+        {/* Section Heading */}
+        <div className="max-w-2xl space-y-3">
+          <p className="text-xs sm:text-sm font-semibold tracking-[0.18em] uppercase text-amber-400">
+            {language === 'ne' ? 'परिचय र यात्रा' : 'About Shova Rai'}
           </p>
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-stone-50">
+            {language === 'ne'
+              ? 'गान्तोकको आत्मनिर्भर उद्यमशीलता र सामुदायिक नेतृत्व'
+              : 'Twenty Years of Craft, Enterprise & Community Upliftment in Sikkim'}
+          </h2>
         </div>
 
-        {/* Main Grid: Bio & Portrait */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
-          
-          {/* Left Column: Portrait Photo Space */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative group w-full max-w-md p-1.5 sm:p-2 rounded-[2.25rem] bg-gradient-to-br from-amber-400 via-amber-600/70 to-amber-900/90 shadow-[0_10px_35px_rgba(217,119,6,0.25)] hover:shadow-[0_15px_45px_rgba(245,158,11,0.35)] transition-all duration-500">
-              <div className="w-full rounded-[1.75rem] overflow-hidden bg-stone-950 flex items-center justify-center border border-amber-500/30">
-                <PhotoPlaceholder
-                  slotKey="about_portrait"
-                  aspectRatio="portrait"
-                  className="w-full aspect-[4/5]"
-                  label={t.about.portraitLabel}
-                  imageClassName="w-full h-full object-contain p-1.5 transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-              </div>
+        {/* Main Bio + Portrait */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+          <div className="lg:col-span-5">
+            <div className="rounded-2xl overflow-hidden bg-stone-900 border border-stone-800 max-w-md mx-auto lg:mx-0">
+              <OptimizedImage
+                webpSrc="/webp/Shova.webp"
+                fallbackSrc="/Shova.jpg"
+                alt="Mrs. Shova Rai smiling portrait in Gangtok, Sikkim"
+                width={660}
+                height={688}
+                imgClassName="w-full h-auto object-cover"
+                fallbackTitle="Mrs. Shova Rai"
+              />
             </div>
-            <p className="mt-3.5 text-xs sm:text-sm text-amber-300/90 font-medium tracking-wider text-center flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>{t.about.portraitLabel}</span>
-            </p>
           </div>
 
-          {/* Right Column: Bio Content */}
-          <div className="lg:col-span-7 space-y-6">
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-amber-200">
-              {t.about.bioHeading}
-            </h3>
+          <div className="lg:col-span-7 space-y-6 text-base sm:text-lg text-stone-300 leading-relaxed">
+            <p>
+              {language === 'ne'
+                ? 'श्रीमती शोभा राई गान्तोक, सिक्किमकी आत्मनिर्भर उद्यमी, मास्टर हेयरस्टाइलिस्ट, प्रमाणित बेकर र सामुदायिक परामर्शदाता हुनुहुन्छ। दुई दशकभन्दा लामो व्यावसायिक यात्रामा उहाँले सौन्दर्य, फेसन, प्राङ्गारिक खाद्य प्रशोधन र परम्परागत ब्लक प्रिन्टिङ क्षेत्रमा सफल उद्यमहरू निर्माण गर्नुभएको छ।'
+                : 'Mrs. Shova Rai is a self-made entrepreneur from Namnang, Gangtok, Sikkim, with over two decades of hands-on experience across beauty, fashion, artisanal food preservation, baking, and traditional block printing.'}
+            </p>
+            <p>
+              {language === 'ne'
+                ? 'उहाँको कार्यले स्थानीय महिला स्वयं सहायता समूह (SHGs), ग्रामीण कृषक र फरक क्षमता भएका युवाहरूलाई सीप र बजारसँग जोडेर आर्थिक स्वावलम्बन हासिल गर्न मद्दत पुर्‍याउँदै आएको छ।'
+                : 'Rooted in Himalayan heritage, she pairs professional salon and culinary standards with grassroots mentorship—helping women Self-Help Groups (SHGs), aspiring youth, and rural organic farmers across Sikkim build sustainable livelihoods.'}
+            </p>
 
-            {t.about.bioParagraphs.map((paragraph, index) => (
-              <p key={index} className="text-stone-300 text-base sm:text-lg leading-relaxed font-light text-justify">
-                {paragraph}
-              </p>
-            ))}
+            {/* Credentials summary */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="p-4 rounded-xl bg-stone-900/70 border border-stone-800 flex items-start gap-3">
+                <GraduationCap className="w-5 h-5 text-amber-400 shrink-0 mt-1" aria-hidden="true" />
+                <div>
+                  <h3 className="font-sans text-base font-semibold text-stone-100">
+                    {language === 'ne' ? 'प्रमाणित प्रशिक्षण' : 'Certified Specialist'}
+                  </h3>
+                  <p className="text-sm text-stone-400 mt-0.5">
+                    Nalini &amp; Yasmin Hair Academy (Mumbai) · Truffle Nation Baking School
+                  </p>
+                </div>
+              </div>
 
-            <div className="pt-1 pb-2">
+              <div className="p-4 rounded-xl bg-stone-900/70 border border-stone-800 flex items-start gap-3">
+                <HeartHandshake className="w-5 h-5 text-amber-400 shrink-0 mt-1" aria-hidden="true" />
+                <div>
+                  <h3 className="font-sans text-base font-semibold text-stone-100">
+                    {language === 'ne' ? 'दर्ता र खाद्य सुरक्षा' : 'Registered & Certified'}
+                  </h3>
+                  <p className="text-sm text-stone-400 mt-0.5">
+                    FSSAI Food Safety Certified · UDYAM / MSME Registered Micro-Enterprise
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2">
               <a
                 href="https://myvillagemypride.wordpress.com/2015/02/04/sikkim-an-inspiring-story-of-shova-rai/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 hover:text-amber-200 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all group"
+                className="inline-flex items-center gap-2 text-base font-semibold text-amber-400 hover:text-amber-300 underline underline-offset-4 transition-colors"
               >
-                <span>{t.about.readStory}</span>
-                <ExternalLink className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                <span>
+                  {language === 'ne'
+                    ? 'माई भिलेज माई प्राइडमा प्रकाशित जीवनी पढ्नुहोस्'
+                    : 'Read Shova Rai’s biography on My Village My Pride'}
+                </span>
+                <ExternalLink className="w-4 h-4 shrink-0" aria-hidden="true" />
               </a>
             </div>
-
-            <div className="grid grid-cols-2 gap-4 pt-4 border-t border-stone-800">
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-stone-800/50 border border-stone-700/50">
-                <ShieldCheck className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">{t.about.registeredBiz}</div>
-                  <div className="text-xs sm:text-sm text-stone-300">{t.about.registeredBizDesc}</div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3.5 rounded-xl bg-stone-800/50 border border-stone-700/50">
-                <Heart className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-xs sm:text-sm font-bold text-amber-200 uppercase">{t.about.communityFocus}</div>
-                  <div className="text-xs sm:text-sm text-stone-300">{t.about.communityFocusDesc}</div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Professional Qualifications & Expertise */}
-        <div className="mb-20">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <h3 className="text-2xl sm:text-3xl font-serif font-bold text-amber-100">
-              {t.about.qualificationsTitle}
-            </h3>
-            <p className="text-stone-300 text-base sm:text-lg mt-2 text-center">
-              {t.about.qualificationsSub}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {t.about.qualificationsList.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-stone-800/70 p-6 rounded-2xl border border-stone-700/60 hover:border-amber-500/40 transition-all flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <GraduationCap className="w-8 h-8 text-amber-400" />
-                    <span className="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold tracking-wider uppercase">
-                      {item.badge}
-                    </span>
-                  </div>
-                  <h4 className="text-lg font-serif font-bold text-amber-100 mb-2">
-                    {item.institution}
-                  </h4>
-                  <p className="text-sm text-stone-300 leading-relaxed text-justify">
-                    {item.qualification}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats Counter Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-stone-950 p-6 sm:p-8 rounded-2xl border border-stone-800">
-          {statsData.map((stat, idx) => (
-            <div key={idx} className="text-center p-3">
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-amber-400 mb-1">
-                {language === 'ne' ? (idx === 0 ? '२०+' : idx === 1 ? '४+' : idx === 2 ? '१०+' : '५०+') : stat.value}
-              </div>
-              <div className="text-xs sm:text-sm font-bold text-amber-100 uppercase tracking-wider mb-1">
-                {language === 'ne' 
-                  ? (idx === 0 ? 'उत्कृष्टताका वर्षहरू' : idx === 1 ? 'सफल उद्यमहरू' : idx === 2 ? 'राष्ट्रिय तथा राज्य सम्मान' : 'सीप कार्यशालाहरू')
-                  : stat.label
-                }
-              </div>
-              <div className="text-xs text-stone-400 leading-tight text-center">
-                {language === 'ne'
-                  ? (idx === 0 ? 'सौन्दर्य, फेसन, खाद्य र हस्तकलामा' : idx === 1 ? 'गान्तोकमा स्थापित तथा विस्तारित' : idx === 2 ? 'NCW र मन्त्रीहरूद्वारा मान्यताप्राप्त' : 'महिला तथा महिला समूहको सशक्तीकरण')
-                  : stat.description
-                }
-              </div>
-            </div>
+        {/* Clean 4-Step Journey Strip */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6 border-t border-stone-800/80">
+          {milestones.map((item) => (
+            <article
+              key={item.title}
+              className="p-5 rounded-xl bg-stone-900/60 border border-stone-800 space-y-2"
+            >
+              <p className="text-xs font-semibold tracking-wider uppercase text-amber-400">
+                {item.period}
+              </p>
+              <h3 className="font-serif text-xl font-bold text-stone-100">{item.title}</h3>
+              <p className="text-base text-stone-300 leading-relaxed">{item.detail}</p>
+            </article>
           ))}
         </div>
-
       </div>
     </section>
   );

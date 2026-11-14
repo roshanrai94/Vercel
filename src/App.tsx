@@ -1,117 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import { PhotoProvider } from './context/PhotoContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
-import { ProfessionalJourneyTimeline } from './components/ProfessionalJourneyTimeline';
 import { Ventures } from './components/Ventures';
-import { Locations } from './components/Locations';
-import { Impact } from './components/Impact';
-import { NewsletterSignup } from './components/NewsletterSignup';
-import { Recognition } from './components/Recognition';
-import { MediaPress } from './components/MediaPress';
+import { ServicesPriceList } from './components/ServicesPriceList';
+import { ProductsSection } from './components/ProductsSection';
+import { AwardsPress } from './components/AwardsPress';
+import { Testimonials } from './components/Testimonials';
 import { Gallery } from './components/Gallery';
+import { MentorshipForm } from './components/MentorshipForm';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { ArrowUp, MessageCircle } from 'lucide-react';
+import {
+  FloatingWhatsApp,
+  CookieNotice,
+  PrivacyModal,
+  NotFound,
+} from './components/SiteOverlays';
 
-import { useLanguage } from './context/LanguageContext';
-
-const FloatingActionButtons: React.FC<{ showScrollTop: boolean; scrollToTop: () => void }> = ({ showScrollTop, scrollToTop }) => {
-  const { language } = useLanguage();
-
-  return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-center gap-3">
-      {/* Quick WhatsApp Bubble */}
-      <a
-        href="https://wa.me/917431833009"
-        target="_blank"
-        rel="noopener noreferrer"
-        title={language === 'ne' ? "ह्वाट्सएपमा सिधै कुरा गर्नुहोस्" : "Chat directly on WhatsApp"}
-        className="w-12 h-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-[0_8px_25px_rgba(16,185,129,0.4)] hover:scale-110 transition-all border border-emerald-400/40 group"
-      >
-        <MessageCircle className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-      </a>
-
-      {/* Back to top button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          title={language === 'ne' ? "माथि जानुहोस्" : "Scroll back to top"}
-          className="w-10 h-10 rounded-full bg-stone-900/90 hover:bg-amber-500 hover:text-stone-950 text-amber-300 border border-amber-500/40 backdrop-blur-md flex items-center justify-center shadow-xl hover:scale-110 transition-all cursor-pointer"
-        >
-          <ArrowUp className="w-4 h-4" />
-        </button>
-      )}
-    </div>
-  );
-};
+function isValidRootPath(pathname: string): boolean {
+  return pathname === '/' || pathname === '' || pathname === '/index.html';
+}
 
 export default function App() {
-  const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
+  const [isNotFound, setIsNotFound] = useState<boolean>(() => !isValidRootPath(window.location.pathname));
+  const [privacyOpen, setPrivacyOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const updateScroll = () => {
-      const currentScroll = window.scrollY;
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (scrollHeight > 0) {
-        setScrollProgress((currentScroll / scrollHeight) * 100);
-      }
-      setShowScrollTop(currentScroll > 500);
+    const onPopState = () => {
+      setIsNotFound(!isValidRootPath(window.location.pathname));
     };
-
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    return () => window.removeEventListener('scroll', updateScroll);
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleReturnHome = () => {
+    window.history.pushState(null, '', '/');
+    setIsNotFound(false);
+    window.scrollTo({ top: 0 });
   };
+
+  if (isNotFound) {
+    return (
+      <LanguageProvider>
+        <NotFound onGoHome={handleReturnHome} />
+      </LanguageProvider>
+    );
+  }
 
   return (
     <LanguageProvider>
-      <PhotoProvider>
-      <div className="min-h-screen bg-stone-950 text-stone-100 font-sans selection:bg-amber-500 selection:text-stone-950 transition-colors duration-300 relative">
-        
-        {/* Top Reading Progress Bar */}
-        <div className="fixed top-0 left-0 right-0 h-1 bg-stone-900 z-[60] pointer-events-none">
-          <div
-            className="h-full bg-gradient-to-r from-amber-600 via-amber-400 to-amber-300 transition-all duration-150 ease-out shadow-[0_0_8px_rgba(245,158,11,0.8)]"
-            style={{ width: `${scrollProgress}%` }}
-          />
-        </div>
+      <div className="min-h-screen bg-[#0c0a09] text-stone-100 font-sans">
+        {/* Skip-to-content accessibility link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2.5 focus:rounded-lg focus:bg-amber-400 focus:text-stone-950 focus:font-semibold"
+        >
+          Skip to main content
+        </a>
 
-        {/* Navigation Header */}
+        {/* Sticky Navigation Header */}
         <Navbar />
 
-        {/* Main Content Sections */}
-        <main>
+        {/* Single-Page Anchor Sections */}
+        <main id="main-content">
           <Hero />
           <About />
-          <ProfessionalJourneyTimeline />
           <Ventures />
-          <Locations />
-          <Impact />
-          <NewsletterSignup />
-          <Recognition />
-          <MediaPress />
+          <ServicesPriceList />
+          <ProductsSection />
+          <AwardsPress />
+          <Testimonials />
           <Gallery />
+          <MentorshipForm />
           <FAQ />
           <Contact />
         </main>
 
         {/* Footer */}
-        <Footer />
+        <Footer onOpenPrivacy={() => setPrivacyOpen(true)} />
 
-        {/* Floating Quick Action Widget (WhatsApp & Back-to-Top) */}
-        <FloatingActionButtons showScrollTop={showScrollTop} scrollToTop={scrollToTop} />
-
+        {/* Conversion & Compliance Overlays */}
+        <FloatingWhatsApp />
+        <CookieNotice onOpenPrivacy={() => setPrivacyOpen(true)} />
+        <PrivacyModal open={privacyOpen} onClose={() => setPrivacyOpen(false)} />
       </div>
-    </PhotoProvider>
     </LanguageProvider>
   );
 }
-

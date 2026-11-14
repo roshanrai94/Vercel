@@ -1,14 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
-import { portfolioTranslations, Language } from '../data/translationsData';
 
-export type { Language };
-export type Translations = typeof portfolioTranslations['en'];
+export type Language = 'en' | 'ne';
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   toggleLanguage: () => void;
-  t: Translations;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -19,7 +16,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const saved = localStorage.getItem('shova_app_lang');
       if (saved === 'ne' || saved === 'en') return saved;
     } catch {
-      // fallback
+      // Ignore storage access errors
     }
     return 'en';
   });
@@ -29,7 +26,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     try {
       localStorage.setItem('shova_app_lang', lang);
     } catch {
-      // fallback
+      // Ignore storage access errors
     }
   };
 
@@ -38,14 +35,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   return (
-    <LanguageContext.Provider
-      value={{
-        language,
-        setLanguage,
-        toggleLanguage,
-        t: portfolioTranslations[language],
-      }}
-    >
+    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
